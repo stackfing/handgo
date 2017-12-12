@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Data
 @NoArgsConstructor
+@Data
 @ToString
 public class ProductType {
 
@@ -22,7 +22,5 @@ public class ProductType {
 
     @NotNull
     private String typeLink;
-
-
 
 }

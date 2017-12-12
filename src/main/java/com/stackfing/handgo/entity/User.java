@@ -2,11 +2,11 @@ package com.stackfing.handgo.entity;
 
 
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.sql.Date;
 
 @Entity
 @NoArgsConstructor
@@ -19,9 +19,19 @@ public class User {
     private Long uid;
 
     @NotNull
-    private int status;
+    @ColumnDefault("0")
+    private int permission;
 
-    private String headPhoto;
+    private Date lastLogin;
 
-    private String phoneNumber;
+    @NotNull
+    private String account;
+
+    @NotNull
+    private String password;
+
+//
+//    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
+//    private UserDetail userDetail;
+
 }

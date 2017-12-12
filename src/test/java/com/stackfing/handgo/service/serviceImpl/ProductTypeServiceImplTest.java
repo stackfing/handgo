@@ -1,6 +1,7 @@
 package com.stackfing.handgo.service.serviceImpl;
 
 import com.stackfing.handgo.entity.ProductType;
+import com.stackfing.handgo.entity.UserDetail;
 import com.stackfing.handgo.service.ProductTypeService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,6 +19,7 @@ public class ProductTypeServiceImplTest {
 
     @Autowired
     private ProductTypeService productTypeService;
+
 
     @Test
     public void findAllType() throws Exception {
