@@ -1,5 +1,6 @@
 package com.stackfing.handgo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.validator.constraints.Email;
 
@@ -20,9 +21,6 @@ public class UserDetail {
     @NotNull
     private int status;
 
-    @OneToOne
-    private User user;
-
     private String headPhoto;
 
     @NotNull
@@ -34,5 +32,8 @@ public class UserDetail {
 
     @NotNull
     private Date createDate;
+
+    @OneToOne(cascade = CascadeType.REMOVE)
+    private User user;
 
 }

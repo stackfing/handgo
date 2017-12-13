@@ -1,41 +1,48 @@
 package com.stackfing.handgo.service.serviceImpl;
 
 import com.stackfing.handgo.entity.User;
-import com.stackfing.handgo.entity.UserDetail;
-import lombok.extern.slf4j.Slf4j;
+import com.stackfing.handgo.entity.UserLocate;
+import com.stackfing.handgo.repository.UserLocateRepository;
+import com.stackfing.handgo.repository.UserRepository;
+import com.stackfing.handgo.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.xml.crypto.dsig.keyinfo.X509IssuerSerial;
-import java.util.List;
-
 import static org.junit.Assert.*;
 
-@SpringBootTest
 @RunWith(SpringRunner.class)
-@Slf4j
+@SpringBootTest
 public class UserServiceImplTest {
 
     @Autowired
-    UserServiceImpl userService;
+    private UserLocateRepository userLocateRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Test
-    public void findUserByStatusIs() throws Exception {
-        List<User> users = userService.findUserByStatusIs(21);
-        for (User u : users) {
-            System.out.println(u);
-        }
+    public void findusers () {
+        User user = userRepository.findByAccountEquals("1");
+        System.out.println(user);
     }
 
     @Test
-    public void getUserDetailById() {
-        List<UserDetail> list = userService.findUserDetailsByUserDetailIdIs(1L);
-        for (UserDetail u : list) {
-            System.out.println(u.toString());
-        }
+    public void findUserByStatusIs() throws Exception {
+    }
+
+    @Test
+    public void findUserDetailsByUserDetailIdIs() throws Exception {
+        UserLocate userLocate = userLocateRepository.findByIsPrimaryIs(1);
+
+        System.out.println(userLocate);
+    }
+
+    @Test
+    public void findParmiry() throws Exception {
+
     }
 
 }

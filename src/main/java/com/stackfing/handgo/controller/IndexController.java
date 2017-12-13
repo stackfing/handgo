@@ -15,9 +15,9 @@ public class IndexController {
     @Autowired
     private UserService userService;
 
-    @GetMapping
-    public List<UserDetail> index() {
-        return userService.findUserDetailsByUserDetailIdIs(1L);
-    }
+//    @GetMapping
+//    public List<UserDetail> index() {
+//        return userService.findUserDetailsByUserDetailIdIs(1L);
+//    }
 
 }

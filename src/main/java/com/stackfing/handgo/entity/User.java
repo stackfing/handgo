@@ -1,6 +1,7 @@
 package com.stackfing.handgo.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -19,7 +20,7 @@ public class User {
     private Long uid;
 
     @NotNull
-    @ColumnDefault("0")
+    @ColumnDefault("1")
     private int permission;
 
     private Date lastLogin;
@@ -30,8 +31,5 @@ public class User {
     @NotNull
     private String password;
 
-//
-//    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
-//    private UserDetail userDetail;
 
 }
