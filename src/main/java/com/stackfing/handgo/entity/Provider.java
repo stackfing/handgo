@@ -5,12 +5,10 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -20,20 +18,19 @@ public class Provider {
 
     @Id
     @GeneratedValue
-    private Long pid;
+    private Long pid;   //供应商id
 
     @NotNull
-    private String account;
+    private String account; //账号
 
     @NotNull
-    private String password;
+    private String password;    //密码
+
+    @NotNull
+    private int status = 1;	//供应商状态
 
     @NotNull
     @ColumnDefault("1")
-    private int status;
-
-    @NotNull
-    @ColumnDefault("1")
-    private int permission;
+    private int permission;	//供应商权限
 
 }

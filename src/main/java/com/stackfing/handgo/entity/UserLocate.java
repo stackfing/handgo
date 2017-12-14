@@ -1,7 +1,8 @@
 package com.stackfing.handgo.entity;
 
-import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -18,14 +19,13 @@ public class UserLocate {
     @GeneratedValue
     @Min(1)
     @Max(5)
-    private int locateId;
+    private int locateId;	//收货地址id
 
     @NotNull
-    private String locate;
+    private String locate;	//收货地址
 
     @NotNull
-    @ColumnDefault("0")
-    private int isPrimary;
+    private int isPrimary = 0;	//是否默认地址
 
     @ManyToOne(cascade = CascadeType.REMOVE)
     private User user;

@@ -15,12 +15,9 @@ public class ProductType {
 
     @Id
     @GeneratedValue
-    private Long typeId;
+    private Long typeId;    //类型id
 
     @NotNull
-    private String typeName;
-
-    @NotNull
-    private String typeLink;
+    private String typeName;    //类型名
 
 }
