@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" />
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{css/layui.css}"/>
+    <!--<script th:src="@{js/layui.js}"></script>-->
+    <meta charset="UTF-8" />
+    <title>首页</title>
+</head>
+<body>
+
+<div>
+    <a th:each="type : ${allType}" th:href="@{${type.typeLink}}" th:text="${type.typeName}"></a>
+</div>
+
+</body>
+</html>

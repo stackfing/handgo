@@ -26,4 +26,9 @@ public class UserServiceImpl implements UserService {
 //        return userLocateRepository.findUserLocateByIsPrimary(uid);
         return null;
     }
+
+	@Override
+	public List<User> findAllUser() {
+		return userRepository.findAll();
+	}
 }

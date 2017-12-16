@@ -12,4 +12,6 @@ public interface UserService {
 
     UserLocate findParmiry(Long uid);
 
+    List<User> findAllUser();
+
 }

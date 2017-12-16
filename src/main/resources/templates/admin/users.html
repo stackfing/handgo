@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en"/>
+<body>
+<div th:fragment="user">
+    <table class="layui-table">
+        <colgroup>
+            <col width="150"/>
+            <col width="150"/>
+            <col width="150"/>
+            <col width="150"/>
+            <col width="150"/>
+            <col width="150"/>
+            <col width="150"/>
+            <col width="150"/>
+            <col width="150"/>
+            <col width="150"/>
+            <col width="150"/>
+        </colgroup>
+        <thead>
+        <tr>
+            <th>用户 ID</th>
+            <th>账号</th>
+            <th>密码</th>
+            <th>手机号</th>
+            <th>邮箱</th>
+            <th>权限</th>
+            <th>创建时间</th>
+            <th>上次登录时间</th>
+            <th>头像</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${allUser}">
+            <td th:text="${user.uid}"></td>
+            <td th:text="${user.account}"></td>
+            <td th:text="${user.password}"></td>
+            <td th:text="${user.phoneNumber}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.permission}"></td>
+            <td th:text="${user.lastLogin}"></td>
+            <td th:text="${user.createDate}"></td>
+            <td th:text="${user.headPhoto}"></td>
+            <td th:text="${user.status}"></td>
+            <td><a th:text="修改" href="#"></a></td>
+        </tr>
+        </tbody>
+        <colgroup>
+            <col width="150"/>
+            <col width="150"/>
+            <col width="150"/>
+            <col width="150"/>
+            <col width="150"/>
+            <col width="150"/>
+            <col width="150"/>
+            <col width="150"/>
+            <col width="150"/>
+            <col width="150"/>
+        </colgroup>
+        <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>增加</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+</body>
+</html>

@@ -20,4 +20,7 @@ public class ProductType {
     @NotNull
     private String typeName;    //类型名
 
+	@NotNull
+	private String typeLink; //地址
+
 }
