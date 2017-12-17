@@ -3,12 +3,20 @@
 <html lang="en"/>
 <body>
 <div th:fragment="type">
+    <div class="layui-btn-group">
+        <button class="layui-btn layui-btn-normal">增加</button>
+    </div>
     <table class="layui-table">
         <colgroup>
-            <col width="150"/>
-            <col width="150"/>
-            <col width="150"/>
-            <col width="150"/>
+            <!--<col width="150"/>-->
+            <!--<col width="150"/>-->
+            <!--<col width="150"/>-->
+            <!--<col width="150"/>-->
+            <col/>
+            <col/>
+            <col/>
+            <col/>
+            <col/>
         </colgroup>
         <thead>
         <tr>
@@ -24,8 +32,9 @@
             <td th:text="${type.typeName}"></td>
             <td th:text="${type.typeLink}"></td>
             <td>
-                <div class="site-demo-button" id="layerDemo" style="margin-bottom: 0;">
-                    <button data-method="offset" data-type="auto" class="layui-btn layui-btn-normal">居中弹出</button>
+                <div class="layui-btn-group">
+                    <button class="layui-btn layui-btn-warm">编辑</button>
+                    <button class="layui-btn layui-btn-danger">删除</button>
                 </div>
             </td>
             <!--<div class="site-demo-button" id="layerDemos" style="margin-bottom: 0;"><a th:text="修改" href="#" id="layerDemos" data-method="offset" data-type="auto"></a></td>-->
@@ -42,7 +51,7 @@
             <th></th>
             <th></th>
             <th></th>
-            <th>增加</th>
+            <th></th>
         </tr>
         </thead>
     </table>

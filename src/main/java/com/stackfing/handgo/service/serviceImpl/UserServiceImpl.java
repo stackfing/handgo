@@ -31,4 +31,14 @@ public class UserServiceImpl implements UserService {
 	public List<User> findAllUser() {
 		return userRepository.findAll();
 	}
+
+	@Override
+	public User findOneById(Long uid) {
+		return userRepository.findOne(uid);
+	}
+
+	@Override
+	public void save(User user) {
+		userRepository.save(user);
+	}
 }

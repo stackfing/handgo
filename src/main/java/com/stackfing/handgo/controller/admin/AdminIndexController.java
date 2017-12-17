@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -31,4 +33,16 @@ public class AdminIndexController {
 		return "admin/index";
 	}
 
+	@GetMapping("user/{uid}")
+	public String editUser(@PathVariable Long uid, ModelMap modelMap) {
+		User user = userService.findOneById(uid);
+		modelMap.put("userDetail", user);
+		return "admin/user-edit";
+	}
+
+	@PostMapping("user/submit")
+	public String postUser(User user) {
+		userService.save(user);
+		return "redirect:/admin";
+	}
 }

@@ -14,4 +14,8 @@ public interface UserService {
 
     List<User> findAllUser();
 
+	User findOneById(Long uid);
+
+	void save(User user);
+
 }

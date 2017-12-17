@@ -8,10 +8,74 @@
     <title>首页</title>
 </head>
 <body>
+<script src="layui.all.js"></script>
+<ul class="layui-nav" style="background-color: #5FB878">
+    <li class="layui-nav-item"><a href="">艳蓝导航</a></li>
+    <li class="layui-nav-item layui-this"><a href="">产品</a></li>
+    <li class="layui-nav-item"><a href="">大数据</a></li>
+    <li class="layui-nav-item">
+        <a href="javascript:;">解决方案</a>
+        <dl class="layui-nav-child">
+            <dd><a href="">移动模块</a></dd>
+            <dd><a href="">后台模版</a></dd>
+            <dd><a href="">电商平台</a></dd>
+        </dl>
+    </li>
+    <li class="layui-nav-item"><a href="">社区</a></li>
+</ul>
+<div style="float: left; margin-left: 100px">
+    <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">
+        <li class="layui-nav-item layui-nav-itemed">
+            <a href="javascript:;">默认展开</a>
+            <dl class="layui-nav-child">
+                <dd><a href="javascript:;">选项一</a></dd>
+                <dd><a href="javascript:;">选项二</a></dd>
+                <dd><a href="javascript:;">选项三</a></dd>
+                <dd><a href="">跳转项</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">解决方案</a>
+            <dl class="layui-nav-child">
+                <dd><a href="">移动模块</a></dd>
+                <dd><a href="">后台模版</a></dd>
+                <dd><a href="">电商平台</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">云市场</a></li>
+        <li class="layui-nav-item"><a href="">社区</a></li>
+    </ul>
+</div>
+<div class="layui-carousel" id="test10" style="float: left;">
+    <div carousel-item="">
+        <div><img src="//res.layui.com/images/layui/demo/1.png"/></div>
+        <div><img src="//res.layui.com/images/layui/demo/2.png"/></div>
+        <div><img src="//res.layui.com/images/layui/demo/3.png"/></div>
+        <div><img src="//res.layui.com/images/layui/demo/4.png"/></div>
+        <div><img src="//res.layui.com/images/layui/demo/5.png"/></div>
+        <div><img src="//res.layui.com/images/layui/demo/6.png"/></div>
+        <div><img src="//res.layui.com/images/layui/demo/7.png"/></div>
+    </div>
+</div>
 
 <div>
     <a th:each="type : ${allType}" th:href="@{${type.typeLink}}" th:text="${type.typeName}"></a>
 </div>
+
+<script>
+    layui.use(['carousel', 'form'], function(){
+        var carousel = layui.carousel
+            ,form = layui.form;
+        //图片轮播
+        carousel.render({
+            elem: '#test10'
+            ,width: '590px'
+            ,height: '340px'
+            ,interval: 5000
+        });
+    });
+</script>
+
 
 </body>
 </html>

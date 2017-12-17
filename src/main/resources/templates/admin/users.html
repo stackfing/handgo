@@ -5,17 +5,19 @@
 <div th:fragment="user">
     <table class="layui-table">
         <colgroup>
-            <col width="150"/>
-            <col width="150"/>
-            <col width="150"/>
-            <col width="150"/>
-            <col width="150"/>
-            <col width="150"/>
-            <col width="150"/>
-            <col width="150"/>
-            <col width="150"/>
-            <col width="150"/>
-            <col width="150"/>
+            <col/>
+            <col/>
+            <col/>
+            <col/>
+            <col/>
+            <col/>
+            <col/>
+            <col/>
+            <col/>
+            <col/>
+            <col/>
+            <col/>
+            <col/>
         </colgroup>
         <thead>
         <tr>
@@ -44,20 +46,33 @@
             <td th:text="${user.createDate}"></td>
             <td th:text="${user.headPhoto}"></td>
             <td th:text="${user.status}"></td>
-            <td><a th:text="修改" href="#"></a></td>
+            <td><a th:text="修改" th:href="@{user/} + ${user.uid}"></a></td>
         </tr>
         </tbody>
         <colgroup>
-            <col width="150"/>
-            <col width="150"/>
-            <col width="150"/>
-            <col width="150"/>
-            <col width="150"/>
-            <col width="150"/>
-            <col width="150"/>
-            <col width="150"/>
-            <col width="150"/>
-            <col width="150"/>
+            <!--<col width="150"/>-->
+            <!--<col width="150"/>-->
+            <!--<col width="150"/>-->
+            <!--<col width="150"/>-->
+            <!--<col width="150"/>-->
+            <!--<col width="150"/>-->
+            <!--<col width="150"/>-->
+            <!--<col width="150"/>-->
+            <!--<col width="150"/>-->
+            <!--<col width="150"/>-->
+
+            <col/>
+            <col/>
+            <col/>
+            <col/>
+            <col/>
+            <col/>
+            <col/>
+            <col/>
+            <col/>
+            <col/>
+            <col/>
+            <col/>
         </colgroup>
         <thead>
         <tr>
@@ -71,7 +86,7 @@
             <th></th>
             <th></th>
             <th></th>
-            <th>增加</th>
+            <th><button data-method="offset" data-type="auto" class="layui-btn layui-btn-normal">居中弹出</button></th>
         </tr>
         </thead>
     </table>

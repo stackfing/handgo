@@ -7,30 +7,34 @@
     <title>后台首页</title>
 </head>
 <body>
-
-<ul class="layui-nav">
-    <li class="layui-nav-item">
-        <a href="">控制台<span class="layui-badge">9</span></a>
-    </li>
-    <li class="layui-nav-item">
-        <a href="">个人中心<span class="layui-badge-dot"></span></a>
-    </li>
-    <li class="layui-nav-item">
-        <a href=""><img src="http://t.cn/RCzsdCq" class="layui-nav-img" />我</a>
-        <dl class="layui-nav-child">
-            <dd><a href="javascript:;">修改信息</a></dd>
-            <dd><a href="javascript:;">安全管理</a></dd>
-            <dd><a href="javascript:;">退出</a></dd>
-        </dl>
-    </li>
-</ul>
+<div style="height: 60px; background-color: #393D49">
+    <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item">
+            <a href="@{/}">首页</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="">控制台<span class="layui-badge">9</span></a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="">个人中心<span class="layui-badge-dot"></span></a>
+        </li>
+        <li class="layui-nav-item">
+            <a href=""><img src="http://t.cn/RCzsdCq" class="layui-nav-img" />我</a>
+            <dl class="layui-nav-child">
+                <dd><a href="javascript:;">修改信息</a></dd>
+                <dd><a href="javascript:;">安全管理</a></dd>
+                <dd><a href="javascript:;">退出</a></dd>
+            </dl>
+        </li>
+    </ul>
+</div>
 <script src="../layui.all.js"></script>
 
-<div class="layui-tab">
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
     <ul class="layui-tab-title">
         <li class="layui-this">分类管理</li>
         <li>用户管理</li>
-        <li>权限分配</li>
+        <li>商户管理</li>
         <li>商品管理</li>
         <li>订单管理</li>
     </ul>
@@ -47,22 +51,52 @@
         <div class="layui-tab-item">内容5</div>
     </div>
 </div>
-<br/>
-<br/>
-<br/>
-<br/>
-
-
 <div class="site-demo-button" id="layerDemo" style="margin-bottom: 0;">
-    <button data-method="offset" data-type="auto" class="layui-btn layui-btn-normal">居中弹出</button>
+    <button data-method="offset" data-type="auto" class="layui-btn layui-btn-normal">增加</button>
+    <button data-method="notice" class="layui-btn">示范一个公告层</button>
 </div>
-
+<table class="layui-table" lay-data="{url:'/test/table/demo1.json', id:'test3'}" lay-filter="test3">
+    <thead>
+    <tr>
+        <th lay-data="{type:'checkbox'}">ID</th>
+        <th lay-data="{field:'id', width:80, sort: true}">ID</th>
+        <th lay-data="{field:'username', width:120, sort: true, edit: 'text'}">用户名</th>
+        <th lay-data="{field:'email', edit: 'text', minWidth: 150}">邮箱</th>
+        <th lay-data="{field:'sex', width:80, edit: 'text'}">性别</th>
+        <th lay-data="{field:'city', edit: 'text', minWidth: 100}">城市</th>
+        <th lay-data="{field:'experience', sort: true, edit: 'text'}">积分</th>
+    </tr>
+    </thead>
+</table>
 <script>
     layui.use('layer', function(){ //独立版的layer无需执行这一句
         var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
 
         //触发事件
         var active = {
+            notice: function(){
+            //示范一个公告层
+            layer.open({
+                type: 1
+                ,title: false //不显示标题栏
+                ,closeBtn: false
+                ,area: '300px;'
+                ,shade: 0.8
+                ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+                ,btn: ['火速围观', '残忍拒绝']
+                ,btnAlign: 'c'
+                ,moveType: 1 //拖拽模式，0或者1
+                ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">你知道吗？亲！<br/>layer ≠ layui<br/><br/>layer只是作为Layui的一个弹层模块，由于其用户基数较大，所以常常会有人以为layui是layerui<br/><br/>layer虽然已被 Layui 收编为内置的弹层模块，但仍然会作为一个独立组件全力维护、升级。<br/><br/>我们此后的征途是星辰大海 ^_^</div>'
+                ,success: function(layero){
+                    var btn = layero.find('.layui-layer-btn');
+                    btn.find('.layui-layer-btn0').attr({
+                        href: 'http://www.layui.com/'
+                        ,target: '_blank'
+                    });
+                }
+            });
+        }
+            ,
             offset: function(othis){
                 var type = othis.data('type')
                     ,text = othis.text();
