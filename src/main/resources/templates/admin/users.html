@@ -35,6 +35,38 @@
         </tr>
         </thead>
         <tbody>
+
+
+        <script >//引用
+        function delUser(uid) {
+            var msg = "您真的确定要删除吗？";
+            if (confirm(msg)==true){
+                var xmlhttp;
+                if (window.XMLHttpRequest)
+                {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp=new XMLHttpRequest();
+                }
+                else
+                {// code for IE6, IE5
+                    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange=function()
+                {
+                    if (xmlhttp.status==200)
+                    {
+                        alert(xmlhttp.responseText);
+                    }
+                }
+                xmlhttp.open("GET","/admin/users/del/" + uid,true);
+                xmlhttp.send();
+                return true;
+            }else{
+                alert("false")
+                return false;
+            }
+            location.reload();
+        }
+        </script>
         <tr th:each="user : ${allUser}">
             <td th:text="${user.uid}"></td>
             <td th:text="${user.account}"></td>
@@ -46,7 +78,7 @@
             <td th:text="${user.createDate}"></td>
             <td th:text="${user.headPhoto}"></td>
             <td th:text="${user.status}"></td>
-            <td><a th:text="修改" th:href="@{user/} + ${user.uid}"></a></td>
+            <td><a th:text="修改" th:href="@{/admin/users/} + ${user.uid}"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a th:onclick="'delUser('+${user.uid}+');'" href="javascript:void(0)">删除</a></td>
         </tr>
         </tbody>
         <colgroup>
@@ -60,7 +92,6 @@
             <!--<col width="150"/>-->
             <!--<col width="150"/>-->
             <!--<col width="150"/>-->
-
             <col/>
             <col/>
             <col/>
@@ -86,10 +117,12 @@
             <th></th>
             <th></th>
             <th></th>
-            <th><button data-method="offset" data-type="auto" class="layui-btn layui-btn-normal">居中弹出</button></th>
+            <!--<th><button data-method="offset" data-type="auto" class="layui-btn layui-btn-normal">居中弹出</button></th>-->
+            <th><a href="/admin/users/add">添加用户</a></th>
         </tr>
         </thead>
     </table>
 </div>
+
 </body>
 </html>

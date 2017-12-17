@@ -24,8 +24,10 @@ public class AdminIndexController {
 	@Autowired
 	private UserService userService;
 
-	@GetMapping("")
+	@GetMapping("/")
 	public String index(ModelMap modelMap) {
+		System.out.println("sadf");
+		
 		List<ProductType> allType = productTypeService.findAllType();
 		modelMap.put("allType", allType);
 		List<User> allUser = userService.findAllUser();
@@ -33,16 +35,14 @@ public class AdminIndexController {
 		return "admin/index";
 	}
 
-	@GetMapping("user/{uid}")
-	public String editUser(@PathVariable Long uid, ModelMap modelMap) {
-		User user = userService.findOneById(uid);
-		modelMap.put("userDetail", user);
-		return "admin/user-edit";
+	@GetMapping("")
+	public String toindex(ModelMap modelMap) {
+		System.out.println("sdafsdf");
+		List<ProductType> allType = productTypeService.findAllType();
+		modelMap.put("allType", allType);
+		List<User> allUser = userService.findAllUser();
+		modelMap.put("allUser", allUser);
+		return "admin/index";
 	}
 
-	@PostMapping("user/submit")
-	public String postUser(User user) {
-		userService.save(user);
-		return "redirect:/admin";
-	}
 }
