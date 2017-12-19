@@ -3,16 +3,15 @@
 <html lang="en" />
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{css/layui.css}"/>
-    <!--<script th:src="@{js/layui.js}"></script>-->
+    <!--<script th:src="@{jss/layui.jss}"></script>-->
     <meta charset="UTF-8" />
     <title>首页</title>
 </head>
 <body>
 <script src="layui.all.js"></script>
 <ul class="layui-nav" style="background-color: #5FB878">
-    <li class="layui-nav-item"><a href="">艳蓝导航</a></li>
+    <li class="layui-nav-item"><a th:href="@{/}">首页</a></li>
     <li class="layui-nav-item layui-this"><a href="">产品</a></li>
-    <li class="layui-nav-item"><a href="">大数据</a></li>
     <li class="layui-nav-item">
         <a href="javascript:;">解决方案</a>
         <dl class="layui-nav-child">
@@ -22,6 +21,7 @@
         </dl>
     </li>
     <li class="layui-nav-item"><a href="">社区</a></li>
+    <li class="layui-nav-item"><a th:href="@{/admin}">后台</a></li>
 </ul>
 <div style="float: left; margin-left: 100px">
     <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">

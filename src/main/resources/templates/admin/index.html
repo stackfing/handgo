@@ -3,6 +3,7 @@
 <html lang="en"/>
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{../css/layui.css}"/>
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"/>
     <meta charset="UTF-8"/>
     <title>后台首页</title>
 </head>
@@ -10,7 +11,7 @@
 <div style="height: 60px; background-color: #393D49">
     <ul class="layui-nav layui-layout-right">
         <li class="layui-nav-item">
-            <a href="@{/}">首页</a>
+            <a th:href="@{/}">首页</a>
         </li>
         <li class="layui-nav-item">
             <a href="">控制台<span class="layui-badge">9</span></a>
@@ -33,21 +34,21 @@
 <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
     <ul class="layui-tab-title">
         <li class="layui-this">分类管理</li>
-        <li>用户管理</li>
-        <li>商户管理</li>
-        <li>商品管理</li>
-        <li>订单管理</li>
+        <li id="yonghu">用户管理</li>
+        <li id="shanghu">商户管理</li>
+        <li id="dingdan">商品管理</li>
+        <li id="sh">订单管理</li>
     </ul>
     <div class="layui-tab-content">
-        <div class="layui-tab-item layui-show">
+        <div class="layui-tab-item layui-show" id="test">
             <!--<a th:each="type : ${allType}" th:href="@{${type.typeLink}}" th:text="${type.typeName}"></a>-->
             <div th:include="admin/types :: type"></div>
         </div>
-        <div class="layui-tab-item">
+        <div class="layui-tab-item" id="test1">
             <div th:include="admin/users :: user"></div>
         </div>
-        <div class="layui-tab-item">内容3</div>
-        <div class="layui-tab-item">内容4</div>
+        <div class="layui-tab-item" id="">内容3</div>
+        <div class="layui-tab-item" id="">内容4</div>
         <div class="layui-tab-item">内容5</div>
     </div>
 </div>
@@ -68,6 +69,21 @@
     </tr>
     </thead>
 </table>
+<button id="ad">asdfsdf</button>
+<script>
+
+    $(".layui-tab-title li").click(function (e) {
+        var t = $(e.target).attr("id");
+            switch (t) {
+                case "sh":
+                    alert("sh");
+                    break;
+                case "yonghu":
+                    alert("yonghu");
+                    break;
+            }
+    });
+</script>
 
 <script>
     layui.use('layer', function(){ //独立版的layer无需执行这一句
@@ -106,7 +122,7 @@
                     type: 1
                     ,offset: type //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
                     ,id: 'layerDemo'+type //防止重复弹出
-                    ,content: '<div style="padding: 20px 100px;">asdsad</div>'
+                    ,content: '<div style="padding: 20px 100px;">asdsad</div><div>test</div>'
                     ,btn: '关闭'
                     ,btnAlign: 'c' //按钮居中
                     ,shade: 0 //不显示遮罩
