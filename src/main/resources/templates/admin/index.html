@@ -8,137 +8,153 @@
     <title>后台首页</title>
 </head>
 <body>
-<div style="height: 60px; background-color: #393D49">
-    <ul class="layui-nav layui-layout-right">
-        <li class="layui-nav-item">
-            <a th:href="@{/}">首页</a>
-        </li>
-        <li class="layui-nav-item">
-            <a href="">控制台<span class="layui-badge">9</span></a>
-        </li>
-        <li class="layui-nav-item">
-            <a href="">个人中心<span class="layui-badge-dot"></span></a>
-        </li>
-        <li class="layui-nav-item">
-            <a href=""><img src="http://t.cn/RCzsdCq" class="layui-nav-img" />我</a>
-            <dl class="layui-nav-child">
-                <dd><a href="javascript:;">修改信息</a></dd>
-                <dd><a href="javascript:;">安全管理</a></dd>
-                <dd><a href="javascript:;">退出</a></dd>
-            </dl>
-        </li>
-    </ul>
-</div>
-<script src="../layui.all.js"></script>
+<!--<div style="height: 60px; background-color: #393D49">-->
+    <!--<ul class="layui-nav layui-layout-right">-->
+        <!--<li class="layui-nav-item">-->
+            <!--<a th:href="@{/}">首页</a>-->
+        <!--</li>-->
+        <!--<li class="layui-nav-item">-->
+            <!--<a href="">控制台<span class="layui-badge">9</span></a>-->
+        <!--</li>-->
+        <!--<li class="layui-nav-item">-->
+            <!--<a href="">个人中心<span class="layui-badge-dot"></span></a>-->
+        <!--</li>-->
+        <!--<li class="layui-nav-item">-->
+            <!--<a href=""><img src="http://t.cn/RCzsdCq" class="layui-nav-img"/>我</a>-->
+            <!--<dl class="layui-nav-child">-->
+                <!--<dd><a href="javascript:;">修改信息</a></dd>-->
+                <!--<dd><a href="javascript:;">安全管理</a></dd>-->
+                <!--<dd><a href="javascript:;">退出</a></dd>-->
+            <!--</dl>-->
+        <!--</li>-->
+    <!--</ul>-->
+<!--</div>-->
+<!--<div>-->
+    <!--<div id="leftbar" class="layui-side-scroll">-->
+        <!--<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo">-->
+            <!--<li class="layui-nav-item layui-nav-itemed">-->
+                <!--<a href="javascript:;">默认展开</a>-->
+                <!--<dl class="layui-nav-child">-->
+                    <!--<dd><a href="javascript:;">选项一</a></dd>-->
+                    <!--<dd><a href="javascript:;">选项二</a></dd>-->
+                    <!--<dd><a href="javascript:;">选项三</a></dd>-->
+                    <!--<dd><a href="">跳转项</a></dd>-->
+                <!--</dl>-->
+            <!--</li>-->
+            <!--<li class="layui-nav-item">-->
+                <!--<a href="javascript:;">解决方案</a>-->
+                <!--<dl class="layui-nav-child">-->
+                    <!--<dd><a href="">移动模块</a></dd>-->
+                    <!--<dd><a href="">后台模版</a></dd>-->
+                    <!--<dd><a href="">电商平台</a></dd>-->
+                <!--</dl>-->
+            <!--</li>-->
+            <!--<li class="layui-nav-item"><a href="">云市场</a></li>-->
+            <!--<li class="layui-nav-item"><a href="">社区</a></li>-->
+        <!--</ul>-->
+    <!--</div>-->
+    <!--<div id="content-body" style="float: left;">-->
+        <!--<button>sdfds</button>-->
+    <!--</div>-->
+<!--</div>-->
 
-<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
-    <ul class="layui-tab-title">
-        <li class="layui-this">分类管理</li>
-        <li id="yonghu">用户管理</li>
-        <li id="shanghu">商户管理</li>
-        <li id="dingdan">商品管理</li>
-        <li id="sh">订单管理</li>
-    </ul>
-    <div class="layui-tab-content">
-        <div class="layui-tab-item layui-show" id="test">
-            <!--<a th:each="type : ${allType}" th:href="@{${type.typeLink}}" th:text="${type.typeName}"></a>-->
-            <div th:include="admin/types :: type"></div>
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo" style="color: #1E9FFF;font-size: 17px;">Myth毕业设计管理系统</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="">控制台</a></li>
+            <li class="layui-nav-item"><a href="">商品管理</a></li>
+            <li class="layui-nav-item"><a href="">用户</a></li>
+
+            <li class="layui-nav-item">
+                <a href="javascript:;">其它系统</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">邮件管理</a></dd>
+                    <dd><a href="">消息管理</a></dd>
+                    <dd><a href="">授权管理</a></dd>
+                    <dd><a href="teacher">教师</a></dd>
+                    <dd><a href="student">学生</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <!--<span class="layui-badge-dot"></span>-->
+                <span class="layui-badge">9</span>
+                <!--若点击进入所有信息的面板，悬浮则是阅读消息-->
+                <a href="">&nbsp;&nbsp;消息
+                    <dl class="layui-nav-child">
+
+                        <dd><a href="">你提交的开题报告文档已经被导师审阅并回复了快去查看吧 &nbsp;&nbsp;2017-09-19 19:12:06</a></dd>
+                        <dd><a href="">提示1</a></dd>
+                        <dd><a href="">提示2</a></dd>
+                    </dl>
+                    <!--<span class="layui-badge">9</span>-->
+                </a>
+                <!--消息只是提示，最多负责跳转，编辑就是在单个页面上-->
+            </li>
+
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+
+            <li class="layui-nav-item">
+
+                <a href="javascript:;">
+
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img"/>
+                    我
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                    <dd><a href="logout/admin">注销登录</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">用户管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">用户列表</a></dd>
+                        <dd><a href="javascript:;">删除的用户</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">商户管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">商户列表</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">商品管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">分类管理</a></dd>
+                        <dd><a href="javascript:;">商品列表</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">发布公告</a></li>
+            </ul>
         </div>
-        <div class="layui-tab-item" id="test1">
-            <div th:include="admin/users :: user"></div>
-        </div>
-        <div class="layui-tab-item" id="">内容3</div>
-        <div class="layui-tab-item" id="">内容4</div>
-        <div class="layui-tab-item">内容5</div>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+
+        <iframe runat="server" src="/admin/users/1" width="100%" height="100%" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes">
+            <div style="padding: 15px;">内容主体区域</div>
+            <div><h1>您好<span id="user"></span>这是你第 <span></span> 次登录</h1></div>
+        </iframe>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © layui.com - 底部固定区域
     </div>
 </div>
-<div class="site-demo-button" id="layerDemo" style="margin-bottom: 0;">
-    <button data-method="offset" data-type="auto" class="layui-btn layui-btn-normal">增加</button>
-    <button data-method="notice" class="layui-btn">示范一个公告层</button>
-</div>
-<table class="layui-table" lay-data="{url:'/test/table/demo1.json', id:'test3'}" lay-filter="test3">
-    <thead>
-    <tr>
-        <th lay-data="{type:'checkbox'}">ID</th>
-        <th lay-data="{field:'id', width:80, sort: true}">ID</th>
-        <th lay-data="{field:'username', width:120, sort: true, edit: 'text'}">用户名</th>
-        <th lay-data="{field:'email', edit: 'text', minWidth: 150}">邮箱</th>
-        <th lay-data="{field:'sex', width:80, edit: 'text'}">性别</th>
-        <th lay-data="{field:'city', edit: 'text', minWidth: 100}">城市</th>
-        <th lay-data="{field:'experience', sort: true, edit: 'text'}">积分</th>
-    </tr>
-    </thead>
-</table>
-<button id="ad">asdfsdf</button>
-<script>
-
-    $(".layui-tab-title li").click(function (e) {
-        var t = $(e.target).attr("id");
-            switch (t) {
-                case "sh":
-                    alert("sh");
-                    break;
-                case "yonghu":
-                    alert("yonghu");
-                    break;
-            }
-    });
-</script>
-
-<script>
-    layui.use('layer', function(){ //独立版的layer无需执行这一句
-        var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
-
-        //触发事件
-        var active = {
-            notice: function(){
-            //示范一个公告层
-            layer.open({
-                type: 1
-                ,title: false //不显示标题栏
-                ,closeBtn: false
-                ,area: '300px;'
-                ,shade: 0.8
-                ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
-                ,btn: ['火速围观', '残忍拒绝']
-                ,btnAlign: 'c'
-                ,moveType: 1 //拖拽模式，0或者1
-                ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">你知道吗？亲！<br/>layer ≠ layui<br/><br/>layer只是作为Layui的一个弹层模块，由于其用户基数较大，所以常常会有人以为layui是layerui<br/><br/>layer虽然已被 Layui 收编为内置的弹层模块，但仍然会作为一个独立组件全力维护、升级。<br/><br/>我们此后的征途是星辰大海 ^_^</div>'
-                ,success: function(layero){
-                    var btn = layero.find('.layui-layer-btn');
-                    btn.find('.layui-layer-btn0').attr({
-                        href: 'http://www.layui.com/'
-                        ,target: '_blank'
-                    });
-                }
-            });
-        }
-            ,
-            offset: function(othis){
-                var type = othis.data('type')
-                    ,text = othis.text();
-
-                layer.open({
-                    type: 1
-                    ,offset: type //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
-                    ,id: 'layerDemo'+type //防止重复弹出
-                    ,content: '<div style="padding: 20px 100px;">asdsad</div><div>test</div>'
-                    ,btn: '关闭'
-                    ,btnAlign: 'c' //按钮居中
-                    ,shade: 0 //不显示遮罩
-                    ,yes: function(){
-                        layer.closeAll();
-                    }
-                });
-            }
-        };
-
-        $('#layerDemo .layui-btn').on('click', function(){
-            var othis = $(this), method = othis.data('method');
-            active[method] ? active[method].call(this, othis) : '';
-        });
-
-    });
-</script>
+<script src="../layui.all.js"></script>
 </body>
 </html>

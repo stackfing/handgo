@@ -25,23 +25,12 @@ public class AdminIndexController {
 	private UserService userService;
 
 	@GetMapping("/")
-	public String index(ModelMap modelMap) {
-		System.out.println("sadf");
-		
-		List<ProductType> allType = productTypeService.findAllType();
-		modelMap.put("allType", allType);
-		List<User> allUser = userService.findAllUser();
-		modelMap.put("allUser", allUser);
+	public String index() {
 		return "admin/index";
 	}
 
 	@GetMapping("")
-	public String toindex(ModelMap modelMap) {
-		System.out.println("sdafsdf");
-		List<ProductType> allType = productTypeService.findAllType();
-		modelMap.put("allType", allType);
-		List<User> allUser = userService.findAllUser();
-		modelMap.put("allUser", allUser);
+	public String toindex() {
 		return "admin/index";
 	}
 
