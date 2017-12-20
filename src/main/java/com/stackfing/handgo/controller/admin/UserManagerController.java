@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/admin/users")
 public class UserManagerController {
@@ -25,6 +27,12 @@ public class UserManagerController {
 		User user = userService.findOneById(uid);
 		modelMap.put("userDetail", user);
 		return "/admin/user-edit";
+	}
+
+	@RequestMapping("userList")
+	@ResponseBody
+	public List<User> getUserList() {
+		return userService.findAllUser();
 	}
 
 	@PostMapping("submit")

@@ -34,4 +34,9 @@ public class AdminIndexController {
 		return "admin/index";
 	}
 
+	@GetMapping("/test")
+	public String toTeset() {
+		return "test";
+	}
+
 }
