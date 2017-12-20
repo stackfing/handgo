@@ -8,8 +8,6 @@
     <title>Title</title>
 </head>
 <body>
-
-<div id="servers"></div>
 <table class="layui-table">
     <colgroup>
         <col/>
@@ -41,7 +39,7 @@
         <th>操作</th>
     </tr>
     </thead>
-    <tbody id="bo">
+    <tbody id="userList">
     <script>
         /*<![CDATA[*/
         function delUser(uid) {
@@ -67,10 +65,12 @@
                 xmlhttp.send();
                 return true;
             }else{
-                alert("false")
                 return false;
             }
             location.reload();
+        }
+        function editUser(uid) {
+
         }
         result = '';
         $.get("/admin/users/userList", function(data){
@@ -85,9 +85,10 @@
                     + "<td>" + value.createDate + "</td>"
                     + "<td>" + value.headPhoto + "</td>"
                     + "<td>" + value.status + "</td>"
-                    + "<td>" + "<a href='javascript:void(0)' onclick=\"delUser(" + value.uid + ")\">删除</a></td></tr>";
+                    + "<td>" + "<a href='javascript:void(0)' onclick=\"editUser(" + value.uid + ")\">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;" +
+                    "<a href='javascript:void(0)' onclick=\"delUser(" + value.uid + ")\">删除</a></td></tr>";
             })
-            $("#bo").append(result);
+            $("#userList").append(result);
         });
         /*]]>*/
     </script>

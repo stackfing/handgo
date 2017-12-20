@@ -1,43 +1,47 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en"/>
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{../css/layui.css}"/>
+    <script src="../js/jquery.min.js"/>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
 <body>
-<div th:fragment="user">
-    <table class="layui-table">
-        <colgroup>
-            <col/>
-            <col/>
-            <col/>
-            <col/>
-            <col/>
-            <col/>
-            <col/>
-            <col/>
-            <col/>
-            <col/>
-            <col/>
-            <col/>
-            <col/>
-        </colgroup>
-        <thead>
-        <tr>
-            <th>用户 ID</th>
-            <th>账号</th>
-            <th>密码</th>
-            <th>手机号</th>
-            <th>邮箱</th>
-            <th>权限</th>
-            <th>创建时间</th>
-            <th>上次登录时间</th>
-            <th>头像</th>
-            <th>状态</th>
-            <th>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-
-
-        <script >//引用
+<table class="layui-table">
+    <colgroup>
+        <col/>
+        <col/>
+        <col/>
+        <col/>
+        <col/>
+        <col/>
+        <col/>
+        <col/>
+        <col/>
+        <col/>
+        <col/>
+        <col/>
+        <col/>
+    </colgroup>
+    <thead>
+    <tr>
+        <th>用户 ID</th>
+        <th>账号</th>
+        <th>密码</th>
+        <th>手机号</th>
+        <th>邮箱</th>
+        <th>权限</th>
+        <th>创建时间</th>
+        <th>上次登录时间</th>
+        <th>头像</th>
+        <th>状态</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody id="userList">
+    <script>
+        /*<![CDATA[*/
         function delUser(uid) {
             var msg = "您真的确定要删除吗？";
             if (confirm(msg)==true){
@@ -61,68 +65,65 @@
                 xmlhttp.send();
                 return true;
             }else{
-                alert("false")
                 return false;
             }
             location.reload();
         }
-        </script>
-        <tr th:each="user : ${allUser}">
-            <td th:text="${user.uid}"></td>
-            <td th:text="${user.account}"></td>
-            <td th:text="${user.password}"></td>
-            <td th:text="${user.phoneNumber}"></td>
-            <td th:text="${user.email}"></td>
-            <td th:text="${user.permission}"></td>
-            <td th:text="${user.lastLogin}"></td>
-            <td th:text="${user.createDate}"></td>
-            <td th:text="${user.headPhoto}"></td>
-            <td th:text="${user.status}"></td>
-            <td><a th:text="修改" th:href="@{/admin/users/} + ${user.uid}"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a th:onclick="'delUser('+${user.uid}+');'" href="javascript:void(0)">删除</a></td>
-        </tr>
-        </tbody>
-        <colgroup>
-            <!--<col width="150"/>-->
-            <!--<col width="150"/>-->
-            <!--<col width="150"/>-->
-            <!--<col width="150"/>-->
-            <!--<col width="150"/>-->
-            <!--<col width="150"/>-->
-            <!--<col width="150"/>-->
-            <!--<col width="150"/>-->
-            <!--<col width="150"/>-->
-            <!--<col width="150"/>-->
-            <col/>
-            <col/>
-            <col/>
-            <col/>
-            <col/>
-            <col/>
-            <col/>
-            <col/>
-            <col/>
-            <col/>
-            <col/>
-            <col/>
-        </colgroup>
-        <thead>
-        <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <!--<th><button data-method="offset" data-type="auto" class="layui-btn layui-btn-normal">居中弹出</button></th>-->
-            <th><a href="/admin/users/add">添加用户</a></th>
-        </tr>
-        </thead>
-    </table>
-</div>
+        function editUser(uid) {
 
+        }
+        result = '';
+        $.get("/admin/users/userList", function(data){
+            data.forEach(function (value) {
+                result = result + "<tr><td>" + value.uid + "</td>"
+                    + "<td>" + value.account + "</td>"
+                    + "<td>" + value.password + "</td>"
+                    + "<td>" + value.phoneNumber + "</td>"
+                    + "<td>" + value.email + "</td>"
+                    + "<td>" + value.permission + "</td>"
+                    + "<td>" + value.lastLogin + "</td>"
+                    + "<td>" + value.createDate + "</td>"
+                    + "<td>" + value.headPhoto + "</td>"
+                    + "<td>" + value.status + "</td>"
+                    + "<td>" + "<a href='javascript:void(0)' onclick=\"editUser(" + value.uid + ")\">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;" +
+                    "<a href='javascript:void(0)' onclick=\"delUser(" + value.uid + ")\">删除</a></td></tr>";
+            })
+            $("#userList").append(result);
+        });
+        /*]]>*/
+    </script>
+
+    </tbody>
+    <colgroup>
+        <col/>
+        <col/>
+        <col/>
+        <col/>
+        <col/>
+        <col/>
+        <col/>
+        <col/>
+        <col/>
+        <col/>
+        <col/>
+        <col/>
+    </colgroup>
+    <thead>
+    <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <!--<th><button data-method="offset" data-type="auto" class="layui-btn layui-btn-normal">居中弹出</button></th>-->
+        <th><a href="/admin/users/add">添加用户</a></th>
+    </tr>
+    </thead>
+</table>
 </body>
 </html>

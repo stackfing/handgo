@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en"/>
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{../css/layui.css}"/>
+    <meta charset="UTF-8"/>
+    <title>历史</title>
+</head>
+<body>
+<div id="history" style="width: 600px;">
+    <table class="layui-table">
+        <colgroup>
+            <col width="150" />
+            <col width="200" />
+            <col />
+        </colgroup>
+        <thead>
+        <tr>
+            <th>事件</th>
+            <th>时间</th>
+            <th>评论</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>重构</td>
+            <td>2017-12-20</td>
+            <td>将项目重新设计，尽少使用模板引擎，多用异步</td>
+        </tr>
+        <tr>
+            <td>初始化项目</td>
+            <td>2017-12-12</td>
+            <td>初始化项目</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

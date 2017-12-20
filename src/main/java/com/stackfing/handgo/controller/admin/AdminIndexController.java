@@ -34,9 +34,14 @@ public class AdminIndexController {
 		return "admin/index";
 	}
 
-	@GetMapping("/test")
+	@GetMapping("/userlist")
 	public String toTeset() {
-		return "test";
+		return "admin/users";
+	}
+
+	@GetMapping("/welcome")
+	public String toHistory() {
+		return "admin/welcome";
 	}
 
 }

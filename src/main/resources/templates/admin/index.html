@@ -3,69 +3,19 @@
 <html lang="en"/>
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{../css/layui.css}"/>
-    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"/>
+    <script src="../js/jquery.min.js"/>
     <meta charset="UTF-8"/>
-    <title>后台首页</title>
+    <title>后台管理系统</title>
 </head>
 <body>
-<!--<div style="height: 60px; background-color: #393D49">-->
-    <!--<ul class="layui-nav layui-layout-right">-->
-        <!--<li class="layui-nav-item">-->
-            <!--<a th:href="@{/}">首页</a>-->
-        <!--</li>-->
-        <!--<li class="layui-nav-item">-->
-            <!--<a href="">控制台<span class="layui-badge">9</span></a>-->
-        <!--</li>-->
-        <!--<li class="layui-nav-item">-->
-            <!--<a href="">个人中心<span class="layui-badge-dot"></span></a>-->
-        <!--</li>-->
-        <!--<li class="layui-nav-item">-->
-            <!--<a href=""><img src="http://t.cn/RCzsdCq" class="layui-nav-img"/>我</a>-->
-            <!--<dl class="layui-nav-child">-->
-                <!--<dd><a href="javascript:;">修改信息</a></dd>-->
-                <!--<dd><a href="javascript:;">安全管理</a></dd>-->
-                <!--<dd><a href="javascript:;">退出</a></dd>-->
-            <!--</dl>-->
-        <!--</li>-->
-    <!--</ul>-->
-<!--</div>-->
-<!--<div>-->
-    <!--<div id="leftbar" class="layui-side-scroll">-->
-        <!--<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo">-->
-            <!--<li class="layui-nav-item layui-nav-itemed">-->
-                <!--<a href="javascript:;">默认展开</a>-->
-                <!--<dl class="layui-nav-child">-->
-                    <!--<dd><a href="javascript:;">选项一</a></dd>-->
-                    <!--<dd><a href="javascript:;">选项二</a></dd>-->
-                    <!--<dd><a href="javascript:;">选项三</a></dd>-->
-                    <!--<dd><a href="">跳转项</a></dd>-->
-                <!--</dl>-->
-            <!--</li>-->
-            <!--<li class="layui-nav-item">-->
-                <!--<a href="javascript:;">解决方案</a>-->
-                <!--<dl class="layui-nav-child">-->
-                    <!--<dd><a href="">移动模块</a></dd>-->
-                    <!--<dd><a href="">后台模版</a></dd>-->
-                    <!--<dd><a href="">电商平台</a></dd>-->
-                <!--</dl>-->
-            <!--</li>-->
-            <!--<li class="layui-nav-item"><a href="">云市场</a></li>-->
-            <!--<li class="layui-nav-item"><a href="">社区</a></li>-->
-        <!--</ul>-->
-    <!--</div>-->
-    <!--<div id="content-body" style="float: left;">-->
-        <!--<button>sdfds</button>-->
-    <!--</div>-->
-<!--</div>-->
-
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo" style="color: #1E9FFF;font-size: 17px;">Myth毕业设计管理系统</div>
+        <div class="layui-logo" style="color: #1E9FFF;font-size: 17px;">后台管理系统</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="/">首页</a></li>
             <li class="layui-nav-item"><a href="">控制台</a></li>
             <li class="layui-nav-item"><a href="">商品管理</a></li>
-            <li class="layui-nav-item"><a href="">用户</a></li>
 
             <li class="layui-nav-item">
                 <a href="javascript:;">其它系统</a>
@@ -84,7 +34,7 @@
                 <a href="">&nbsp;&nbsp;消息
                     <dl class="layui-nav-child">
 
-                        <dd><a href="">你提交的开题报告文档已经被导师审阅并回复了快去查看吧 &nbsp;&nbsp;2017-09-19 19:12:06</a></dd>
+                        <dd><a href="">提示0</a></dd>
                         <dd><a href="">提示1</a></dd>
                         <dd><a href="">提示2</a></dd>
                     </dl>
@@ -106,7 +56,7 @@
                 <dl class="layui-nav-child">
                     <dd><a href="">基本资料</a></dd>
                     <dd><a href="">安全设置</a></dd>
-                    <dd><a href="logout/admin">注销登录</a></dd>
+                    <dd><a href="admin/logout">注销登录</a></dd>
                 </dl>
             </li>
         </ul>
@@ -119,7 +69,7 @@
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;">用户管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">用户列表</a></dd>
+                        <dd><a href="javascript:;" onclick="toURL('userlist')">用户列表</a></dd>
                         <dd><a href="javascript:;">删除的用户</a></dd>
                     </dl>
                 </li>
@@ -141,20 +91,29 @@
         </div>
     </div>
 
+
     <div class="layui-body">
         <!-- 内容主体区域 -->
-
-        <iframe runat="server" src="/admin/test" width="100%" height="100%" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes">
+        <iframe runat="server" id="contentbody" src="/admin/welcome" width="100%" height="100%" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes">
             <div style="padding: 15px;">内容主体区域</div>
             <div><h1>您好<span id="user"></span>这是你第 <span></span> 次登录</h1></div>
             <div id="servers">asd</div>
-
         </iframe>
     </div>
 
+    <script>
+        /*<![CDATA[*/
+        function toURL(url) {
+            if (url === 'userlist') {
+                $('iframe').attr('src', '/admin/userlist');
+            }
+        }
+        /*]]>*/
+    </script>
+
     <div class="layui-footer">
         <!-- 底部固定区域 -->
-        © layui.com - 底部固定区域
+        © <a href="http://stackfing.com">stackfing.com</a> - Layui 强力驱动
     </div>
 </div>
 <script src="../layui.all.js"></script>
