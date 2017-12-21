@@ -6,17 +6,45 @@
 
     <!--根据id查用户-->
     <select id="selectUserById" resultType="com.stackfing.handgo.entity.User">
-        SELECT * FROM user WHERE uid = #{uid}
+        SELECT user.uid
+         ,user.account
+         ,user.password
+         ,user.email
+         ,user.createDate
+         ,user.headPhoto
+         ,user.lastLogin
+         ,user.permission
+         ,user.phoneNumber
+         ,user.status
+          FROM user WHERE uid = #{uid}
     </select>
 
     <!--根据账号名查用户-->
     <select id="selectUserByAccount" resultType="com.stackfing.handgo.entity.User">
-      SELECT * FROM user WHERE account = #{account}
+      SELECT user.uid
+         ,user.account
+         ,user.password
+         ,user.email
+         ,user.createDate
+         ,user.headPhoto
+         ,user.lastLogin
+         ,user.permission
+         ,user.phoneNumber
+         ,user.status FROM user WHERE account = #{account}
     </select>
 
     <!--获得所有用户-->
     <select id="findAll" resultType="com.stackfing.handgo.entity.User">
-        SELECT * FROM handgo.user
+        SELECT user.uid
+         ,user.account
+         ,user.password
+         ,user.email
+         ,user.createDate
+         ,user.headPhoto
+         ,user.lastLogin
+         ,user.permission
+         ,user.phoneNumber
+         ,user.status FROM handgo.user
     </select>
 
     <!--根据id删除用户-->
@@ -25,12 +53,21 @@
     </delete>
 
     <insert id="insertUser" parameterType="com.stackfing.handgo.entity.User">
-        INSERT INTO user VALUES (#{uid},#{account},#{create_date},#{email},#{head_photo},#last_login},#{password},#{permission},#{phone_number},#{status})
+        INSERT INTO user(uid, account, createDate, email, headPhoto, lastLogin, password, permission, phoneNumber, status) VALUES (#{uid},#{account},#{createDate},#{email},#{headPhoto},#lastLogin},#{password},#{permission},#{phoneNumber},#{status})
     </insert>
 
     <!--分页查询用户-->
     <select id="findAllUserByPage" resultType="com.stackfing.handgo.entity.User">
-        SELECT * FROM handgo.user LIMIT 5
+        SELECT user.uid
+         ,user.account
+         ,user.password
+         ,user.email
+         ,user.createDate
+         ,user.headPhoto
+         ,user.lastLogin
+         ,user.permission
+         ,user.phoneNumber
+         ,user.status FROM handgo.user LIMIT #{offSize},#{length}
     </select>
     
 </mapper>

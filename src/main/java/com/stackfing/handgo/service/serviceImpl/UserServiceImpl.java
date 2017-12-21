@@ -16,19 +16,19 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public List<User> findUserByStatusIs(int status) {
+    public List<User> selectUserByStatusIs(int status) {
 //        return userRepository.findUserByStatusIs(1);
         return null;
     }
 
-    @Override
-    public UserLocate findParmiry(Long uid) {
-//        return userLocateRepository.findUserLocateByIsPrimary(uid);
-        return null;
-    }
+//    @Override
+//    public UserLocate findParmiry(Long uid) {
+////        return userLocateRepository.findUserLocateByIsPrimary(uid);
+//        return null;
+//    }
 
 	@Override
-	public List<User> findAllUser() {
+	public List<User> selectAllUser() {
 		return userMapper.findAll();
 	}
 
@@ -45,11 +45,19 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void deleteUserById(Long uid) {
-//		userMapper.delete(uid);
+		userMapper.deleteUserById(uid);
 	}
 
 	@Override
-	public List<User> findAllUserByPage(Long page) {
-		return userMapper.findAllUserByPage(page);
+	public List<User> selectAllUserByPage(Long page) {
+    	Long length = 10L;
+    	List<User> list = null;
+    	if (page == 1) {
+			list = userMapper.findAllUserByPage(0L, length);
+		} else {
+			list = userMapper.findAllUserByPage((length * page) - (length - 1), length);
+		}
+		return list;
 	}
+
 }

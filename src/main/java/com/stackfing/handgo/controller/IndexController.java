@@ -27,8 +27,8 @@ public class IndexController {
 
 	@GetMapping("/")
 	public String index(ModelMap modelMap) {
-		List<ProductType> allType = productTypeService.findAllType();
-		modelMap.put("allType", allType);
+//		List<ProductType> allType = productTypeService.findAllType();
+//		modelMap.put("allType", allType);
 		return "index";
 	}
 
@@ -55,13 +55,6 @@ public class IndexController {
 		fos.close();
 		//返回json
 		return "uploadimg success";
-	}
-
-	@GetMapping("/all")
-	@ResponseBody
-	public JsonBodyUtil findall(@RequestParam("page") Long page) {
-		System.out.println(page);
-		return new JsonBodyUtil().send(0, "成功", 20, userService.findAllUserByPage(page));
 	}
 
 	@GetMapping("/tests")

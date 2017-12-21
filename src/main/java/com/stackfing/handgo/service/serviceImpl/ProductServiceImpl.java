@@ -12,11 +12,11 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
-    private ProductMapper productRepository;
+    private ProductMapper productMapper;
 
 
     @Override
     public List<Product> getProductByTypeId(Long typeId) {
-        return productRepository.findByProductType_TypeId(typeId);
+        return productMapper.findByProductType_TypeId(typeId);
     }
 }

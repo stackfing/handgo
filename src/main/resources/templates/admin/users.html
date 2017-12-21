@@ -136,35 +136,61 @@
 <!--</table>-->
 
 
-<table id="demo" lay-filter="test"></table>
+<table id="userlist" lay-filter="test"></table>
+<div id="barDemo">
+    <a class="layui-btn layui-btn-mini" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+</div>
 <script>
+
     layui.use('table', function(){
         var table = layui.table;
-
-        //第一个实例
         table.render({
-            elem: '#demo'
-            ,height: 315
+            elem: '#userlist'
+            ,height: 530
             ,limit: 10
-            ,url: '/all' //数据接口
+            ,url: '/admin/users/all' //数据接口
             ,page: true //开启分页
             ,cols: [[ //表头
-                {field: 'uid', title: 'ID', width:80, sort: true, fixed: 'left'}
-                ,{field: 'account', title: '用户名', width:80}
-                ,{field: 'password', title: '性别', width:80, sort: true}
-                ,{field: 'phoneNumber', title: '城市', width:80}
-                ,{field: 'email', title: '签名', width: 177}
-                ,{field: 'permission', title: '积分', width: 80, sort: true}
-                ,{field: 'createDate', title: '评分', width: 80, sort: true}
-                ,{field: 'lastLogin', title: '职业', width: 80}
-                ,{field: 'status', title: '财富', width: 135, sort: true}
+                {field: 'uid', title: 'ID', width:80, sort: true, fixed: 'left', align: 'center'}
+                ,{field: 'account', title: '用户名', align: 'center'}
+                ,{field: 'password', title: '密码', sort: true, align: 'center'}
+                ,{field: 'phoneNumber', title: '手机号', align: 'center'}
+                ,{field: 'email', title: '邮箱', align: 'center'}
+                ,{field: 'permission', title: '权限', sort: true, align: 'center'}
+                ,{field: 'createDate', title: '创建时间', sort: true, align: 'center'}
+                ,{field: 'lastLogin', title: '上次登录时间', align: 'center'}
+                ,{field: 'status', title: '状态', sort: true, align: 'center'}
+                ,{title: '操作',templet: '<div><a href="javascript:void(0)" class="layui-table-link">删除</a></div>'}
             ]]
             ,request: {
                 pageName: 'page' //页码的参数名称，默认：page
                 ,limitName: 'limit' //每页数据量的参数名，默认：limit
             }
         });
-        console.log("safd");
+        table.on('tool(test)', function(){
+            var data = obj.data; //获得当前行数据
+            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+            var tr = obj.tr; //获得当前行 tr 的DOM对象
+            if(layEvent === 'detail'){ //查看
+                //do somehing
+            } else if(layEvent === 'del'){ //删除
+                layer.confirm('真的删除行么', function(index){
+                    obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                    layer.close(index);
+                    //向服务端发送删除指令
+                });
+            } else if(layEvent === 'edit'){ //编辑
+                //do something
+
+                //同步更新缓存对应的值
+                obj.update({
+                    username: '123'
+                    ,title: 'xxx'
+                });
+            }
+        });
     });
 </script>
 </body>

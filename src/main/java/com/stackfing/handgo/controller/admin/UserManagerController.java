@@ -1,5 +1,6 @@
 package com.stackfing.handgo.controller.admin;
 
+import com.stackfing.handgo.common.JsonBodyUtil;
 import com.stackfing.handgo.entity.User;
 import com.stackfing.handgo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,28 +23,37 @@ public class UserManagerController {
 		return "redirect:/admin";
 	}
 
+//	@GetMapping("{uid}")
+//	public String editUser(@PathVariable Long uid, ModelMap modelMap) {
+//		User user = userService.selectUserById(uid);
+//		modelMap.put("userDetail", user);
+//		return "/admin/user-edit";
+//	}
+
+	@GetMapping("/all")
+	@ResponseBody
+	public JsonBodyUtil findall(@RequestParam("page") Long page) {
+		System.out.println(page);
+		return new JsonBodyUtil().send(0, "成功", 20, userService.selectAllUserByPage(page));
+	}
+
+	//通过id查询用户
 	@GetMapping("{uid}")
-	public String editUser(@PathVariable Long uid, ModelMap modelMap) {
-		User user = userService.selectUserById(uid);
-		modelMap.put("userDetail", user);
-		return "/admin/user-edit";
+	@ResponseBody
+	public User getUserById(@PathVariable Long uid) {
+		return userService.selectUserById(uid);
 	}
 
 	@RequestMapping("userList")
 	@ResponseBody
 	public List<User> getUserList() {
-		List<User> list = userService.findAllUser();
+		List<User> list = userService.selectAllUser();
 		for (User u : list) {
 			System.out.println(u.toString());
 		}
 		return list;
 	}
 
-	@PostMapping("submit")
-	public String postUser(User user) {
-		userService.saveUser(user);
-		return "redirect:/admin";
-	}
 
 	@GetMapping("add")
 	public String addUser() {

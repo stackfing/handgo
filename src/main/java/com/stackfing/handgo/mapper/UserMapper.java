@@ -2,6 +2,7 @@ package com.stackfing.handgo.mapper;
 
 
 import com.stackfing.handgo.entity.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,6 +21,6 @@ public interface UserMapper {
 
 	int deleteUserById(Long uid);
 
-	List<User> findAllUserByPage(Long page);
+	List<User> findAllUserByPage(@Param("offSize") Long offSize, @Param("length") Long length);
 
 }

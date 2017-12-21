@@ -3,12 +3,12 @@
 <html lang="en" />
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{css/layui.css}"/>
-    <!--<script th:src="@{jss/layui.jss}"></script>-->
+    <script src="layui.all.js"></script>
     <meta charset="UTF-8" />
     <title>首页</title>
 </head>
 <body>
-<script src="layui.all.js"></script>
+
 <ul class="layui-nav" style="background-color: #5FB878">
     <li class="layui-nav-item"><a th:href="@{/}">首页</a></li>
     <li class="layui-nav-item layui-this"><a href="">产品</a></li>
@@ -46,35 +46,6 @@
         <li class="layui-nav-item"><a href="">社区</a></li>
     </ul>
 </div>
-<div class="layui-carousel" id="test10" style="float: left;">
-    <div carousel-item="">
-        <div><img src="//res.layui.com/images/layui/demo/1.png"/></div>
-        <div><img src="//res.layui.com/images/layui/demo/2.png"/></div>
-        <div><img src="//res.layui.com/images/layui/demo/3.png"/></div>
-        <div><img src="//res.layui.com/images/layui/demo/4.png"/></div>
-        <div><img src="//res.layui.com/images/layui/demo/5.png"/></div>
-        <div><img src="//res.layui.com/images/layui/demo/6.png"/></div>
-        <div><img src="//res.layui.com/images/layui/demo/7.png"/></div>
-    </div>
-</div>
-
-<div>
-    <a th:each="type : ${allType}" th:href="@{${type.typeLink}}" th:text="${type.typeName}"></a>
-</div>
-
-<script>
-    layui.use(['carousel', 'form'], function(){
-        var carousel = layui.carousel
-            ,form = layui.form;
-        //图片轮播
-        carousel.render({
-            elem: '#test10'
-            ,width: '590px'
-            ,height: '340px'
-            ,interval: 5000
-        });
-    });
-</script>
 
 
 </body>
