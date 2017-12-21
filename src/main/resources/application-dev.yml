@@ -21,3 +21,4 @@ server:
   port: 8888
 mybatis:
   mapperLocations: classpath:mapper/*.xml
+  typeAliasesPackage: com.stackfing.entity

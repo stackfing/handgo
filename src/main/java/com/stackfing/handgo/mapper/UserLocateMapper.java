@@ -1,13 +1,12 @@
-package com.stackfing.handgo.repository;
+package com.stackfing.handgo.mapper;
 
 import com.stackfing.handgo.entity.UserLocate;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface UserLocateRepository extends JpaRepository<UserLocate, Integer> {
+public interface UserLocateMapper {
 
     //查询用户所有收货地址
     List<UserLocate> findByUser_Uid(Long uid);

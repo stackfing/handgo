@@ -14,9 +14,11 @@ public interface UserService {
 
     List<User> findAllUser();
 
-	User findOneById(Long uid);
+	User selectUserById(Long uid);
 
-	void save(User user);
+	void saveUser(User user);
 
-	void delUser(Long uid);
+	void deleteUserById(Long uid);
+
+	List<User> findAllUserByPage(Long page);
 }

@@ -5,20 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
-@Entity
 @NoArgsConstructor
 @Data
 @ToString
 public class User {
 
-    @Id
-    @GeneratedValue
     private Long uid;	//用户id
 
     @NotNull
@@ -45,6 +39,5 @@ public class User {
 
     @NotNull
     private Date createDate;	//创建日期
-
 
 }

@@ -2,9 +2,35 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.stackfing.handgo.mapper.user">
-    <select id="selectUserByUid" resultType="Blog">
-        SELECT * FROM "user" WHERE uid = #{uid}
+<mapper namespace="com.stackfing.handgo.mapper.UserMapper">
+
+    <!--根据id查用户-->
+    <select id="selectUserById" resultType="com.stackfing.handgo.entity.User">
+        SELECT * FROM user WHERE uid = #{uid}
     </select>
 
+    <!--根据账号名查用户-->
+    <select id="selectUserByAccount" resultType="com.stackfing.handgo.entity.User">
+      SELECT * FROM user WHERE account = #{account}
+    </select>
+
+    <!--获得所有用户-->
+    <select id="findAll" resultType="com.stackfing.handgo.entity.User">
+        SELECT * FROM handgo.user
+    </select>
+
+    <!--根据id删除用户-->
+    <delete id="deleteUserById" parameterType="long">
+        DELETE FROM handgo.user WHERE id = #{uid}
+    </delete>
+
+    <insert id="insertUser" parameterType="com.stackfing.handgo.entity.User">
+        INSERT INTO user VALUES (#{uid},#{account},#{create_date},#{email},#{head_photo},#last_login},#{password},#{permission},#{phone_number},#{status})
+    </insert>
+
+    <!--分页查询用户-->
+    <select id="findAllUserByPage" resultType="com.stackfing.handgo.entity.User">
+        SELECT * FROM handgo.user LIMIT 5
+    </select>
+    
 </mapper>

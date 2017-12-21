@@ -24,7 +24,7 @@ public class UserManagerController {
 
 	@GetMapping("{uid}")
 	public String editUser(@PathVariable Long uid, ModelMap modelMap) {
-		User user = userService.findOneById(uid);
+		User user = userService.selectUserById(uid);
 		modelMap.put("userDetail", user);
 		return "/admin/user-edit";
 	}
@@ -32,12 +32,16 @@ public class UserManagerController {
 	@RequestMapping("userList")
 	@ResponseBody
 	public List<User> getUserList() {
-		return userService.findAllUser();
+		List<User> list = userService.findAllUser();
+		for (User u : list) {
+			System.out.println(u.toString());
+		}
+		return list;
 	}
 
 	@PostMapping("submit")
 	public String postUser(User user) {
-		userService.save(user);
+		userService.saveUser(user);
 		return "redirect:/admin";
 	}
 
@@ -49,7 +53,7 @@ public class UserManagerController {
 	@ResponseBody
 	@GetMapping("del/{uid}")
 	public String delUser(@PathVariable Long uid) {
-		userService.delUser(uid);
+		userService.deleteUserById(uid);
 		return "删除成功";
 	}
 }

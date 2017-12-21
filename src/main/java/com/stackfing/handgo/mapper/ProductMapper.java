@@ -1,14 +1,15 @@
-package com.stackfing.handgo.repository;
+package com.stackfing.handgo.mapper;
 
 import com.stackfing.handgo.entity.Product;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface ProductMapper {
 
     List<Product> findByProductType_TypeId(Long typeId);
+
+    List<Product> findAll();
 
 }

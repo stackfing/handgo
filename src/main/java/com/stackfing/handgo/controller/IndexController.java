@@ -1,6 +1,8 @@
 package com.stackfing.handgo.controller;
 
+import com.stackfing.handgo.common.JsonBodyUtil;
 import com.stackfing.handgo.entity.ProductType;
+import com.stackfing.handgo.entity.User;
 import com.stackfing.handgo.service.ProductTypeService;
 import com.stackfing.handgo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +19,10 @@ import java.util.List;
 @Controller
 public class IndexController {
 
-    @Autowired
-    private UserService userService;
+	@Autowired
+	private UserService userService;
 
-    @Autowired
+	@Autowired
 	private ProductTypeService productTypeService;
 
 	@GetMapping("/")
@@ -30,7 +32,7 @@ public class IndexController {
 		return "index";
 	}
 
-	@RequestMapping(value="/gouploadimg", method = RequestMethod.GET)
+	@RequestMapping(value = "/gouploadimg", method = RequestMethod.GET)
 	public String goUploadImg() {
 		//跳转到 templates 目录下的 uploadimg.html
 		return "uploadimg";
@@ -42,7 +44,7 @@ public class IndexController {
 	}
 
 	//处理文件上传
-	@RequestMapping(value="/testuploadimg", method = RequestMethod.POST)
+	@RequestMapping(value = "/testuploadimg", method = RequestMethod.POST)
 	public @ResponseBody
 	String uploadImg(@RequestParam("file") MultipartFile file,
 					 HttpServletRequest request) throws Exception {
@@ -53,5 +55,19 @@ public class IndexController {
 		fos.close();
 		//返回json
 		return "uploadimg success";
+	}
+
+	@GetMapping("/all")
+	@ResponseBody
+	public JsonBodyUtil findall(@RequestParam("page") Long page) {
+		System.out.println(page);
+		return new JsonBodyUtil().send(0, "成功", 20, userService.findAllUserByPage(page));
+	}
+
+	@GetMapping("/tests")
+	@ResponseBody
+	public String testst() {
+//		System.out.println(page);
+		return "";
 	}
 }

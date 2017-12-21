@@ -2,7 +2,7 @@ package com.stackfing.handgo.service.serviceImpl;
 
 import com.stackfing.handgo.entity.User;
 import com.stackfing.handgo.entity.UserLocate;
-import com.stackfing.handgo.repository.UserRepository;
+import com.stackfing.handgo.mapper.UserMapper;
 import com.stackfing.handgo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserMapper userMapper;
 
     @Override
     public List<User> findUserByStatusIs(int status) {
@@ -29,21 +29,27 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> findAllUser() {
-		return userRepository.findAll();
+		return userMapper.findAll();
 	}
 
 	@Override
-	public User findOneById(Long uid) {
-		return userRepository.findOne(uid);
+	public User selectUserById(Long uid) {
+//		return userMapper.findOne(uid);
+		return null;
+    }
+
+	@Override
+	public void saveUser(User user) {
+//		userMapper.save(user);
+    }
+
+	@Override
+	public void deleteUserById(Long uid) {
+//		userMapper.delete(uid);
 	}
 
 	@Override
-	public void save(User user) {
-		userRepository.save(user);
-	}
-
-	@Override
-	public void delUser(Long uid) {
-		userRepository.delete(uid);
+	public List<User> findAllUserByPage(Long page) {
+		return userMapper.findAllUserByPage(page);
 	}
 }

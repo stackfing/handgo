@@ -7,14 +7,11 @@ import lombok.ToString;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Entity
 @Data
 @NoArgsConstructor
 @ToString
 public class Product {
 
-    @Id
-    @GeneratedValue
     private Long pid;   //id
 
     @NotNull
@@ -23,7 +20,6 @@ public class Product {
     @NotNull
     private String productPhoto;    //产品图片地址
 
-    @ManyToOne
     private ProductType productType;    //产品类型
 
     @NotNull
