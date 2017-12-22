@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en"/>
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/layui.css"/>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<script src="/layui.all.js"></script>
+<div style="width: 20%; margin: 0 auto;">
+    <div th:if="${userDetail}">
+        <form th:action="@{submit}" th:method="post">
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户 ID</label>
+                <div class="layui-input-block">
+                    <input th:type="text" th:value="${userDetail.uid}" name="uid" autocomplete="off" placeholder="请输入用户 ID" class="layui-input" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户 ID</label>
+                <div class="layui-input-block">
+                    <input th:type="text" th:value="${userDetail.account}" name="account" autocomplete="off" placeholder="请输入用户 ID" class="layui-input" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">密码</label>
+                <div class="layui-input-block">
+                    <input th:type="text" th:value="${userDetail.password}" name="password" autocomplete="off" placeholder="请输入用户 ID" class="layui-input" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">手机号</label>
+                <div class="layui-input-block">
+                    <input th:type="tel" th:value="${userDetail.phoneNumber}" name="phoneNumber" autocomplete="off" placeholder="请输入用户 ID" class="layui-input" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">邮箱</label>
+                <div class="layui-input-block">
+                    <input th:type="email" th:value="${userDetail.email}" name="email" autocomplete="off" placeholder="请输入用户 ID" class="layui-input" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">权限</label>
+                <div class="layui-input-block">
+                    <input th:type="text" th:value="${userDetail.permission}" name="permission" autocomplete="off" placeholder="请输入用户 ID" class="layui-input" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">创建时间</label>
+                <div class="layui-input-block">
+                    <!--<input th:type="text" th:value="${userDetail.phoneNumber}" name="uid" autocomplete="off" placeholder="请输入用户 ID" class="layui-input" />-->
+                    <input type="text" th:value="${userDetail.createDate}" name="createDate" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input" lay-key="1" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">上次登录时间</label>
+                <div class="layui-input-block">
+                    <input th:type="text" th:value="${userDetail.lastLogin}" name="lastLogin" autocomplete="off" placeholder="请输入用户 ID" class="layui-input" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">头像</label>
+                <div class="layui-input-block">
+                    <input th:type="text" th:value="${userDetail.headPhoto}" name="headPhoto" autocomplete="off" placeholder="请输入用户 ID" class="layui-input" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">状态</label>
+                <div class="layui-input-block">
+                    <input th:type="text" th:value="${userDetail.status}" name="status" autocomplete="off" placeholder="请输入用户 ID" class="layui-input" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <button class="layui-btn" lay-submit="" th:text="${userDetail.uid} ? '修改' : '添加'"></button>
+            </div>
+        </form>
+    </div>
+    <div th:if="!${userDetail}">
+        <form th:action="@{submit}" th:method="post">
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户 ID</label>
+                <div class="layui-input-block">
+                    <input th:type="text"  name="uid" autocomplete="off" placeholder="请输入用户 ID" class="layui-input" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户 ID</label>
+                <div class="layui-input-block">
+                    <input th:type="text" name="account" autocomplete="off" placeholder="请输入用户 ID" class="layui-input" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">密码</label>
+                <div class="layui-input-block">
+                    <input th:type="text" name="password" autocomplete="off" placeholder="请输入用户 ID" class="layui-input" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">手机号</label>
+                <div class="layui-input-block">
+                    <input th:type="tel" name="phoneNumber" autocomplete="off" placeholder="请输入用户 ID" class="layui-input" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">邮箱</label>
+                <div class="layui-input-block">
+                    <input th:type="email" name="email" autocomplete="off" placeholder="请输入用户 ID" class="layui-input" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">权限</label>
+                <div class="layui-input-block">
+                    <input th:type="text" name="permission" autocomplete="off" placeholder="请输入用户 ID" class="layui-input" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">创建时间</label>
+                <div class="layui-input-block">
+                    <!--<input th:type="text" th:value="${userDetail.phoneNumber}" name="uid" autocomplete="off" placeholder="请输入用户 ID" class="layui-input" />-->
+                    <input type="text" name="createDate" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input" lay-key="1" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">上次登录时间</label>
+                <div class="layui-input-block">
+                    <input th:type="text" name="lastLogin" autocomplete="off" placeholder="请输入用户 ID" class="layui-input" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">头像</label>
+                <div class="layui-input-block">
+                    <input th:type="text" name="headPhoto" autocomplete="off" placeholder="请输入用户 ID" class="layui-input" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">状态</label>
+                <div class="layui-input-block">
+                    <input th:type="text" name="status" autocomplete="off" placeholder="请输入用户 ID" class="layui-input" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <button class="layui-btn" lay-submit="" th:text="添加"></button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

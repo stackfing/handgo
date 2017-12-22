@@ -2,32 +2,33 @@ package com.stackfing.handgo.service.serviceImpl;
 
 import com.stackfing.handgo.entity.User;
 import com.stackfing.handgo.entity.UserLocate;
-import com.stackfing.handgo.repository.UserLocateRepository;
-import com.stackfing.handgo.repository.UserRepository;
-import com.stackfing.handgo.service.UserService;
+import com.stackfing.handgo.mapper.UserLocateMapper;
+import com.stackfing.handgo.mapper.UserMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserServiceImplTest {
 
     @Autowired
-    private UserLocateRepository userLocateRepository;
+    private UserLocateMapper userLocateRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    private UserMapper userRepository;
 
     @Test
     public void findusers () {
-        User user = userRepository.findByAccountEquals("1");
-        System.out.println(user);
-    }
+        List<User> list  = userRepository.findAll();
+		for (User u : list) {
+			System.out.println(u);
+		}
+	}
 
     @Test
     public void findUserByStatusIs() throws Exception {

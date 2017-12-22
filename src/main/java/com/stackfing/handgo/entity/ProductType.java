@@ -1,26 +1,22 @@
 package com.stackfing.handgo.entity;
 
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
-@Entity
 @NoArgsConstructor
 @Data
 @ToString
 public class ProductType {
 
-    @Id
-    @GeneratedValue
-    private Long typeId;
+    private Long typeId;    //类型id
 
     @NotNull
-    private String typeName;
+    private String typeName;    //类型名
 
-    @NotNull
-    private String typeLink;
+	@NotNull
+	private String typeLink; //地址
 
 }

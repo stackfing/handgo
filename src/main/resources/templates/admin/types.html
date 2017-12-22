@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en"/>
+<body>
+<div th:fragment="type">
+    <div class="layui-btn-group">
+        <button class="layui-btn layui-btn-normal">增加</button>
+    </div>
+    <table class="layui-table">
+        <colgroup>
+            <!--<col width="150"/>-->
+            <!--<col width="150"/>-->
+            <!--<col width="150"/>-->
+            <!--<col width="150"/>-->
+            <col/>
+            <col/>
+            <col/>
+            <col/>
+            <col/>
+        </colgroup>
+        <thead>
+        <tr>
+            <th>分类 ID</th>
+            <th>分类名</th>
+            <th>地址</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="type : ${allType}">
+            <td th:text="${type.typeId}"></td>
+            <td th:text="${type.typeName}"></td>
+            <td th:text="${type.typeLink}"></td>
+            <td>
+                <div class="layui-btn-group">
+                    <button class="layui-btn layui-btn-warm">编辑</button>
+                    <button class="layui-btn layui-btn-danger">删除</button>
+                </div>
+            </td>
+            <!--<div class="site-demo-button" id="layerDemos" style="margin-bottom: 0;"><a th:text="修改" href="#" id="layerDemos" data-method="offset" data-type="auto"></a></td>-->
+        </tr>
+        </tbody>
+        <colgroup>
+            <col width="150"/>
+            <col width="150"/>
+            <col width="150"/>
+            <col width="150"/>
+        </colgroup>
+        <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+    </table>
+    <div class="site-demo-button" id="layerDemo" style="margin-bottom: 0;">
+        <button data-method="offset" data-type="auto" class="layui-btn layui-btn-normal">增加</button>
+    </div>
+
+</div>
+</body>
+</html>

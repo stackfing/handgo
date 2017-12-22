@@ -1,23 +1,66 @@
 package com.stackfing.handgo.controller;
 
-import com.stackfing.handgo.entity.UserDetail;
+import com.stackfing.handgo.common.JsonBodyUtil;
+import com.stackfing.handgo.entity.ProductType;
+import com.stackfing.handgo.entity.User;
+import com.stackfing.handgo.service.ProductTypeService;
 import com.stackfing.handgo.service.UserService;
-import jdk.nashorn.internal.objects.annotations.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 
-@RestController
+@Controller
 public class IndexController {
 
-    @Autowired
-    private UserService userService;
+	@Autowired
+	private UserService userService;
 
-//    @GetMapping
-//    public List<UserDetail> index() {
-//        return userService.findUserDetailsByUserDetailIdIs(1L);
-//    }
+	@Autowired
+	private ProductTypeService productTypeService;
 
+	@GetMapping("/")
+	public String index(ModelMap modelMap) {
+//		List<ProductType> allType = productTypeService.findAllType();
+//		modelMap.put("allType", allType);
+		return "index";
+	}
+
+	@RequestMapping(value = "/gouploadimg", method = RequestMethod.GET)
+	public String goUploadImg() {
+		//跳转到 templates 目录下的 uploadimg.html
+		return "uploadimg";
+	}
+
+	@GetMapping("/upload")
+	public String upload() {
+		return "admin/upload";
+	}
+
+	//处理文件上传
+	@RequestMapping(value = "/testuploadimg", method = RequestMethod.POST)
+	public @ResponseBody
+	String uploadImg(@RequestParam("file") MultipartFile file,
+					 HttpServletRequest request) throws Exception {
+		String fileName = file.getOriginalFilename();
+		FileOutputStream fos = new FileOutputStream(new File("/home/fing/" + fileName));
+		fos.write(file.getBytes());
+		fos.flush();
+		fos.close();
+		//返回json
+		return "uploadimg success";
+	}
+
+	@GetMapping("/tests")
+	@ResponseBody
+	public String testst() {
+//		System.out.println(page);
+		return "";
+	}
 }
