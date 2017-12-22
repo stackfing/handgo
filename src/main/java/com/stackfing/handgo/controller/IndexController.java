@@ -1,8 +1,5 @@
 package com.stackfing.handgo.controller;
 
-import com.stackfing.handgo.common.JsonBodyUtil;
-import com.stackfing.handgo.entity.ProductType;
-import com.stackfing.handgo.entity.User;
 import com.stackfing.handgo.service.ProductTypeService;
 import com.stackfing.handgo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.List;
 
 @Controller
 public class IndexController {
