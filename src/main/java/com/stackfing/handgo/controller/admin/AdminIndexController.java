@@ -44,4 +44,9 @@ public class AdminIndexController {
 		return "admin/welcome";
 	}
 
+	@GetMapping("/settings")
+	public String toSettings() {
+		return "admin/settings";
+	}
+
 }
