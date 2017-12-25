@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en"/>
 <head>
-    <link rel="stylesheet" type="text/css" th:href="@{../css/layui.css}"/>
+    <link rel="stylesheet" type="text/css" href="../css/layui.css"/>
     <script src="../js/jquery.min.js"/>
     <meta charset="UTF-8"/>
     <title>后台管理系统</title>
@@ -14,9 +14,7 @@
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item"><a href="/">首页</a></li>
-            <li class="layui-nav-item"><a href="">控制台</a></li>
-            <li class="layui-nav-item"><a href="">商品管理</a></li>
-
+            <li class="layui-nav-item"><a href="">控制台<span class="layui-badge-dot layui-bg-red"></span></a></li>
             <li class="layui-nav-item">
                 <a href="javascript:;">其它系统</a>
                 <dl class="layui-nav-child">
@@ -27,7 +25,7 @@
             </li>
             <li class="layui-nav-item">
                 <!--<span class="layui-badge-dot"></span>-->
-                <span class="layui-badge">9</span>
+                <span class="layui-badge">6</span>
                 <!--若点击进入所有信息的面板，悬浮则是阅读消息-->
                 <a href="">&nbsp;&nbsp;消息
                     <dl class="layui-nav-child">
@@ -47,7 +45,6 @@
             <li class="layui-nav-item">
 
                 <a href="javascript:;">
-
                     <img src="/happy.jpg" class="layui-nav-img"/>
                     我
                 </a>
