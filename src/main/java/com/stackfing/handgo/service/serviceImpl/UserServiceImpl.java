@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User selectUserById(Long uid) {
 //		return userMapper.findOne(uid);
-		return null;
+		return userMapper.selectUserById(uid);
     }
 
 	@Override
@@ -44,8 +44,8 @@ public class UserServiceImpl implements UserService {
     }
 
 	@Override
-	public void deleteUserById(Long uid) {
-		userMapper.deleteUserById(uid);
+	public int deleteUserById(Long uid) {
+		return userMapper.deleteUserById(uid);
 	}
 
 	@Override

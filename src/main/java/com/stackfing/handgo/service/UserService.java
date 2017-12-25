@@ -18,7 +18,7 @@ public interface UserService {
 	//保存用户
 	void saveUser(User user);
 	//删除用户
-	void deleteUserById(Long uid);
+	int deleteUserById(Long uid);
 	//分页查询用户数据
 	List<User> selectAllUserByPage(Long page);
 }

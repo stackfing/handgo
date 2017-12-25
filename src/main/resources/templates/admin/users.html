@@ -9,141 +9,14 @@
     <title>Title</title>
 </head>
 <body>
-<!--<table class="layui-table">-->
-    <!--<colgroup>-->
-        <!--<col/>-->
-        <!--<col/>-->
-        <!--<col/>-->
-        <!--<col/>-->
-        <!--<col/>-->
-        <!--<col/>-->
-        <!--<col/>-->
-        <!--<col/>-->
-        <!--<col/>-->
-        <!--<col/>-->
-        <!--<col/>-->
-        <!--<col/>-->
-        <!--<col/>-->
-    <!--</colgroup>-->
-    <!--<thead>-->
-    <!--<tr>-->
-        <!--<th>用户 ID</th>-->
-        <!--<th>账号</th>-->
-        <!--<th>密码</th>-->
-        <!--<th>手机号</th>-->
-        <!--<th>邮箱</th>-->
-        <!--<th>权限</th>-->
-        <!--<th>创建时间</th>-->
-        <!--<th>上次登录时间</th>-->
-        <!--<th>头像</th>-->
-        <!--<th>状态</th>-->
-        <!--<th>操作</th>-->
-    <!--</tr>-->
-    <!--</thead>-->
-    <!--<tbody id="userList">-->
-    <!--<script>-->
-        <!--/*<![CDATA[*/-->
-        <!--function delUser(uid) {-->
-            <!--var msg = "您真的确定要删除吗？";-->
-            <!--if (confirm(msg)==true){-->
-                <!--var xmlhttp;-->
-                <!--if (window.XMLHttpRequest)-->
-                <!--{// code for IE7+, Firefox, Chrome, Opera, Safari-->
-                    <!--xmlhttp=new XMLHttpRequest();-->
-                <!--}-->
-                <!--else-->
-                <!--{// code for IE6, IE5-->
-                    <!--xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");-->
-                <!--}-->
-                <!--xmlhttp.onreadystatechange=function()-->
-                <!--{-->
-                    <!--if (xmlhttp.status==200)-->
-                    <!--{-->
-                        <!--alert(xmlhttp.responseText);-->
-                    <!--}-->
-                <!--}-->
-                <!--xmlhttp.open("GET","/admin/users/del/" + uid,true);-->
-                <!--xmlhttp.send();-->
-                <!--return true;-->
-            <!--}else{-->
-                <!--return false;-->
-            <!--}-->
-            <!--location.reload();-->
-        <!--}-->
-        <!--function editUser(uid) {-->
-
-        <!--}-->
-        <!--result = '';-->
-        <!--$.get("/admin/users/userList", function(data){-->
-            <!--data.forEach(function (value) {-->
-                <!--result = result + "<tr><td>" + value.uid + "</td>"-->
-                    <!--+ "<td>" + value.account + "</td>"-->
-                    <!--+ "<td>" + value.password + "</td>"-->
-                    <!--+ "<td>" + value.phoneNumber + "</td>"-->
-                    <!--+ "<td>" + value.email + "</td>"-->
-                    <!--+ "<td>" + value.permission + "</td>"-->
-                    <!--+ "<td>" + value.lastLogin + "</td>"-->
-                    <!--+ "<td>" + value.createDate + "</td>"-->
-                    <!--+ "<td>" + value.headPhoto + "</td>"-->
-                    <!--+ "<td>" + value.status + "</td>"-->
-                    <!--+ "<td>" + "<a href='javascript:void(0)' onclick=\"editUser(" + value.uid + ")\">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;" +-->
-                    <!--"<a href='javascript:void(0)' onclick=\"delUser(" + value.uid + ")\">删除</a></td></tr>";-->
-            <!--})-->
-            <!--$("#userList").append(result);-->
-        <!--});-->
-        <!--$("body").bind("keydown",function(event){-->
-            <!--if (event.keyCode == 116) {-->
-                <!--event.preventDefault(); //阻止默认刷新-->
-                <!--//location.reload();-->
-                <!--//采用location.reload()在火狐下可能会有问题，火狐会保留上一次链接-->
-                <!--location=location;-->
-            <!--}-->
-        <!--})-->
-        <!--/*]]>*/-->
-    <!--</script>-->
-
-    <!--</tbody>-->
-    <!--<colgroup>-->
-        <!--<col/>-->
-        <!--<col/>-->
-        <!--<col/>-->
-        <!--<col/>-->
-        <!--<col/>-->
-        <!--<col/>-->
-        <!--<col/>-->
-        <!--<col/>-->
-        <!--<col/>-->
-        <!--<col/>-->
-        <!--<col/>-->
-        <!--<col/>-->
-    <!--</colgroup>-->
-    <!--<thead>-->
-    <!--<tr>-->
-        <!--<th></th>-->
-        <!--<th></th>-->
-        <!--<th></th>-->
-        <!--<th></th>-->
-        <!--<th></th>-->
-        <!--<th></th>-->
-        <!--<th></th>-->
-        <!--<th></th>-->
-        <!--<th></th>-->
-        <!--<th></th>-->
-        <!--&lt;!&ndash;<th><button data-method="offset" data-type="auto" class="layui-btn layui-btn-normal">居中弹出</button></th>&ndash;&gt;-->
-        <!--<th><a href="/admin/users/add">添加用户</a></th>-->
-    <!--</tr>-->
-    <!--</thead>-->
-<!--</table>-->
-
-
+<h1 style="text-align: center;">用户信息</h1>
 <table id="userlist" lay-filter="test"></table>
-<div id="barDemo">
-    <a class="layui-btn layui-btn-mini" lay-event="detail">查看</a>
+<script type="text/html" id="toolBar">
+    <a class="layui-btn layui-btn-primary layui-btn-mini" lay-event="detail">查看</a>
     <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
-</div>
+</script>
 <script>
-
     layui.use('table', function(){
         var table = layui.table;
         table.render({
@@ -154,36 +27,45 @@
             ,page: true //开启分页
             ,cols: [[ //表头
                 {field: 'uid', title: 'ID', width:80, sort: true, fixed: 'left', align: 'center'}
-                ,{field: 'account', title: '用户名', align: 'center'}
-                ,{field: 'password', title: '密码', sort: true, align: 'center'}
-                ,{field: 'phoneNumber', title: '手机号', align: 'center'}
-                ,{field: 'email', title: '邮箱', align: 'center'}
-                ,{field: 'permission', title: '权限', sort: true, align: 'center'}
-                ,{field: 'createDate', title: '创建时间', sort: true, align: 'center'}
-                ,{field: 'lastLogin', title: '上次登录时间', align: 'center'}
-                ,{field: 'status', title: '状态', sort: true, align: 'center'}
-                ,{title: '操作',templet: '<div><a href="javascript:void(0)" class="layui-table-link">删除</a></div>'}
+                ,{field: 'account', title: '用户名',width:150, align: 'center'}
+                ,{field: 'password', title: '密码',width:150, sort: true, align: 'center'}
+                ,{field: 'phoneNumber', title: '手机号',width:150, align: 'center'}
+                ,{field: 'email', title: '邮箱',width:150, align: 'center'}
+                ,{field: 'permission', title: '权限',width:150, sort: true, align: 'center'}
+                ,{field: 'createDate', title: '创建时间',width:150, sort: true, align: 'center'}
+                ,{field: 'lastLogin', title: '上次登录时间',width:150, align: 'center'}
+                ,{field: 'status', title: '状态',width:150, sort: true, align: 'center'}
+                ,{title: '操作',width:300, toolbar:"#toolBar"}
             ]]
             ,request: {
                 pageName: 'page' //页码的参数名称，默认：page
                 ,limitName: 'limit' //每页数据量的参数名，默认：limit
             }
         });
-        table.on('tool(test)', function(){
+        table.on('tool(test)', function(obj){
             var data = obj.data; //获得当前行数据
             var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
             var tr = obj.tr; //获得当前行 tr 的DOM对象
             if(layEvent === 'detail'){ //查看
                 //do somehing
+                detail(data.uid);
             } else if(layEvent === 'del'){ //删除
                 layer.confirm('真的删除行么', function(index){
-                    obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
-                    layer.close(index);
                     //向服务端发送删除指令
+                    $.get("/admin/users/del/" + data.uid, function (data, status) {
+                        if (data.message === 'ok') {
+                            obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                            layer.close(index);
+                        } else {
+                            layer.close(index);
+                            alert("删除失败！");
+                            return;
+                        }
+                    });
                 });
             } else if(layEvent === 'edit'){ //编辑
                 //do something
-
+                editUser(data.uid);
                 //同步更新缓存对应的值
                 obj.update({
                     username: '123'
@@ -192,6 +74,31 @@
             }
         });
     });
+
+    function editUser(uid) {
+
+    }
+
+    function detail(uid) {
+        $.get("/admin/users/" + uid, function (data, status) {
+            // '用户ID：' + data.uid + '用户名：' + data.account +
+            // '密码：' + data.password +
+            // '手机号：' + data.phoneNumber +
+            // '邮箱：' + data.email +
+            // '权限：' + data.permission +
+            // '创建时间：' + data.createDate +
+            // '上次登录时间：' + data.lastLogin +
+            // '状态：' + data.status
+            var contents = '<table class="site-table"><thead><tr><th>项目</th><th>信息</th></tr></thead><tbody><tr><td>用户名</td><td>123</td></tr></tbody></table>';
+            layer.open({
+                title: '详情信息'
+                ,content: contents
+                ,yes: function(index) {
+                    layer.close(index);
+                }
+            });
+        });
+    }
 </script>
 </body>
 </html>

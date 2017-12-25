@@ -43,7 +43,10 @@ public class UserManagerController {
 	@GetMapping("{uid}")
 	@ResponseBody
 	public User getUserById(@PathVariable Long uid) {
-		return userService.selectUserById(uid);
+		System.out.println("asdf");
+		User user = userService.selectUserById(uid);
+		System.out.println(user);
+		return user;
 	}
 
 	@RequestMapping("userList")
@@ -58,14 +61,16 @@ public class UserManagerController {
 
 
 	@GetMapping("add")
-	public String addUser() {
+	public  String addUser() {
 		return "/admin/user-edit";
 	}
 
 	@ResponseBody
 	@GetMapping("del/{uid}")
-	public String delUser(@PathVariable Long uid) {
-		userService.deleteUserById(uid);
-		return "删除成功";
+	public Result delUser(@PathVariable Long uid) {
+//		userService.deleteUserById(uid);
+//		if (userService.deleteUserById(uid) == 1)
+//			return ResultGenerator.genSuccessResult();
+		return ResultGenerator.genFailResult("ok");
 	}
 }

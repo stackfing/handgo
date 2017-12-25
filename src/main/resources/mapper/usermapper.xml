@@ -49,7 +49,7 @@
 
     <!--根据id删除用户-->
     <delete id="deleteUserById" parameterType="long">
-        DELETE FROM handgo.user WHERE id = #{uid}
+        DELETE FROM handgo.user WHERE uid = #{uid}
     </delete>
 
     <insert id="insertUser" parameterType="com.stackfing.handgo.entity.User">
