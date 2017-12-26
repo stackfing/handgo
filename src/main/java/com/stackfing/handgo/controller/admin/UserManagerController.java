@@ -24,26 +24,26 @@ public class UserManagerController {
 		return "redirect:/admin";
 	}
 
-//	@GetMapping("{uid}")
-//	public String editUser(@PathVariable Long uid, ModelMap modelMap) {
-//		User user = userService.selectUserById(uid);
-//		modelMap.put("userDetail", user);
-//		return "/admin/user-edit";
-//	}
-
-	@GetMapping("/all")
+	@GetMapping("/allUser")
 	@ResponseBody
-	public Result findall(@RequestParam("page") Long page) {
+	public Result allUserListByPage(@RequestParam("page") Long page) {
 		System.out.println(page);
 //		return new JsonBodyUtil().send(0, "成功", 20, userService.selectAllUserByPage(page));
 		return ResultGenerator.genSuccessResult(userService.selectAllUserByPage(page));
+	}
+
+	@GetMapping("/allDelUser")
+	@ResponseBody
+	public Result deletedUserList(@RequestParam("page") Long page) {
+		System.out.println(page);
+//		return new JsonBodyUtil().send(0, "成功", 20, userService.selectAllUserByPage(page));
+		return ResultGenerator.genSuccessResult(userService.selectAllDeletedUserByPage(page));
 	}
 
 	//通过id查询用户
 	@GetMapping("{uid}")
 	@ResponseBody
 	public User getUserById(@PathVariable Long uid) {
-		System.out.println("asdf");
 		User user = userService.selectUserById(uid);
 		System.out.println(user);
 		return user;
@@ -59,18 +59,21 @@ public class UserManagerController {
 		return list;
 	}
 
-
 	@GetMapping("add")
 	public  String addUser() {
 		return "/admin/user-edit";
 	}
 
 	@ResponseBody
-	@GetMapping("del/{uid}")
+	@PostMapping("del/{uid}")
 	public Result delUser(@PathVariable Long uid) {
-//		userService.deleteUserById(uid);
-//		if (userService.deleteUserById(uid) == 1)
-//			return ResultGenerator.genSuccessResult();
-		return ResultGenerator.genFailResult("ok");
+		if (userService.deleteUserById(uid) == 1)
+			return ResultGenerator.genSuccessResult();
+		return ResultGenerator.genFailResult("FAILD");
+	}
+
+	@GetMapping("edit")
+	public String editUser() {
+		return "admin/user-edit";
 	}
 }

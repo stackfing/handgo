@@ -10,7 +10,7 @@
 <body>
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo" style="color: #1E9FFF;font-size: 17px;">后台管理系统</div>
+        <div class="layui-logo" style="color: #1E9FFF;font-size: 20px;"><a href="javascript:;" class="logo" style="color: white;">后台管理系统</a></div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item"><a href="/">首页</a></li>
@@ -65,7 +65,7 @@
                     <a class="" href="javascript:;">用户管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;" onclick="toURL('userlist')">用户列表</a></dd>
-                        <dd><a href="javascript:;">删除的用户</a></dd>
+                        <!--<dd><a href="javascript:;" data-url="/admin/users/allDelUser">删除的用户</a></dd>-->
                     </dl>
                 </li>
                 <li class="layui-nav-item layui-nav-itemed">
@@ -108,12 +108,19 @@
                 $('iframe').attr('src', '/admin/settings');
             }
         }
+
+        // $(".layui-nav-item").children("a").click(function(e){
+        //     alert($(this).attr("data-url"));
+        // });
+        $("dd").children().click(function () {
+            $('iframe').attr('src', $(this).attr('data-url'));
+        });
         /*]]>*/
     </script>
 
     <div class="layui-footer">
         <!-- 底部固定区域 -->
-        © <a href="http://stackfing.com">stackfing.com</a> - Layui 强力驱动
+        <p>© <a href="http://stackfing.com">stackfing.com</a> - Layui 强力驱动</p>
     </div>
 </div>
 <script src="../layui.all.js"></script>

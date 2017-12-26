@@ -21,6 +21,7 @@ public interface UserMapper {
 
 	int deleteUserById(Long uid);
 
-	List<User> findAllUserByPage(@Param("offSize") Long offSize, @Param("length") Long length);
+	List<User> selectAllUserByPage(@Param("offSize") Long offSize, @Param("length") Long length);
 
+	List<User> selectAllDeletedUserByPage(@Param("offSize") Long offSize, @Param("length") Long length);
 }

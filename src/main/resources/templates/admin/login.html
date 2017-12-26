@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en"/>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../css/layui.css"/>
+    <script src="../js/jquery.min.js"/>
+<style>
+    body{
+        background-color: rgb(230,230,230);
+    }
+</style>
+</head>
+<body>
+
+<div style="margin: 0 auto; width: 200px; height: 300px; background-color: white;margin-top: 200px;padding: 100px;">
+    <form action="/admin/login" method="post">
+        <input type="text" name="account" placeholder="请输入账号" autocomplete="off" class="layui-input" style="margin-top: 30px" />
+        <input type="password" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input" style="margin-top: 30px" />
+        <button type="submit" name="submit" class="layui-btn layui-btn-normal" style="margin-top: 30px; width: 200px;">登录</button>
+    </form>
+</div>
+
+</body>
+</html>

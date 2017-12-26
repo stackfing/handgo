@@ -53,11 +53,22 @@ public class UserServiceImpl implements UserService {
     	Long length = 10L;
     	List<User> list = null;
     	if (page == 1) {
-			list = userMapper.findAllUserByPage(0L, length);
+			list = userMapper.selectAllUserByPage(0L, length);
 		} else {
-			list = userMapper.findAllUserByPage((length * page) - (length - 1), length);
+			list = userMapper.selectAllUserByPage((length * page) - (length - 1), length);
 		}
 		return list;
 	}
 
+	@Override
+	public List<User> selectAllDeletedUserByPage(Long page) {
+		Long length = 10L;
+		List<User> list = null;
+		if (page == 1) {
+			list = userMapper.selectAllDeletedUserByPage(0L, length);
+		} else {
+			list = userMapper.selectAllDeletedUserByPage((length * page) - (length - 1), length);
+		}
+		return list;
+	}
 }

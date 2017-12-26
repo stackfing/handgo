@@ -21,4 +21,6 @@ public interface UserService {
 	int deleteUserById(Long uid);
 	//分页查询用户数据
 	List<User> selectAllUserByPage(Long page);
+
+	List<User> selectAllDeletedUserByPage(Long page);
 }
