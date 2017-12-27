@@ -17,6 +17,8 @@ spring:
         content:
           enabled: true
           paths: /**
+  redis:
+    host: localhost
 server:
   port: 8888
 mybatis:

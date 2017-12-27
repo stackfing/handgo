@@ -36,17 +36,19 @@ public class UserManagerController {
 	@ResponseBody
 	public Result deletedUserList(@RequestParam("page") Long page) {
 		System.out.println(page);
-//		return new JsonBodyUtil().send(0, "成功", 20, userService.selectAllUserByPage(page));
 		return ResultGenerator.genSuccessResult(userService.selectAllDeletedUserByPage(page));
 	}
 
 	//通过id查询用户
 	@GetMapping("{uid}")
 	@ResponseBody
-	public User getUserById(@PathVariable Long uid) {
-		User user = userService.selectUserById(uid);
-		System.out.println(user);
-		return user;
+	public Result getUserById(@PathVariable Long uid) {
+//		User user = userService.selectUserById(uid);
+//		System.out.println(user);
+		if (null == userService.selectUserById(uid)) {
+			return ResultGenerator.genFailResult("not found");
+		}
+		return ResultGenerator.genSuccessResult(userService.selectUserById(uid));
 	}
 
 	@RequestMapping("userList")

@@ -9,9 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @Author: fing
  * @Description:
- * @Date: 下午3:00 17-12-24
+ * @Date: 下午12:50 17-12-27
  */
-
 @Component
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 

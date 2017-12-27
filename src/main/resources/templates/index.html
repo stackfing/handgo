@@ -2,15 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en" />
 <head>
-    <link rel="stylesheet" type="text/css" th:href="@{css/layui.css}"/>
+    <link rel="stylesheet" type="text/css" href="css/layui.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
     <script src="layui.all.js"></script>
     <meta charset="UTF-8" />
     <title>首页</title>
+    <style>
+        @media screen and (max-width: 1000px) {
+            body {
+                background-color:black;
+            }
+        }
+    </style>
 </head>
 <body>
 
 <ul class="layui-nav" style="background-color: #5FB878">
-    <li class="layui-nav-item"><a th:href="@{/}">首页</a></li>
+    <li class="layui-nav-item"><a href="/">首页</a></li>
     <li class="layui-nav-item layui-this"><a href="">产品</a></li>
     <li class="layui-nav-item">
         <a href="javascript:;">解决方案</a>
@@ -20,8 +28,8 @@
             <dd><a href="">电商平台</a></dd>
         </dl>
     </li>
-    <li class="layui-nav-item"><a href="">社区</a></li>
-    <li class="layui-nav-item"><a th:href="@{/admin}">后台</a></li>
+    <!--<li class="layui-nav-item"><a href="">社区</a></li>-->
+    <li class="layui-nav-item"><a href="/admin">后台</a></li>
 </ul>
 <div style="float: left; margin-left: 100px">
     <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">
@@ -46,6 +54,17 @@
         <li class="layui-nav-item"><a href="">社区</a></li>
     </ul>
 </div>
+
+<!--<div id="head">-->
+    <!--<div id="topbar">-->
+        <!--<ul>-->
+            <!--<li><a href="#">测试</a> </li>-->
+            <!--<li>sd</li>-->
+            <!--<li>sd</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+<!--</div>-->
+
 
 
 </body>

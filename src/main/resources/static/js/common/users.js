@@ -66,19 +66,48 @@ layui.use('table', function(){
 });
 
 function editUser(uid) {
-    var con = '<div class="layui-form-item">\n' +
-        '    <label class="layui-form-label">长输入框</label>\n' +
-        '    <div class="layui-input-block">\n' +
-        '      <input type="text" name="title" autocomplete="off" placeholder="请输入标题" class="layui-input">\n' +
-        '    </div>\n' +
-        '  </div>';
-    layer.open({
-        type: 2,
-        area: ['700px', '450px'],
-        fixed: false, //不固定
-        maxmin: true,
-        content: '/admin/users/edit'
+    // var con = '<div class="layui-form-item">\n' +
+    //     '    <label class="layui-form-label">长输入框</label>\n' +
+    //     '    <div class="layui-input-block">\n' +
+    //     '      <input type="text" name="title" autocomplete="off" placeholder="请输入标题" class="layui-input">\n' +
+    //     '    </div>\n' +
+    //     '  </div>';
+    // layer.open({
+    //     type: 2,
+    //     area: ['700px', '450px'],
+    //     fixed: false, //不固定
+    //     maxmin: true,
+    //     content: '/admin/users/edit'
+    // });
+    var con = '';
+    $.ajax({
+        url: '/admin/users/' + uid,
+        type: 'get',
+        success: function (e) {   //成功后回调
+            if (e.message === 'SUCCESS') {
+
+                return;
+            } else {
+                alert("失败");
+                return;
+            }
+        },
+        error: function (e) {    //失败后回调
+            // alert(e);
+            layer.msg('网络错误，请重试！');
+        },
+        beforeSend: function () {  //发送请求前调用，可以放一些"正在加载"之类额话
+            layer.msg('正在查询');
+        }
     });
+    // layer.open({
+    //     type: 1,
+    //     title: false,
+    //     closeBtn: 0,
+    //     shadeClose: true,
+    //     skin: 'yourclass',
+    //     content: '自定义HTML内容'
+    // });
 }
 
 function detail(uid) {
