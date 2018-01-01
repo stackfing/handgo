@@ -77,7 +77,7 @@
                 <li class="layui-nav-item layui-nav-itemed">
                     <a href="javascript:;">商品管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">分类管理</a></dd>
+                        <dd><a href="javascript:;" onclick="toURL('types')">分类管理</a></dd>
                         <dd><a href="javascript:;">商品列表</a></dd>
                     </dl>
                 </li>
@@ -106,6 +106,9 @@
             }
             if (url == 'settings') {
                 $('iframe').attr('src', '/admin/settings');
+            }
+            if (url === 'types') {
+                $('iframe').attr('src', '/admin/types/types');
             }
         }
 
