@@ -1,14 +1,17 @@
 package com.stackfing.handgo.controller.admin;
 
+import com.stackfing.handgo.entity.Product;
 import com.stackfing.handgo.entity.ProductType;
+import com.stackfing.handgo.pojo.TreeRoot;
 import com.stackfing.handgo.service.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import sun.reflect.generics.tree.Tree;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -32,21 +35,24 @@ public class ProductTypesController {
 
 	@GetMapping("/getTypes")
 	@ResponseBody
-	public String getType() {
-		return "[{ \n" +
-				"    name: 'asd'\n" +
-				"    ,children: [{\n" +
-				"      name: 'asd'\n" +
-				"    }]\n" +
-				"  }, {\n" +
-				"    name: 'asd'\n" +
-				"    ,children: [{\n" +
-				"      name: 'asd'\n" +
-				"      ,alias: 'bb' \n" +
-				"      ,id: '123' \n" +
-				"    }, {\n" +
-				"      name: 'sdf'\n" +
-				"    }]\n" +
-				"  }] ";
+	public List<TreeRoot> getType() {
+		List<TreeRoot> treeRoot = new ArrayList<TreeRoot>();
+
+		List<ProductType> list = productTypeService.selectAllRoot();
+
+		for (ProductType root :
+				list) {
+			TreeRoot t = new TreeRoot();
+
+			t.setName(root.getName());
+
+			List<ProductType> productType = productTypeService.selectAllChildrenByParentId(root.getId());
+
+			t.setChildren(productType);
+
+			treeRoot.add(t);
+		}
+
+		return treeRoot;
 	}
 }

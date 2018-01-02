@@ -7,35 +7,45 @@
     <script src="../../layui.all.js"></script>
     <meta charset="UTF-8"/>
     <title>后台管理系统</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="../../css/demo.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/zTreeStyle/zTreeStyle.css" type="text/css" />
+    <script type="text/javascript" src="../../js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery.ztree.core.js"></script>
+    <SCRIPT LANGUAGE="JavaScript">
+        function zTreeOnClick(event, treeId, treeNode) {
+            alert(treeNode.id);
+        };
+        var zTreeObj;
+        // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
+        var setting = {
+            async: {
+                enable: true,
+                url: "http://localhost:8888/admin/types/getTypes",
+                type: "get",
+                autoParam:["id"]
+            },
+            callback: {
+                onClick: zTreeOnClick
+            }
+        };
+
+        var types;
+        $.ajax({ url: "http://localhost:8888/admin/types/getTypes", context: document.body, success: function(data){
+                typess = data;
+            }});
+        // zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
+        var zNodes = types;
+
+        $(document).ready(function(){
+            zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+        });
+    </SCRIPT>
 </head>
 <body>
-    <div id="demo" onclick=""></div>
-    <script src="../../js/common/types.js"></script>
-    <script>getTypes()</script>
 
-    <!--<script>-->
-        <!--layui.tree({-->
-            <!--elem: '#demo'-->
-            <!--,nodes: [{ //节点数据-->
-                <!--name: '节点A'-->
-                <!--,children: [{-->
-                    <!--name: '节点A1'-->
-                <!--}]-->
-            <!--}, {-->
-                <!--name: '节点B'-->
-                <!--,children: [{-->
-                    <!--name: '节点B1'-->
-                    <!--,alias: 'bb' //可选-->
-                    <!--,id: '123' //可选-->
-                <!--}, {-->
-                    <!--name: '节点B2'-->
-                <!--}]-->
-            <!--}]-->
-            <!--,click: function(node){-->
-                <!--console.log(node) //node即为当前点击的节点数据-->
-            <!--}-->
-        <!--});-->
-    <!--</script>-->
-
+    <div>
+        <ul id="treeDemo" class="ztree"></ul>
+    </div>
 </body>
 </html>

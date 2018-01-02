@@ -59,4 +59,9 @@ public class IndexController {
 //		System.out.println(page);
 		return "";
 	}
+
+	@GetMapping("/tree")
+	public String tree() {
+		return "admin/tree";
+	}
 }

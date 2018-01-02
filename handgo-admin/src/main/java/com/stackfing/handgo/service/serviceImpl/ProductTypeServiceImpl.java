@@ -18,4 +18,14 @@ public class ProductTypeServiceImpl implements ProductTypeService {
     public List<ProductType> findAllType() {
         return productTypeMapper.findAll();
     }
+
+	@Override
+	public List<ProductType> selectAllRoot() {
+		return productTypeMapper.selectAllRoot();
+	}
+
+	@Override
+	public List<ProductType> selectAllChildrenByParentId(Long id) {
+		return productTypeMapper.selectAllChildrenByParentId(id);
+	}
 }

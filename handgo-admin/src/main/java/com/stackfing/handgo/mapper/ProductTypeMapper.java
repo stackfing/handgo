@@ -10,4 +10,8 @@ public interface ProductTypeMapper {
 
 	List<ProductType> findAll();
 
+	List<ProductType> selectAllRoot();
+
+	List<ProductType> selectAllChildrenByParentId(Long id);
+
 }

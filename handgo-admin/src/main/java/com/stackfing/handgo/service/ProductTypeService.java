@@ -7,4 +7,8 @@ import java.util.List;
 
 public interface ProductTypeService {
     List<ProductType> findAllType();
+
+    List<ProductType> selectAllRoot();
+
+    List<ProductType> selectAllChildrenByParentId(Long id);
 }
