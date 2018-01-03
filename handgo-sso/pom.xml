@@ -16,7 +16,7 @@
     </parent>
 
     <name>${project.artifactId}</name>
-    <description>Demo project for Spring Boot</description>
+    <description>单点登录组件</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
