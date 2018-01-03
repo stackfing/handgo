@@ -6,9 +6,7 @@ import com.stackfing.handgo.pojo.TreeRoot;
 import com.stackfing.handgo.service.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import sun.reflect.generics.tree.Tree;
 
 import java.util.ArrayList;
@@ -33,26 +31,32 @@ public class ProductTypesController {
 		return "admin/types";
 	}
 
-	@GetMapping("/getTypes")
+	@GetMapping("/allRoot")
 	@ResponseBody
-	public List<TreeRoot> getType() {
-		List<TreeRoot> treeRoot = new ArrayList<TreeRoot>();
-
-		List<ProductType> list = productTypeService.selectAllRoot();
-
-		for (ProductType root :
-				list) {
-			TreeRoot t = new TreeRoot();
-
-			t.setName(root.getName());
-
-			List<ProductType> productType = productTypeService.selectAllChildrenByParentId(root.getId());
-
-			t.setChildren(productType);
-
-			treeRoot.add(t);
-		}
-
-		return treeRoot;
+	public List<TreeRoot> getALlRoot() {
+		return productTypeService.getTypesTree();
 	}
+
+	@GetMapping("/{id}")
+	@ResponseBody
+	public ProductType getTypeById(@PathVariable Long id) {
+		return productTypeService.selectTypeById(id);
+	}
+
+	@PostMapping("")
+	@ResponseBody
+	public String updateType(@RequestBody ProductType productType) {
+		return "ok";
+	}
+
+
+//	@GetMapping("/allRoot")
+//	public List<ProductType> getAllRoot() {
+//		List<ProductType> productTypes = productTypeService.selectAllRoot();
+//
+//
+//
+//		return productTypes;
+//	}
+
 }

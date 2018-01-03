@@ -4,6 +4,7 @@ import com.stackfing.handgo.entity.ProductType;
 import lombok.Data;
 import lombok.ToString;
 
+import javax.validation.constraints.Max;
 import java.util.List;
 
 /**
@@ -15,6 +16,8 @@ import java.util.List;
 @Data
 @ToString
 public class TreeRoot {
+
+	private Long id;
 
 	private String name;
 

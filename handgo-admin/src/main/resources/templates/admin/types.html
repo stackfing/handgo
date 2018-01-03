@@ -12,40 +12,26 @@
     <link rel="stylesheet" href="../../css/zTreeStyle/zTreeStyle.css" type="text/css" />
     <script type="text/javascript" src="../../js/jquery-1.4.4.min.js"></script>
     <script type="text/javascript" src="../../js/jquery.ztree.core.js"></script>
-    <SCRIPT LANGUAGE="JavaScript">
-        function zTreeOnClick(event, treeId, treeNode) {
-            alert(treeNode.id);
-        };
-        var zTreeObj;
-        // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
-        var setting = {
-            async: {
-                enable: true,
-                url: "http://localhost:8888/admin/types/getTypes",
-                type: "get",
-                autoParam:["id"]
-            },
-            callback: {
-                onClick: zTreeOnClick
-            }
-        };
-
-        var types;
-        $.ajax({ url: "http://localhost:8888/admin/types/getTypes", context: document.body, success: function(data){
-                typess = data;
-            }});
-        // zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
-        var zNodes = types;
-
-        $(document).ready(function(){
-            zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
-        });
-    </SCRIPT>
+    <script src="../../js/handgo/types.js"></script>
 </head>
 <body>
-
-    <div>
-        <ul id="treeDemo" class="ztree"></ul>
+<textarea id="demo" style="display: none;"></textarea>
+    <div style="margin-left: 200px; margin-top: 200px; float: left;">
+        <ul id="typeTree" class="ztree"></ul>
     </div>
+
+<div style="float: left;margin-top: 200px;margin-left: 110px;">
+    <div>
+        <form id="types">
+            分类名称：<input type="text" id="typeName" value=""/>
+            是否为父节点：<input type="text" id="isParent" value=""/>
+            是否启用：<input type="text" id="isClosed" value=""/>
+            I D ：<input type="text" id="typeId" value=""/>
+            分类名称：<input type="text" id="test" value=""/>
+            <input type="button" value="提交" id="handgoSubmit"/>
+        </form>
+    </div>
+</div>
+
 </body>
 </html>

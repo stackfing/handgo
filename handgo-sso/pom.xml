@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.stackfing</groupId>
-    <artifactId>handgo-admin</artifactId>
+    <artifactId>handgo-sso</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
@@ -18,12 +18,27 @@
     <name>${project.artifactId}</name>
     <description>Demo project for Spring Boot</description>
 
+    <!--<parent>-->
+    <!--<groupId>org.springframework.boot</groupId>-->
+    <!--<artifactId>spring-boot-starter-parent</artifactId>-->
+    <!--<version>1.5.9.RELEASE</version>-->
+    <!--<relativePath/> &lt;!&ndash; lookup parent from mapper &ndash;&gt;-->
+    <!--</parent>-->
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
     </properties>
 
+    <!--<dependencies>-->
+    <!--&lt;!&ndash;<dependency>&ndash;&gt;-->
+    <!--&lt;!&ndash;<groupId>org.springframework.boot</groupId>&ndash;&gt;-->
+    <!--&lt;!&ndash;<artifactId>spring-boot-starter-data-jpa</artifactId>&ndash;&gt;-->
+    <!--&lt;!&ndash;</dependency>&ndash;&gt;-->
+
+
+    <!--</dependencies>-->
 
     <build>
         <plugins>
@@ -31,20 +46,19 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <!--<executions>-->
-                    <!--<execution>-->
-                        <!--&lt;!&ndash;<phase>package</phase>&ndash;&gt;-->
-                        <!--<configuration>-->
-                            <!--<transformers>-->
-                                <!--<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">-->
-                                    <!--<mainClass>com.stackfing.handgo.HandgoApplication</mainClass>-->
-                                <!--</transformer>-->
-                            <!--</transformers>-->
-                        <!--</configuration>-->
-                    <!--</execution>-->
+                <!--<execution>-->
+                <!--&lt;!&ndash;<phase>package</phase>&ndash;&gt;-->
+                <!--<configuration>-->
+                <!--<transformers>-->
+                <!--<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">-->
+                <!--<mainClass>com.stackfing.handgo.HandgoApplication</mainClass>-->
+                <!--</transformer>-->
+                <!--</transformers>-->
+                <!--</configuration>-->
+                <!--</execution>-->
                 <!--</executions>-->
                 <configuration>
-                    <mainClass>com.stackfing.handgo.HandgoAdminApplication</mainClass>
-                    <mainClass></mainClass>
+                    <mainClass>com.stackfing.handgo.HandgoSSOApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>

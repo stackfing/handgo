@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
@@ -27,6 +28,7 @@ public class ProductType {
 
 	private Long pId;
 
+	@Max(2)
 	private String name;
 
 	private Long parent;

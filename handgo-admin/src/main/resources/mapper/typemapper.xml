@@ -12,4 +12,7 @@
         SELECT id, pId, name, parent FROM product_type WHERE parent = #{id}
     </select>
 
+    <select id="selectTypeById" resultType="com.stackfing.handgo.entity.ProductType">
+        SELECT id, pId, name, parent FROM product_type WHERE id = #{id}
+    </select>
 </mapper>

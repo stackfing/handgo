@@ -14,4 +14,6 @@ public interface ProductTypeMapper {
 
 	List<ProductType> selectAllChildrenByParentId(Long id);
 
+	ProductType selectTypeById(Long id);
+
 }
