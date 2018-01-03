@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
 @MapperScan("com.stackfing.handgo.mapper")
 @Configuration
 public class HandgoAdminApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(HandgoAdminApplication.class, args);
 	}

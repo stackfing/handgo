@@ -1,5 +1,7 @@
 package com.stackfing.handgo.service;
 
+import com.stackfing.handgo.common.HandgoResult;
+
 /**
  * @Author: fing
  * @Description:
@@ -7,5 +9,6 @@ package com.stackfing.handgo.service;
  */
 public interface SSOService {
 
-	
+	HandgoResult checkData(Integer type, String data);
+
 }

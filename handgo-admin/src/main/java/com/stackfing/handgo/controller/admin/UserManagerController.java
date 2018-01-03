@@ -1,8 +1,8 @@
 package com.stackfing.handgo.controller.admin;
 
+import com.stackfing.handgo.common.HandgoResult;
+import com.stackfing.handgo.common.Result;
 import com.stackfing.handgo.entity.User;
-import com.stackfing.handgo.pojo.Result;
-import com.stackfing.handgo.pojo.ResultGenerator;
 import com.stackfing.handgo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,26 +29,24 @@ public class UserManagerController {
 	public Result allUserListByPage(@RequestParam("page") Long page) {
 		System.out.println(page);
 //		return new JsonBodyUtil().send(0, "成功", 20, userService.selectAllUserByPage(page));
-		return ResultGenerator.genSuccessResult(userService.selectAllUserByPage(page));
+		return HandgoResult.genSuccessResult(userService.selectAllUserByPage(page));
 	}
 
 	@GetMapping("/allDelUser")
 	@ResponseBody
 	public Result deletedUserList(@RequestParam("page") Long page) {
 		System.out.println(page);
-		return ResultGenerator.genSuccessResult(userService.selectAllDeletedUserByPage(page));
+		return HandgoResult.genSuccessResult(userService.selectAllDeletedUserByPage(page));
 	}
 
 	//通过id查询用户
 	@GetMapping("{uid}")
 	@ResponseBody
 	public Result getUserById(@PathVariable Long uid) {
-//		User user = userService.selectUserById(uid);
-//		System.out.println(user);
 		if (null == userService.selectUserById(uid)) {
-			return ResultGenerator.genFailResult("not found");
+			return HandgoResult.genFailResult("not found");
 		}
-		return ResultGenerator.genSuccessResult(userService.selectUserById(uid));
+		return HandgoResult.genSuccessResult(userService.selectUserById(uid));
 	}
 
 	@RequestMapping("userList")
@@ -70,8 +68,8 @@ public class UserManagerController {
 	@PostMapping("del/{uid}")
 	public Result delUser(@PathVariable Long uid) {
 		if (userService.deleteUserById(uid) == 1)
-			return ResultGenerator.genSuccessResult();
-		return ResultGenerator.genFailResult("FAILD");
+			return HandgoResult.genSuccessResult();
+		return HandgoResult.genFailResult("FAILD");
 	}
 
 	@GetMapping("edit")

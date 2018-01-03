@@ -1,6 +1,5 @@
-package com.stackfing.handgo.pojo;
+package com.stackfing.handgo.common;
 
-import lombok.Data;
 import lombok.ToString;
 
 import java.util.Date;
