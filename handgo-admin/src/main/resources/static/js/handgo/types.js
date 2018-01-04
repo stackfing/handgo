@@ -42,7 +42,7 @@ $(document).ready(function(){
 var layedit;
 layui.use('layedit', function(){
     layedit = layui.layedit;
-    layedit.build('demo'); //建立编辑器
+    layedit.build('demos'); //建立编辑器
 });
 
 $(document).ready(function(){

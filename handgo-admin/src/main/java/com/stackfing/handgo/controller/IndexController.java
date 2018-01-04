@@ -8,7 +8,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileOutputStream;
 
@@ -22,9 +24,13 @@ public class IndexController {
 	private ProductTypeService productTypeService;
 
 	@GetMapping("/")
-	public String index(ModelMap modelMap) {
+	public String index(ModelMap modelMap, HttpServletResponse response) {
 //		List<ProductType> allType = productTypeService.findAllType();
 //		modelMap.put("allType", allType);
+		Cookie cookie = new Cookie("uid", "1");
+		Cookie cookie1 = new Cookie("token", "token");
+		response.addCookie(cookie);
+		response.addCookie(cookie1);
 		return "index";
 	}
 
