@@ -20,10 +20,10 @@ public class SystemLogAspect {
 	@Autowired(required = false)
 	private HttpServletRequest request;
 
-//	@Pointcut("execution(* com.stackfing.handgo.controller.admin..*(..))")
+//	@Pointcut("execution(* com.stackfing.admin.controller.admin..*(..))")
 //	public void controllerMethodPointcut(){}
 
-	@Pointcut("execution(* com.stackfing.handgo.controller.*..*(..))")
+	@Pointcut("execution(* com.stackfing.admin.controller.*..*(..))")
 	public void controllerLogPointcut(){}
 
 	@After("controllerLogPointcut()")

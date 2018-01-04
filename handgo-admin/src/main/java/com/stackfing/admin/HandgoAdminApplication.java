@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
 
 @SpringBootApplication
-@MapperScan("com.stackfing.handgo.mapper")
+@MapperScan("com.stackfing.admin.mapper")
 @Configuration
 public class HandgoAdminApplication {
 	public static void main(String[] args) {

@@ -21,8 +21,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	@Autowired
 	private RedisTemplate<String, String> redisTemplate;
 
-	private String[] excludedUrls;
-
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 //		return super.preHandle(request, response, handler);
@@ -59,9 +57,5 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		}
 
 		return false;
-	}
-
-	public void setExcludedUrls(String[] excludedUrls) {
-		this.excludedUrls = excludedUrls;
 	}
 }
