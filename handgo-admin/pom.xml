@@ -30,7 +30,6 @@
             <artifactId>handgo-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -39,7 +38,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.stackfing.admin.HandgoAdminApplication</mainClass>
+                    <mainClass>com.stackfing.handgo.admin.HandgoAdminApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>

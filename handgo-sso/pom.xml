@@ -38,7 +38,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.stackfing.sso.HandgoSSOApplication</mainClass>
+                    <mainClass>com.stackfing.handgo.sso.HandgoSSOApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>

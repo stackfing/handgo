@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.stackfing.admin.mapper.UserMapper">
+<mapper namespace="com.stackfing.handgo.admin.mapper.UserMapper">
 
     <!--根据id查用户-->
-    <select id="selectUserById" resultType="com.stackfing.admin.entity.User">
+    <select id="selectUserById" resultType="com.stackfing.handgo.admin.entity.User">
         SELECT user.uid
          ,user.account
          ,user.password
@@ -20,7 +20,7 @@
     </select>
 
     <!--根据账号名查用户-->
-    <select id="selectUserByAccount" resultType="com.stackfing.admin.entity.User">
+    <select id="selectUserByAccount" resultType="com.stackfing.handgo.admin.entity.User">
       SELECT user.uid
          ,user.account
          ,user.password
@@ -34,7 +34,7 @@
     </select>
 
     <!--获得所有用户-->
-    <select id="findAll" resultType="com.stackfing.admin.entity.User">
+    <select id="findAll" resultType="com.stackfing.handgo.admin.entity.User">
         SELECT user.uid
          ,user.account
          ,user.password
@@ -52,12 +52,12 @@
         DELETE FROM handgo.user WHERE uid = #{uid}
     </delete>
 
-    <insert id="insertUser" parameterType="com.stackfing.admin.entity.User">
+    <insert id="insertUser" parameterType="com.stackfing.handgo.admin.entity.User">
         INSERT INTO user(uid, account, createDate, email, headPhoto, lastLogin, password, permission, phoneNumber, status) VALUES (#{uid},#{account},#{createDate},#{email},#{headPhoto},#lastLogin},#{password},#{permission},#{phoneNumber},#{status})
     </insert>
 
     <!--分页查询用户-->
-    <select id="selectAllUserByPage" resultType="com.stackfing.admin.entity.User">
+    <select id="selectAllUserByPage" resultType="com.stackfing.handgo.admin.entity.User">
         SELECT user.uid
          ,user.account
          ,user.password
@@ -70,7 +70,7 @@
          ,user.status FROM handgo.user LIMIT #{offSize},#{length}
     </select>
 
-    <select id="selectAllDeletedUserByPage" resultType="com.stackfing.admin.entity.User">
+    <select id="selectAllDeletedUserByPage" resultType="com.stackfing.handgo.admin.entity.User">
         SELECT user.uid
         ,user.account
         ,user.password
