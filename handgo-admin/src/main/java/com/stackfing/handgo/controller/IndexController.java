@@ -28,40 +28,40 @@ public class IndexController {
 		return "index";
 	}
 
-	@RequestMapping(value = "/gouploadimg", method = RequestMethod.GET)
-	public String goUploadImg() {
-		//跳转到 templates 目录下的 uploadimg.html
-		return "uploadimg";
-	}
+//	@RequestMapping(value = "/gouploadimg", method = RequestMethod.GET)
+//	public String goUploadImg() {
+//		//跳转到 templates 目录下的 uploadimg.html
+//		return "uploadimg";
+//	}
+//
+//	@GetMapping("/upload")
+//	public String upload() {
+//		return "admin/upload";
+//	}
 
-	@GetMapping("/upload")
-	public String upload() {
-		return "admin/upload";
-	}
-
-	//处理文件上传
-	@RequestMapping(value = "/testuploadimg", method = RequestMethod.POST)
-	public @ResponseBody
-	String uploadImg(@RequestParam("file") MultipartFile file,
-					 HttpServletRequest request) throws Exception {
-		String fileName = file.getOriginalFilename();
-		FileOutputStream fos = new FileOutputStream(new File("/home/fing/" + fileName));
-		fos.write(file.getBytes());
-		fos.flush();
-		fos.close();
-		//返回json
-		return "uploadimg success";
-	}
-
-	@GetMapping("/tests")
-	@ResponseBody
-	public String testst() {
-//		System.out.println(page);
-		return "";
-	}
-
-	@GetMapping("/tree")
-	public String tree() {
-		return "admin/tree";
-	}
+//	//处理文件上传
+//	@RequestMapping(value = "/testuploadimg", method = RequestMethod.POST)
+//	public @ResponseBody
+//	String uploadImg(@RequestParam("file") MultipartFile file,
+//					 HttpServletRequest request) throws Exception {
+//		String fileName = file.getOriginalFilename();
+//		FileOutputStream fos = new FileOutputStream(new File("/home/fing/" + fileName));
+//		fos.write(file.getBytes());
+//		fos.flush();
+//		fos.close();
+//		//返回json
+//		return "uploadimg success";
+//	}
+//
+//	@GetMapping("/tests")
+//	@ResponseBody
+//	public String testst() {
+////		System.out.println(page);
+//		return "";
+//	}
+//
+//	@GetMapping("/tree")
+//	public String tree() {
+//		return "admin/tree";
+//	}
 }

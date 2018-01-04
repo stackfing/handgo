@@ -25,18 +25,6 @@ public class SystemLogAspect {
 	@Pointcut("execution(* com.stackfing.handgo.controller.*..*(..))")
 	public void controllerLogPointcut(){}
 
-//	@Before("controllerMethodPointcut()")
-//	public void isLogin() throws ServletException, IOException {
-//		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-//		HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
-//
-//		if (request.getSession().getAttribute("user") == null) {
-////			response.sendRedirect("/");
-//		} else {
-//			System.out.println("登录成功");
-//		}
-//	}
-
 	@After("controllerLogPointcut()")
 	public void writeLogger() {
 		/*
