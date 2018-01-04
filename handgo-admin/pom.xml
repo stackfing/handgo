@@ -39,7 +39,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.stackfing.handgo.HandgoAdminApplication</mainClass>
+                    <mainClass>com.stackfing.admin.HandgoAdminApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>
