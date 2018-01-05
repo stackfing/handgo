@@ -26,6 +26,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.stackfing</groupId>
             <artifactId>handgo-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>

@@ -23,10 +23,10 @@ public class IndexController {
 	public String index(ModelMap modelMap, HttpServletResponse response) {
 //		List<ProductType> allType = productTypeService.findAllType();
 //		modelMap.put("allType", allType);
-		Cookie cookie = new Cookie("uid", "1");
-		Cookie cookie1 = new Cookie("token", "token");
-		response.addCookie(cookie);
-		response.addCookie(cookie1);
+//		Cookie cookie = new Cookie("uid", "1");
+//		Cookie cookie1 = new Cookie("token", "token");
+//		response.addCookie(cookie);
+//		response.addCookie(cookie1);
 		return "index";
 	}
 

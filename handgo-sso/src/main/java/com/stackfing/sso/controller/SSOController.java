@@ -1,12 +1,21 @@
 package com.stackfing.sso.controller;
 
+import com.stackfing.common.utils.HandgoResult;
+import com.stackfing.sso.pojo.User;
+import com.stackfing.sso.service.SSOService;
+import com.stackfing.sso.service.serviceImpl.SSOServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * @Author: fing
@@ -17,24 +26,36 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class SSOController {
 
 	@Autowired
-	private RedisTemplate<String, String> redisTemplate;
+	private SSOServiceImpl ssoService;
 
-	@GetMapping("/hi")
-	@ResponseBody
-	public String hi() {
-		ValueOperations<String, String> stringStringValueOperations = redisTemplate.opsForValue();
-		System.out.println(stringStringValueOperations.get("a"));
-		return "hi";
+	@GetMapping("/")
+	public String index() {
+		return "index";
 	}
 
 	@GetMapping("/login")
-	public String toLogin(String redirect) {
-		System.out.println(redirect);
+	public String toLogin(String redirect, Model model) {
+//		System.out.println(redirect);
+		model.addAttribute("redirect", redirect);
 		return "login";
 	}
 
 	@GetMapping("/register")
 	public String toRegister() {
 		return "register";
+	}
+
+	@PostMapping("/login")
+	@ResponseBody
+	public HandgoResult doLogin(@RequestBody User user,String redirect ,HttpServletResponse response) {
+		System.out.println(redirect);
+		if (user.getAccount() == null) {
+			return new HandgoResult().faild("账号不能为空");
+		}
+		if (user.getPassword() == null) {
+			return new HandgoResult().faild("密码不能为空");
+		}
+		return ssoService.login(user.getAccount(), user.getPassword(), response);
+//		return new HandgoResult().ok("ok");
 	}
 }

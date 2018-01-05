@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="css/layui.css"/>
     <link rel="stylesheet" type="text/css" href="css/index.css"/>
     <script src="layui.all.js"></script>
+    <script src="../js/jquery.min.js"></script>
     <meta charset="UTF-8" />
     <title>首页</title>
     <style>
@@ -20,7 +21,7 @@
 <ul class="layui-nav" style="background-color: #5FB878">
     <li class="layui-nav-item"><a href="/">首页</a></li>
     <li class="layui-nav-item layui-this"><a href="">产品</a></li>
-    <li class="layui-nav-item layui-this"><a href="http://localhost:8889/login">登录</a></li>
+    <li class="layui-nav-item layui-this"><a href="javascript:(0);" id="logs">登录</a></li>
     <li class="layui-nav-item">
         <a href="javascript:;">解决方案</a>
         <dl class="layui-nav-child">
@@ -68,8 +69,24 @@
         <!--</ul>-->
     <!--</div>-->
 <!--</div>-->
-
-
-
+<script>
+    $(function () {
+        $('#logs').on('click', function () {
+            window.location.href = 'http://localhost:8889/login?redirect=' + window.location.href;
+        });
+    });
+    $(function () {
+        $.ajax({url: "/admin/types",
+            type: "post",
+            contentType:"application/json",
+            dataType: 'json',
+            data: row2,
+            success: function (data) {
+                if (data == "faild") {
+                    windows.location.href = 'window.location.href';
+                }
+            }});
+    });
+</script>
 </body>
 </html>

@@ -4,8 +4,64 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
+    <script src="/jquery.min.js"></script>
 </head>
 <body>
 登录
+<form id="login">
+    <input type="text" id="account" name="account"/>
+    <input type="password" id="password" name="password"/>
+    <button id="button">登录</button>
+</form>
+<script th:inline="javascript">
+    $.fn.serializeObject = function () {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function () {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    }
+
+    // <![CDATA[
+    /*[[${redirect}]]*/
+    // ]]>
+    $(function () {
+        $("#button").on('click', function () {
+            $.ajax(
+                {
+                    type: "post",
+                    url: "/login",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify($("#login").serializeObject()),
+                    dataType: "json",
+                    success: function (data) {
+                        var redirect = null;
+                        //<![CDATA[
+                        redirect = /*[[${redirect}]]*/
+                            // ]]>
+                        if (data.code == 200) {
+                            if (data.message === "ok") {
+
+                                if (redirect == null) {
+                                    location.href = "http://go.stackfing.com";
+                                } else {
+                                    location.href = redirect;
+                                }
+                            }
+                        }
+                    }
+                }
+            );
+        });
+    });
+</script>
 </body>
 </html>

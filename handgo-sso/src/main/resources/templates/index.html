@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en"/>
+<head>
+    <script src="/jquery.min.js"></script>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+<a href="javascript:(0)" id="doLogin">登录</a>
+
+<script>
+    $(function () {
+        $('#doLogin').on('click', function () {
+            window.location.href = '/login?redirect=' + window.location.href;
+        });
+    });
+    // $(function () {
+    //     $.ajax({url: "/admin/types",
+    //         type: "post",
+    //         contentType:"application/json",
+    //         dataType: 'json',
+    //         data: row2,
+    //         success: function (data) {
+    //             if (data == "faild") {
+    //                 windows.location.href = '';
+    //             }
+    //         }});
+    // });
+</script>
+</body>
+</html>
