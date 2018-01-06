@@ -1,9 +1,13 @@
 package com.stackfing.sso.controller;
 
+import com.stackfing.common.utils.CookieUtil;
 import com.stackfing.common.utils.HandgoResult;
 import com.stackfing.sso.pojo.User;
 import com.stackfing.sso.service.SSOService;
 import com.stackfing.sso.service.serviceImpl.SSOServiceImpl;
+import com.sun.deploy.net.HttpResponse;
+import com.sun.xml.internal.ws.resources.HttpserverMessages;
+import jdk.nashorn.internal.parser.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -12,10 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
+import java.io.IOException;
 
 /**
  * @Author: fing
@@ -34,8 +36,18 @@ public class SSOController {
 	}
 
 	@GetMapping("/login")
-	public String toLogin(String redirect, Model model) {
-//		System.out.println(redirect);
+	public String toLogin(String redirect, Model model,HttpServletRequest request, HttpServletResponse response) {
+		if (request.getCookies() != null) {
+			Cookie[] cookies = request.getCookies();
+			for (Cookie cookie:
+				 cookies) {
+				if (cookie.getName().equals("token")) {
+					if (ssoService.isAlive(cookie.getValue())) {
+						return "redirect:" + redirect;
+					}
+				}
+			}
+		}
 		model.addAttribute("redirect", redirect);
 		return "login";
 	}
@@ -59,6 +71,17 @@ public class SSOController {
 //		return new HandgoResult().ok("ok");
 	}
 
+	@GetMapping("logout")
+	@ResponseBody
+	public HandgoResult logout(String token, HttpServletResponse response) throws IOException {
+		if (token == null) {
+			return new HandgoResult().faild("token为空");
+		}
+		response.sendRedirect("http://localhost:8888");
+		return ssoService.logout(token);
+	}
+
+
 	/**
 	 * 验证token，返回用户信息
 	 * @return
@@ -71,7 +94,12 @@ public class SSOController {
 		}
 		System.out.println(token);
 		String account = "accounts";
-		return "userInfo('" + account + "')";
+		if (ssoService.isAlive(token)) {
+			return "userInfo('" + account + "')";
+		} else {
+			return null;
+		}
+//		return "userInfo('" + account + "')";
 	}
 
 }

@@ -15,7 +15,8 @@ public interface SSOService {
 
 	HandgoResult login(String account, String password, HttpServletResponse response);
 
-	boolean isAlive(String token);
+	HandgoResult logout(String token);
 
+	boolean isAlive(String token);
 
 }

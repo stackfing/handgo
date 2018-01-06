@@ -23,39 +23,30 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-//		return super.preHandle(request, response, handler);
 
-//		String requestUri = request.getRequestURI();
-//		excludedUrls = new String[]{"/admin"};
-//		for (String s : excludedUrls) {
-//			System.out.println("asf");
-//			if (requestUri.endsWith(s)) {
-//				return true;
-//			}
-//		}
+		Cookie[] cookies = null;
+		if (request.getCookies() != null) {
+			cookies = request.getCookies();
+			String uid = null;
+			String token = null;
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("uid")) {
+					uid = cookie.getValue();
+				}
 
-//		ValueOperations<String, String> stringStringValueOperations = redisTemplate.opsForValue();
-		Cookie[] cookies = request.getCookies();
-
-		String uid = null;
-		String token = null;
-		for (Cookie cookie : cookies) {
-			if (cookie.getName().equals("uid")) {
-				uid = cookie.getValue();
+				if (cookie.getName().equals("token")) {
+					token = cookie.getValue();
+				}
 			}
 
-			if (cookie.getName().equals("token")) {
-				token = cookie.getValue();
-			}
-		}
-
-		if (null != uid && null != token) {
+			if (null != token) {
 //			if (stringStringValueOperations.get(token).equals(uid)) {
 //				return true;
 //			}
-			return true;
+				return true;
+			}
 		}
-
-		return true;
+		response.sendRedirect("http://localhost:8889/login?redirect=" + request.getRequestURL());
+		return false;
 	}
 }

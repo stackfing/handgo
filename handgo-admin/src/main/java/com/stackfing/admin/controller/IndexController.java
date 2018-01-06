@@ -31,7 +31,7 @@ public class IndexController {
 				}
 			}
 		}
-
+		model.addAttribute("siteName", "电子商城");
 //		List<ProductType> allType = productTypeService.findAllType();
 //		modelMap.put("allType", allType);
 //		Cookie cookie = new Cookie("uid", "1");

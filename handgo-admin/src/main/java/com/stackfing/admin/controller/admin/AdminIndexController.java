@@ -43,19 +43,19 @@ public class AdminIndexController {
 		return "admin/settings";
 	}
 
-	@GetMapping("/login")
-	public String toLogin() {
-		return "admin/login";
-	}
-
-	@PostMapping("/login")
-	public String doLogin(String account, String password) {
-		if (null == account || null == password) {
-
-		} else {
-
-		}
-		return "";
-	}
+//	@GetMapping("/login")
+//	public String toLogin() {
+//		return "admin/login";
+//	}
+//
+//	@PostMapping("/login")
+//	public String doLogin(String account, String password) {
+//		if (null == account || null == password) {
+//
+//		} else {
+//
+//		}
+//		return "";
+//	}
 
 }

@@ -1,5 +1,6 @@
 package com.stackfing.sso.service.serviceImpl;
 
+import com.stackfing.common.utils.CookieUtil;
 import com.stackfing.common.utils.HandgoResult;
 import com.stackfing.sso.service.SSOService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author: fing
@@ -19,14 +22,14 @@ import java.util.UUID;
  * @Date: 下午2:04 18-1-3
  */
 @Service
-public class SSOServiceImpl implements SSOService{
+public class SSOServiceImpl implements SSOService {
 
 	@Autowired
 	private RedisTemplate<String, String> redisTemplate;
 
-
 	/**
 	 * 验证用户信息
+	 *
 	 * @param type
 	 * @param content
 	 * @return
@@ -51,7 +54,8 @@ public class SSOServiceImpl implements SSOService{
 	}
 
 	/**
-	 * 用户登录
+	 * 验证用户登录
+	 *
 	 * @param account
 	 * @param password
 	 * @param response
@@ -65,27 +69,38 @@ public class SSOServiceImpl implements SSOService{
 			handgoResult.ok("ok").Build(200);
 			ValueOperations<String, String> stringStringValueOperations = redisTemplate.opsForValue();
 			String uuid = UUID.randomUUID().toString();
-//			stringStringValueOperations.set(uuid, account);
 			Cookie cookie = new Cookie("token", uuid);
-//			cookie.setDomain("localhost");
-			cookie.setPath("/");
-			response.addCookie(cookie);
+			CookieUtil.addCookie(new Cookie[]{cookie}, response);
+			stringStringValueOperations.set(uuid, "account", 1L, TimeUnit.MINUTES);
 			handgoResult.setData(null);
 		}
 		if (handgoResult == null) {
-			handgoResult = new HandgoResult().faild("登录失败！");
+			handgoResult = new HandgoResult().faild("登录失败！").Build("密码错误！");
 		}
-		System.out.println(handgoResult);
 		return handgoResult;
 	}
 
+
+	@Override
+	public HandgoResult logout(String token) {
+		HandgoResult result = new HandgoResult();
+		redisTemplate.delete(token);
+		return result.ok("ok").Build(200);
+	}
+
 	/**
-	 * 	用户是否在线
+	 * 用户是否在线
+	 *
 	 * @param token
 	 * @return
 	 */
 	@Override
 	public boolean isAlive(String token) {
-		return false;
+		ValueOperations<String, String> stringStringValueOperations = redisTemplate.opsForValue();
+		if (null == stringStringValueOperations.get(token)) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 }
