@@ -8,13 +8,6 @@
     <script src="../js/jquery.min.js"></script>
     <meta charset="UTF-8" />
     <title>首页</title>
-    <style>
-        @media screen and (max-width: 1000px) {
-            body {
-                background-color:black;
-            }
-        }
-    </style>
 </head>
 <body>
 
@@ -75,18 +68,17 @@
             window.location.href = 'http://localhost:8889/login?redirect=' + window.location.href;
         });
     });
-    $(function () {
-        $.ajax({url: "/admin/types",
-            type: "post",
-            contentType:"application/json",
-            dataType: 'json',
-            data: row2,
-            success: function (data) {
-                if (data == "faild") {
-                    windows.location.href = 'window.location.href';
-                }
-            }});
-    });
+</script>
+<h1><a href="" id="name">您好，请登录</a></h1>
+<script th:inline="javascript">
+    function userInfo(data) {
+        $("#name").text("[" + data + "] 的后台");
+    }
+    // <![CDATA[
+    var token = [[${token}]];
+    var script="<script src='http://localhost:8889/test?token=" + token +"'><\/script>";
+    document.write(script);
+    // ]]>
 </script>
 </body>
 </html>

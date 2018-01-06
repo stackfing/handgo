@@ -4,10 +4,12 @@ import com.stackfing.admin.service.ProductTypeService;
 import com.stackfing.admin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
@@ -20,7 +22,16 @@ public class IndexController {
 	private ProductTypeService productTypeService;
 
 	@GetMapping("/")
-	public String index(ModelMap modelMap, HttpServletResponse response) {
+	public String index(Model model, HttpServletRequest request) {
+		if (request.getCookies() != null) {
+			Cookie[] cookies = request.getCookies();
+			for (Cookie c : cookies) {
+				if (c.getName().equals("token")) {
+					model.addAttribute("token", c.getValue());
+				}
+			}
+		}
+
 //		List<ProductType> allType = productTypeService.findAllType();
 //		modelMap.put("allType", allType);
 //		Cookie cookie = new Cookie("uid", "1");

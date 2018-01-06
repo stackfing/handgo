@@ -68,6 +68,7 @@ public class SSOServiceImpl implements SSOService{
 //			stringStringValueOperations.set(uuid, account);
 			Cookie cookie = new Cookie("token", uuid);
 //			cookie.setDomain("localhost");
+			cookie.setPath("/");
 			response.addCookie(cookie);
 			handgoResult.setData(null);
 		}

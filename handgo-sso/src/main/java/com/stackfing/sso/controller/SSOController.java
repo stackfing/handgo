@@ -47,7 +47,7 @@ public class SSOController {
 
 	@PostMapping("/login")
 	@ResponseBody
-	public HandgoResult doLogin(@RequestBody User user,String redirect ,HttpServletResponse response) {
+	public HandgoResult doLogin(@RequestBody User user, String redirect, HttpServletResponse response) {
 		System.out.println(redirect);
 		if (user.getAccount() == null) {
 			return new HandgoResult().faild("账号不能为空");
@@ -58,4 +58,20 @@ public class SSOController {
 		return ssoService.login(user.getAccount(), user.getPassword(), response);
 //		return new HandgoResult().ok("ok");
 	}
+
+	/**
+	 * 验证token，返回用户信息
+	 * @return
+	 */
+	@GetMapping("/test")
+	@ResponseBody
+	public String tests(String token) {
+		if (token.equals("null")) {
+			return null;
+		}
+		System.out.println(token);
+		String account = "accounts";
+		return "userInfo('" + account + "')";
+	}
+
 }
