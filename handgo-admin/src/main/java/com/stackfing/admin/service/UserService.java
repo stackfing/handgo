@@ -15,7 +15,7 @@ public interface UserService {
 	//根据id查询用户
 	User selectUserById(Long uid);
 	//保存用户
-	void saveUser(User user);
+	int updateUserById(User user);
 	//删除用户
 	int deleteUserById(Long uid);
 	//分页查询用户数据

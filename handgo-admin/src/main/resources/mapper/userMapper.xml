@@ -84,4 +84,9 @@
         ,user.status FROM handgo.user WHERE user.isDeleted = 1 LIMIT #{offSize},#{length}
     </select>
     
+    <update id="updateUser" parameterType="com.stackfing.admin.entity.User">
+        UPDATE user SET account=#{account},password=#{password},email=#{email},createDate=#{createDate},headPhoto=#{headPhoto},lastLogin=#{lastLogin},
+        permission=#{permission},phoneNumber=#{phoneNumber},status=#{status} WHERE user.uid=#{uid}
+    </update>
+    
 </mapper>

@@ -24,4 +24,6 @@ public interface UserMapper {
 	List<User> selectAllUserByPage(@Param("offSize") Long offSize, @Param("length") Long length);
 
 	List<User> selectAllDeletedUserByPage(@Param("offSize") Long offSize, @Param("length") Long length);
+
+	int updateUser(User user);
 }

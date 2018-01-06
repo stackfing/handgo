@@ -40,7 +40,7 @@ public class UserManagerController {
 	}
 
 	//通过id查询用户
-	@GetMapping("{uid}")
+	@GetMapping("/{uid}")
 	@ResponseBody
 	public Result getUserById(@PathVariable Long uid) {
 		if (null == userService.selectUserById(uid)) {
@@ -49,7 +49,7 @@ public class UserManagerController {
 		return HandgoResult.genSuccessResult(userService.selectUserById(uid));
 	}
 
-	@RequestMapping("userList")
+	@RequestMapping("/userList")
 	@ResponseBody
 	public List<User> getUserList() {
 		List<User> list = userService.selectAllUser();
@@ -59,21 +59,28 @@ public class UserManagerController {
 		return list;
 	}
 
-	@GetMapping("add")
-	public  String addUser() {
+	@GetMapping("/add")
+	public String addUser() {
 		return "/admin/user-edit";
 	}
 
 	@ResponseBody
-	@PostMapping("del/{uid}")
+	@PostMapping("/del/{uid}")
 	public Result delUser(@PathVariable Long uid) {
 		if (userService.deleteUserById(uid) == 1)
 			return HandgoResult.genSuccessResult();
 		return HandgoResult.genFailResult("FAILD");
 	}
 
-	@GetMapping("edit")
+	@GetMapping("/edit")
 	public String editUser() {
 		return "admin/user-edit";
+	}
+
+	@PostMapping("/update")
+	@ResponseBody
+	public String updateUser(User user) {
+		userService.updateUserById(user);
+		return "ok";
 	}
 }

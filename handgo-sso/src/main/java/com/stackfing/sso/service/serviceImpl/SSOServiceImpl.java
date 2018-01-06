@@ -71,7 +71,7 @@ public class SSOServiceImpl implements SSOService {
 			String uuid = UUID.randomUUID().toString();
 			Cookie cookie = new Cookie("token", uuid);
 			CookieUtil.addCookie(new Cookie[]{cookie}, response);
-			stringStringValueOperations.set(uuid, "account", 1L, TimeUnit.MINUTES);
+			stringStringValueOperations.set(uuid, "account", 1L, TimeUnit.DAYS);
 			handgoResult.setData(null);
 		}
 		if (handgoResult == null) {

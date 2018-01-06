@@ -15,7 +15,7 @@ public class CookieUtil {
 		for (Cookie cookie : cookies) {
 			cookie.setPath("/");
 //			cookie.setDomain(".stackfing.com");
-			cookie.setMaxAge(1*60);
+			cookie.setMaxAge(60*24*60);
 			response.addCookie(cookie);
 		}
 	}

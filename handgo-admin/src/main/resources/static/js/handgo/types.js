@@ -1,3 +1,4 @@
+//菜单点击事件
 function zTreeOnClick(event, treeId, treeNode) {
     // alert(treeNode.id);
     $.ajax({ url: "/admin/types/" + treeNode.id, context: document.body, success: function(data){
@@ -14,6 +15,8 @@ function zTreeOnClick(event, treeId, treeNode) {
         }});
 };
 
+
+//菜单树设置
 var zTreeObj;
 // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
 var setting = {
@@ -31,34 +34,12 @@ var setting = {
     }
 };
 
+
+//创建菜单树
 var types;
 // zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
 var zNodes = types;
 
 $(document).ready(function(){
     zTreeObj = $.fn.zTree.init($("#typeTree"), setting, zNodes);
-});
-
-var layedit;
-layui.use('layedit', function(){
-    layedit = layui.layedit;
-    layedit.build('demos'); //建立编辑器
-});
-
-$(document).ready(function(){
-    var row2 = {'id':'null','name':'null','pId':'null','parent': 'null'};
-    var forms = new FormData(document.getElementById("types"));
-    $("#handgoSubmit").bind("click",
-        function() {
-            $.ajax({url: "/admin/types",
-                type: "post",
-                contentType:"application/json",
-                dataType: 'json',
-                data: row2,
-                success: function (data) {
-                    if (data == "ok") {
-                        alert("ok");
-                    }
-                }})
-        });
 });
