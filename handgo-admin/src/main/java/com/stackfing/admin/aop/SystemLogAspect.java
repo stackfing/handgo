@@ -24,7 +24,7 @@ public class SystemLogAspect {
 //	public void controllerMethodPointcut(){}
 
 	@Pointcut("execution(* com.stackfing.*.controller.*..*(..))")
-	public void controllerLogPointcut(){}
+public void controllerLogPointcut(){}
 
 	@After("controllerLogPointcut()")
 	public void writeLogger() {

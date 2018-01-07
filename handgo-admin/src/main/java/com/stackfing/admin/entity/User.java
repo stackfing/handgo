@@ -4,7 +4,6 @@ package com.stackfing.admin.entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.apache.ibatis.type.Alias;
 
 import javax.validation.constraints.NotNull;
 import java.sql.Date;

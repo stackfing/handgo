@@ -62,6 +62,7 @@
         permission,
         phoneNumber,
         status) VALUES (#{account},#{password},#{email},#{createDate},#{headPhoto},#{lastLogin},#{permission},#{phoneNumber},#{status})
+
     </insert>
 
     <!--分页查询用户-->

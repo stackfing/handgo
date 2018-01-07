@@ -1,10 +1,7 @@
 package com.stackfing.common.utils;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.stackfing.common.enums.ResultCode;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 /**

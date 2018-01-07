@@ -1,8 +1,8 @@
 package com.stackfing.admin.controller.admin;
 
-import com.stackfing.admin.service.ProductTypeService;
 import com.stackfing.admin.entity.ProductType;
 import com.stackfing.admin.pojo.TreeRoot;
+import com.stackfing.admin.service.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
