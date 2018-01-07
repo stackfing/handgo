@@ -13,25 +13,92 @@
     <script type="text/javascript" src="../../js/jquery-1.4.4.min.js"></script>
     <script type="text/javascript" src="../../js/jquery.ztree.core.js"></script>
     <script src="../../js/handgo/types.js"></script>
+    <style>
+        input{
+            display: block;
+        }
+    </style>
 </head>
 <body>
-<textarea id="demo" style="display: none;"></textarea>
+
+
+<div>
+    <textarea id="demo" style="display: none;"></textarea>
     <div style="margin-left: 200px; margin-top: 200px; float: left;">
         <ul id="typeTree" class="ztree"></ul>
     </div>
-
-<div style="float: left;margin-top: 200px;margin-left: 110px;">
-    <div>
-        <form id="types">
+    <div style="float: left;margin-top: 200px;margin-left: 100px;">
+        <form id="types" class="layui-form">
             分类名称：<input type="text" id="typeName" value=""/>
             是否为父节点：<input type="text" id="isParent" value=""/>
             是否启用：<input type="text" id="isClosed" value=""/>
             I D ：<input type="text" id="typeId" value=""/>
             分类名称：<input type="text" id="test" value=""/>
+            <div class="layui-form-item">
+                <label class="layui-form-label">开关开</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" checked="checked" lay-skin="switch" />
+                </div>
+            </div>
             <input type="button" value="提交" id="handgoSubmit"/>
         </form>
     </div>
 </div>
-
+<form class="layui-form"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    <div class="layui-form-item">
+        <label class="layui-form-label">输入框</label>
+        <div class="layui-input-block">
+            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">下拉选择框</label>
+        <div class="layui-input-block">
+            <select name="interest" lay-filter="aihao">
+                <option value="0">写作</option>
+                <option value="1">阅读</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">复选框</label>
+        <div class="layui-input-block">
+            <input type="checkbox" name="like[write]" title="写作"/>
+            <input type="checkbox" name="like[read]" title="阅读"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">开关关</label>
+        <div class="layui-input-block">
+            <input type="checkbox" lay-skin="switch"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">开关开</label>
+        <div class="layui-input-block">
+            <input type="checkbox" checked="checked" lay-skin="switch"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">单选框</label>
+        <div class="layui-input-block">
+            <input type="radio" name="sex" value="0" title="男"/>
+            <input type="radio" name="sex" value="1" title="女" checked="checked"/>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">请填写描述</label>
+        <div class="layui-input-block">
+            <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="*">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+    <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+</form>
 </body>
 </html>

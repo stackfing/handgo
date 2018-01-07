@@ -22,4 +22,8 @@ public interface UserService {
 	List<User> selectAllUserByPage(Long page);
 
 	List<User> selectAllDeletedUserByPage(Long page);
+
+	int insertUser(User user);
+
+	Long getUserCount();
 }

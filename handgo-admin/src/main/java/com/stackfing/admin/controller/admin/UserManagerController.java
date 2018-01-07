@@ -1,5 +1,6 @@
 package com.stackfing.admin.controller.admin;
 
+import com.stackfing.common.enums.ResultCode;
 import com.stackfing.common.utils.HandgoResult;
 import com.stackfing.common.utils.Result;
 import com.stackfing.admin.entity.User;
@@ -17,7 +18,6 @@ public class UserManagerController {
 	@Autowired
 	private UserService userService;
 
-
 	@GetMapping("")
 	public String getAllUsers() {
 
@@ -29,7 +29,12 @@ public class UserManagerController {
 	public Result allUserListByPage(@RequestParam("page") Long page) {
 		System.out.println(page);
 //		return new JsonBodyUtil().send(0, "成功", 20, userService.selectAllUserByPage(page));
-		return HandgoResult.genSuccessResult(userService.selectAllUserByPage(page));
+		Result result = new Result();
+		result.setCode(ResultCode.SUCCESS);
+		result.setData(userService.selectAllUserByPage(page));
+		result.setCount(userService.getUserCount());
+//		return HandgoResult.genSuccessResult(userService.selectAllUserByPage(page));
+		return result;
 	}
 
 	@GetMapping("/allDelUser")
@@ -64,6 +69,17 @@ public class UserManagerController {
 		return "/admin/user-edit";
 	}
 
+	@PostMapping("/add")
+	@ResponseBody
+	public HandgoResult addUser(@RequestBody User user) {
+		if (user != null) {
+			System.out.println(user);
+			userService.insertUser(user);
+			return new HandgoResult().ok("ok").Build(200);
+		}
+		return new HandgoResult().faild("输入信息错误").Build(403);
+	}
+
 	@ResponseBody
 	@PostMapping("/del/{uid}")
 	public Result delUser(@PathVariable Long uid) {
@@ -79,8 +95,11 @@ public class UserManagerController {
 
 	@PostMapping("/update")
 	@ResponseBody
-	public String updateUser(User user) {
-		userService.updateUserById(user);
-		return "ok";
+	public HandgoResult updateUser(@RequestBody User user) {
+		System.out.println(user);
+		if ( 1 == userService.updateUserById(user)){
+			return new HandgoResult().ok("ok");
+		}
+		return new HandgoResult().faild("faild");
 	}
 }

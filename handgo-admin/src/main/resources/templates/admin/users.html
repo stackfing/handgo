@@ -10,6 +10,7 @@
 </head>
 <body>
 <h1 style="text-align: center;">用户信息</h1>
+<button	class="layui-btn layui-btn-normal" onclick="addUser()">添加</button>
 <table id="userlist" lay-filter="test"></table>
 <script type="text/html" id="toolBar">
        <a class="layui-btn layui-btn-primary" lay-event="detail">查看</a>
@@ -21,13 +22,8 @@
 </div>
 
 <script>
-    layui.use('laydate', function(){
-        var laydate = layui.laydate;
-        //执行一个laydate实例
-        laydate.render({
-            elem: '#test1' //指定元素
-        });
-    });
+
+
 </script>
 <script type="text/javascript" src="../js/handgo/users.js"></script>
 </body>

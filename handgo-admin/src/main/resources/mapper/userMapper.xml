@@ -53,7 +53,15 @@
     </delete>
 
     <insert id="insertUser" parameterType="com.stackfing.admin.entity.User">
-        INSERT INTO user(uid, account, createDate, email, headPhoto, lastLogin, password, permission, phoneNumber, status) VALUES (#{uid},#{account},#{createDate},#{email},#{headPhoto},#lastLogin},#{password},#{permission},#{phoneNumber},#{status})
+        INSERT INTO handgo.user(account,
+        password,
+        email,
+        createDate,
+        headPhoto,
+        lastLogin,
+        permission,
+        phoneNumber,
+        status) VALUES (#{account},#{password},#{email},#{createDate},#{headPhoto},#{lastLogin},#{permission},#{phoneNumber},#{status})
     </insert>
 
     <!--分页查询用户-->
@@ -88,5 +96,9 @@
         UPDATE user SET account=#{account},password=#{password},email=#{email},createDate=#{createDate},headPhoto=#{headPhoto},lastLogin=#{lastLogin},
         permission=#{permission},phoneNumber=#{phoneNumber},status=#{status} WHERE user.uid=#{uid}
     </update>
+
+    <select id="getUserCount" resultType="long">
+        SELECT count(uid) FROM user;
+    </select>
     
 </mapper>

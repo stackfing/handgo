@@ -3,20 +3,21 @@ layui.use('table', function () {
     var table = layui.table;
     table.render({
         elem: '#userlist'
-        , height: 530
+        , height: 500
         , limit: 10
         , url: '/admin/users/allUser' //数据接口
         , page: true //开启分页
         , cols: [[ //表头
             {field: 'uid', title: 'ID', width: 80, sort: true, fixed: 'left', align: 'center'}
-            , {field: 'account', title: '用户名', width: 150, align: 'center'}
-            , {field: 'password', title: '密码', width: 150, sort: true, align: 'center'}
-            , {field: 'phoneNumber', title: '手机号', width: 150, align: 'center'}
-            , {field: 'email', title: '邮箱', width: 150, align: 'center'}
-            , {field: 'permission', title: '权限', width: 150, sort: true, align: 'center'}
-            , {field: 'createDate', title: '创建时间', width: 150, sort: true, align: 'center'}
-            , {field: 'lastLogin', title: '上次登录时间', width: 150, align: 'center'}
-            , {field: 'status', title: '状态', width: 150, sort: true, align: 'center'}
+            , {field: 'account', title: '用户名', width: 100, align: 'center'}
+            , {field: 'password', title: '密码', width: 100, sort: true, align: 'center'}
+            , {field: 'phoneNumber', title: '手机号', width: 100, align: 'center'}
+            , {field: 'email', title: '邮箱', width: 100, align: 'center'}
+            , {field: 'permission', title: '权限', width: 100, sort: true, align: 'center'}
+            , {field: 'createDate', title: '创建时间', width: 100, sort: true, align: 'center'}
+            , {field: 'headPhoto', title: '头像', width: 100, align: 'center'}
+            , {field: 'lastLogin', title: '上次登录时间', width: 100, align: 'center'}
+            , {field: 'status', title: '状态', width: 100, sort: true, align: 'center'}
             , {title: '操作', width: 250, toolbar: "#toolBar"}
         ]]
     });
@@ -56,23 +57,41 @@ layui.use('table', function () {
             });
         } else if (layEvent === 'edit') { //编辑
             //do something
-            editUser(data.uid);
+            editUser(data.uid,obj);
             //同步更新缓存对应的值
-            obj.update({
-                username: '123'
-                , title: 'xxx'
-            });
+
+            // obj.update({
+            //     account: '123213'
+            //     , title: 'xxx'
+            // });
         }
     });
 });
 
+
+$.fn.serializeObject = function () {
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function () {
+        if (o[this.name]) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+}
+
 //编辑用户
-function editUser(uid) {
+function editUser(uid,obj) {
     $.ajax({
         url: '/admin/users/' + uid,
         type: 'get',
         success: function (data) {   //成功后回调
-            var contents = '<form method="post" action="/admin/users/update">\n' +
+            var contents = '<form id="updateEditor" method="post" action="/admin/users/update" class=layui-form lay-filter=formDemo>\n' +
                 '            <div class="layui-form-item">\n' +
                 '                <label class="layui-form-label">用户 ID</label>\n' +
                 '                <div class="layui-input-block">\n' +
@@ -113,7 +132,7 @@ function editUser(uid) {
                 '                <label class="layui-form-label">创建时间</label>\n' +
                 '                <div class="layui-input-block">\n' +
                 '                    <!--<input th:type="text" th:value="${userDetail.phoneNumber}" name="uid" autocomplete="off" placeholder="请输入用户 ID" class="layui-input" />-->\n' +
-                '                    <input type="text" name="createDate" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input" lay-key="1" value="'+ data.data.createDate +'" />\n' +
+                '                    <input type="text" name="createDate" id="createDate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input" lay-key="1" value="'+ data.data.createDate +'" />\n' +
                 '                </div>\n' +
                 '            </div>\n' +
                 '            <div class="layui-form-item">\n' +
@@ -134,19 +153,39 @@ function editUser(uid) {
                 '                    <input type="text" name="status" autocomplete="off" placeholder="请输入状态" class="layui-input" value="'+ data.data.status +'" />\n' +
                 '                </div>\n' +
                 '            </div>\n' +
-                '            <div class="layui-form-item" >\n' + '<label class="layui-form-label"></label>\n'+
-                '                <button class="layui-btn" lay-submit="" id="sub" style="margin: auto;">修改</button>\n' +
-                '            </div>\n' +
+                // '            <div class="layui-form-item" >\n' + '<label class="layui-form-label"></label>\n'+
+                // '                <button class="layui-btn" lay-submit="" id="sub" style="margin: auto;">修改</button>\n' +
+                // '            </div>\n' +
                 '        </form>';
             if (data.message === 'SUCCESS') {
-                layer.open({
+                var index = layer.open({
                     type: 1 //Page层类型
-                    ,area: ['800px', '800px;']
+                    ,area: ['500px', '600px;']
                     ,title: '用户详情'
                     ,shade: 0.6 //遮罩透明度
                     ,maxmin: true //允许全屏最小化
                     ,anim: 5 //0-6的动画形式，-1不开启
                     ,content: contents
+                    ,btn: ['提交']
+                    ,yes: function() {
+                        $.ajax({
+                            type: "post",
+                            url: "/admin/users/update",
+                            contentType: "application/json; charset=utf-8",
+                            data: JSON.stringify($("#updateEditor").serializeObject()),
+                            dataType: "json",
+                            success:function () {
+                                // alert("success");
+                                layer.msg("提交修改成功");
+                                layer.close(index);
+                                obj.update($("#updateEditor").serializeObject());
+                            },
+                            error: function () {
+                                layer.msg("提交修改失败");
+                            }
+                        });
+
+                    }
                 });
                 return;
             } else {
@@ -172,6 +211,102 @@ function editUser(uid) {
     // });
 }
 
+function addUser() {
+    var indexs = layer.open({
+        type: 1,
+        area: ['500px', '600px'],
+        title: '添加用户',
+        shade: 0.6,
+        anim: 5,
+        content: '<form id="updateEditor" method="post" action="/admin/users/update" class=layui-form lay-filter=formDemo>\n' +
+            '            <div class="layui-form-item">\n' +
+            '                <label class="layui-form-label">用户 ID</label>\n' +
+            '                <div class="layui-input-block">\n' +
+            '                    <input type="text" readonly name="uid" autocomplete="off" placeholder="请输入用户 ID" class="layui-input" value="" />\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '            <div class="layui-form-item">\n' +
+            '                <label class="layui-form-label">账号</label>\n' +
+            '                <div class="layui-input-block">\n' +
+            '                    <input type="text" name="account" autocomplete="off" placeholder="请输入账号" class="layui-input" value="" />\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '            <div class="layui-form-item">\n' +
+            '                <label class="layui-form-label">密码</label>\n' +
+            '                <div class="layui-input-block">\n' +
+            '                    <input type="text" name="password" autocomplete="off" placeholder="请输入密码" class="layui-input" value=""/>\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '            <div class="layui-form-item">\n' +
+            '                <label class="layui-form-label">手机号</label>\n' +
+            '                <div class="layui-input-block">\n' +
+            '                    <input type="tel" name="phoneNumber" autocomplete="off" placeholder="请输入手机号" class="layui-input" value="" />\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '            <div class="layui-form-item">\n' +
+            '                <label class="layui-form-label">邮箱</label>\n' +
+            '                <div class="layui-input-block">\n' +
+            '                    <input type="email" name="email" autocomplete="off" placeholder="请输入邮箱" class="layui-input" value="" />\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '            <div class="layui-form-item">\n' +
+            '                <label class="layui-form-label">权限</label>\n' +
+            '                <div class="layui-input-block">\n' +
+            '                    <input type="text" name="permission" autocomplete="off" placeholder="请输入权限" class="layui-input" value="" />\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '            <div class="layui-form-item">\n' +
+            '                <label class="layui-form-label">创建时间</label>\n' +
+            '                <div class="layui-input-block">\n' +
+            '                    <!--<input th:type="text" th:value="${userDetail.phoneNumber}" name="uid" autocomplete="off" placeholder="请输入用户 ID" class="layui-input" />-->\n' +
+            '                    <input type="text" name="createDate" id="createDate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input" lay-key="1" value="" />\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '            <div class="layui-form-item">\n' +
+            '                <label class="layui-form-label">上次登录时间</label>\n' +
+            '                <div class="layui-input-block">\n' +
+            '                    <input type="text" name="lastLogin" autocomplete="off" placeholder="请输入用户 ID" class="layui-input" value="" />\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '            <div class="layui-form-item">\n' +
+            '                <label class="layui-form-label">头像</label>\n' +
+            '                <div class="layui-input-block">\n' +
+            '                    <input type="text" name="headPhoto" autocomplete="off" placeholder="请输入头像" class="layui-input" value="" />\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '            <div class="layui-form-item">\n' +
+            '                <label class="layui-form-label">状态</label>\n' +
+            '                <div class="layui-input-block">\n' +
+            '                    <input type="text" name="status" autocomplete="off" placeholder="请输入状态" class="layui-input" value="" />\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            // '            <div class="layui-form-item" >\n' + '<label class="layui-form-label"></label>\n'+
+            // '                <button class="layui-btn" lay-submit="" id="sub" style="margin: auto;">修改</button>\n' +
+            // '            </div>\n' +
+            '        </form>',
+        btn: ['添加'],
+        yes: function () {
+            $.ajax({
+                type: "post",
+                url: "/admin/users/add",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify($("#updateEditor").serializeObject()),
+                dataType: "json",
+                success:function (data) {
+                    // alert("success");
+                    if (data.code == 200) {
+                        layer.msg("提交修改成功");
+                        layer.close(indexs);
+                        obj.update($("#updateEditor").serializeObject());
+                    }
+                },
+                error: function () {
+                    layer.msg("提交修改失败");
+                }
+            });
+        }
+    });
+}
 
 //用户详情
 function detail(uid) {

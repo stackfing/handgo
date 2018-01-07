@@ -1,6 +1,10 @@
 package com.stackfing.common.utils;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.stackfing.common.enums.ResultCode;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -11,11 +15,25 @@ import lombok.ToString;
 @ToString
 public class Result {
 
+	@JsonProperty("code")
 	private int code;
 
+	@JsonProperty("msg")
 	private String message;
 
+	@JsonProperty("count")
+	private Long count;
+
+	@JsonProperty("data")
 	private Object data;
+
+	public void setCount(Long count) {
+		this.count = count;
+	}
+
+	public Long getCount() {
+		return this.count;
+	}
 
 	public Result setCode(ResultCode resultCode) {
 		this.code = resultCode.code();

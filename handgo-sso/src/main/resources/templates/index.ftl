@@ -46,6 +46,7 @@
 <script>
     $(function () {
         $('#doLogin').on('click', function () {
+            alert("asf");
             window.location.href = '/login?redirect=' + window.location.href;
         });
     });

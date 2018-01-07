@@ -1,17 +1,9 @@
 package com.stackfing.sso.controller;
 
-import com.stackfing.common.utils.CookieUtil;
 import com.stackfing.common.utils.HandgoResult;
 import com.stackfing.sso.pojo.User;
-import com.stackfing.sso.service.SSOService;
 import com.stackfing.sso.service.serviceImpl.SSOServiceImpl;
-import com.sun.deploy.net.HttpResponse;
-import com.sun.xml.internal.ws.resources.HttpserverMessages;
-import jdk.nashorn.internal.parser.Token;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -36,11 +28,11 @@ public class SSOController {
 	}
 
 	@GetMapping("/login")
-	public String toLogin(String redirect, Model model,HttpServletRequest request, HttpServletResponse response) {
+	public String toLogin(String redirect, Model model, HttpServletRequest request, HttpServletResponse response) {
 		if (request.getCookies() != null) {
 			Cookie[] cookies = request.getCookies();
-			for (Cookie cookie:
-				 cookies) {
+			for (Cookie cookie :
+					cookies) {
 				if (cookie.getName().equals("token")) {
 					if (ssoService.isAlive(cookie.getValue())) {
 						return "redirect:" + redirect;
@@ -71,7 +63,7 @@ public class SSOController {
 //		return new HandgoResult().ok("ok");
 	}
 
-	@GetMapping("logout")
+	@GetMapping("/logout")
 	@ResponseBody
 	public HandgoResult logout(String token, HttpServletResponse response) throws IOException {
 		if (token == null) {
@@ -84,6 +76,7 @@ public class SSOController {
 
 	/**
 	 * 验证token，返回用户信息
+	 *
 	 * @return
 	 */
 	@GetMapping("/test")
@@ -101,5 +94,4 @@ public class SSOController {
 		}
 //		return "userInfo('" + account + "')";
 	}
-
 }

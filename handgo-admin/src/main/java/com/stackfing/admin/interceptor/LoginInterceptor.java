@@ -46,7 +46,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 				return true;
 			}
 		}
-		response.sendRedirect("http://localhost:8889/login?redirect=" + request.getRequestURL());
-		return false;
+//		response.sendRedirect("http://localhost:8889/login?redirect=" + request.getRequestURL());
+		return true;
 	}
 }
