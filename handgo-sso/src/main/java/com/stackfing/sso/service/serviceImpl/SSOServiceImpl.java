@@ -74,6 +74,7 @@ public class SSOServiceImpl implements SSOService {
 		if (handgoResult == null) {
 			handgoResult = new HandgoResult().faild("登录失败！").Build("密码错误！");
 		}
+		System.out.println(handgoResult);
 		return handgoResult;
 	}
 

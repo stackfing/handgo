@@ -35,7 +35,11 @@ public class SSOController {
 					cookies) {
 				if (cookie.getName().equals("token")) {
 					if (ssoService.isAlive(cookie.getValue())) {
-						return "redirect:" + redirect;
+						if (redirect == null) {
+							return "redirect:http://localhost:8888";
+						} else {
+							return "redirect:" + redirect;
+						}
 					}
 				}
 			}
@@ -51,7 +55,7 @@ public class SSOController {
 
 	@PostMapping("/login")
 	@ResponseBody
-	public HandgoResult doLogin(@RequestBody User user, String redirect, HttpServletResponse response) {
+	public HandgoResult doLogin(@RequestBody User user, String redirect, HttpServletResponse response, Model model) {
 		System.out.println(redirect);
 		if (user.getAccount() == null) {
 			return new HandgoResult().faild("账号不能为空");
@@ -59,6 +63,10 @@ public class SSOController {
 		if (user.getPassword() == null) {
 			return new HandgoResult().faild("密码不能为空");
 		}
+		if (redirect == null) {
+			redirect = "";
+		}
+		model.addAttribute("redirect", redirect);
 		return ssoService.login(user.getAccount(), user.getPassword(), response);
 //		return new HandgoResult().ok("ok");
 	}

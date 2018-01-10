@@ -2,6 +2,7 @@ package com.stackfing.admin.aop;
 
 
 import com.stackfing.common.utils.SystemLog;
+import jdk.nashorn.internal.runtime.regexp.joni.constants.EncloseType;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
@@ -10,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 @Aspect
 @Component
@@ -41,14 +44,32 @@ public void controllerLogPointcut(){}
 		耗时
 		 */
 		Map<String, String[]> logParams = request.getParameterMap();
-
+		StringBuffer sb = new StringBuffer("( ");
+//		Iterator iterator = logParams.keySet().iterator();
+//		while (iterator.hasNext()) {
+//			String key = (String) iterator.next();
+//			sb.append(key).append("="+logParams.get(key)).append("|");
+//		}
+//		String s = sb.toString();
+//		System.out.println(s);
+		Set<Map.Entry<String, String[]>> set = logParams.entrySet();
+		Iterator<Map.Entry<String, String[]>> it = set.iterator();
+		while (it.hasNext()) {
+			Map.Entry<String, String[]> entry = it.next();
+			sb.append(entry.getKey()+" = ");
+			for (String i : entry.getValue()) {
+				sb.append(i);
+			}
+			sb.append(" | ");
+		}
+		sb.append(" )");
 		log.info(new SystemLog()
 				.setId(10000L)
 				.setName("name")
 				.setType(1)
 				.setUrl(request.getRequestURI())
 				.setRequestType(request.getMethod())
-				.setrequestParam(logParams.toString())
+				.setrequestParam(sb.toString())
 				.setUser(null)
 				.setIp(null)
 				.setIpInfo("null")

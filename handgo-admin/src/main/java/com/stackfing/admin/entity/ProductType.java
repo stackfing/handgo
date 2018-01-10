@@ -23,7 +23,7 @@ public class ProductType {
 
 	private Long pId;
 
-	@Max(2)
+	@Max(value = 2)
 	private String name;
 
 	private Long parent;

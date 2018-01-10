@@ -15,7 +15,7 @@ layui.use('table', function () {
             , {field: 'email', title: '邮箱', width: 100, align: 'center'}
             , {field: 'permission', title: '权限', width: 100, sort: true, align: 'center'}
             , {field: 'createDate', title: '创建时间', width: 100, sort: true, align: 'center'}
-            , {field: 'headPhoto', title: '头像', width: 100, align: 'center'}
+            , {field: 'headPhoto', title: '头像', width: 100, align: 'center',templet: '<div><img src="/happy.jpg"/></div>'}
             , {field: 'lastLogin', title: '上次登录时间', width: 100, align: 'center'}
             , {field: 'status', title: '状态', width: 100, sort: true, align: 'center'}
             , {title: '操作', width: 250, toolbar: "#toolBar"}
@@ -138,7 +138,7 @@ function editUser(uid,obj) {
                 '            <div class="layui-form-item">\n' +
                 '                <label class="layui-form-label">上次登录时间</label>\n' +
                 '                <div class="layui-input-block">\n' +
-                '                    <input type="text" name="lastLogin" autocomplete="off" placeholder="请输入用户 ID" class="layui-input" value="'+ data.data.lastLogin +'" />\n' +
+                '                    <input type="text" id="lastLogin" name="lastLogin" autocomplete="off" placeholder="yyyy-MM-dd" class="layui-input" value="'+ data.data.lastLogin +'" />\n' +
                 '                </div>\n' +
                 '            </div>\n' +
                 '            <div class="layui-form-item">\n' +
@@ -157,11 +157,11 @@ function editUser(uid,obj) {
                 // '                <button class="layui-btn" lay-submit="" id="sub" style="margin: auto;">修改</button>\n' +
                 // '            </div>\n' +
                 '        </form>';
-            if (data.message === 'SUCCESS') {
+            if (data.msg === 'SUCCESS') {
                 var index = layer.open({
                     type: 1 //Page层类型
                     ,area: ['500px', '600px;']
-                    ,title: '用户详情'
+                    ,title: '编辑用户'
                     ,shade: 0.6 //遮罩透明度
                     ,maxmin: true //允许全屏最小化
                     ,anim: 5 //0-6的动画形式，-1不开启
@@ -187,11 +187,23 @@ function editUser(uid,obj) {
 
                     }
                 });
+                layui.use('laydate', function(){
+                    var laydate = layui.laydate;
+                    laydate.render({
+                        elem: "#createDate"
+                    });
+                    laydate.render({
+                        elem: "#lastLogin"
+                    });
+                });
+
                 return;
             } else {
                 alert("失败");
                 return;
             }
+
+
         },
         error: function (data) {    //失败后回调
             // alert(e);
@@ -218,7 +230,7 @@ function addUser() {
         title: '添加用户',
         shade: 0.6,
         anim: 5,
-        content: '<form id="updateEditor" method="post" action="/admin/users/update" class=layui-form lay-filter=formDemo>\n' +
+        content: '<form id="updateEditor" lay-verify="editors" method="post" action="/admin/users/update" class=layui-form lay-filter=formDemo>\n' +
             '            <div class="layui-form-item">\n' +
             '                <label class="layui-form-label">用户 ID</label>\n' +
             '                <div class="layui-input-block">\n' +

@@ -51,7 +51,7 @@
 </div>
 
 
-<script th:inline="javascript">
+<script>
     $.fn.serializeObject = function () {
         var o = {};
         var a = this.serializeArray();
@@ -68,9 +68,9 @@
         return o;
     }
 
-    // <![CDATA[
-    /*[[${redirect}]]*/
-    // ]]>
+    <#--// <![CDATA[-->
+    <#--/*[[${redirect}]]*/-->
+    <#--// ]]>-->
     $(function () {
         $("#button").on('click', function () {
             $.ajax(
@@ -81,14 +81,10 @@
                     data: JSON.stringify($("#login").serializeObject()),
                     dataType: "json",
                     success: function (data) {
-                        var redirect = null;
-                        //<![CDATA[
-                        redirect =
-                        /*[[${redirect}]]*/
-                        // ]]>
+                        var redirect = '${redirect!}';
                         if (data.code == 200) {
-                            if (redirect == null) {
-                                location.href = "http://localhost:8888";
+                            if (redirect == '') {
+                                 location.href = "http://localhost:8888";
                             } else {
                                 location.href = redirect;
                             }

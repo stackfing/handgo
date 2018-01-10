@@ -20,85 +20,49 @@
     </style>
 </head>
 <body>
-
-
 <div>
     <textarea id="demo" style="display: none;"></textarea>
     <div style="margin-left: 200px; margin-top: 200px; float: left;">
         <ul id="typeTree" class="ztree"></ul>
     </div>
     <div style="float: left;margin-top: 200px;margin-left: 100px;">
-        <form id="types" class="layui-form">
-            分类名称：<input type="text" id="typeName" value=""/>
-            是否为父节点：<input type="text" id="isParent" value=""/>
-            是否启用：<input type="text" id="isClosed" value=""/>
-            I D ：<input type="text" id="typeId" value=""/>
-            分类名称：<input type="text" id="test" value=""/>
+        <form id="types" class="layui-form layui-form-pane">
+            <!--分类名称：<input type="text" class="layui-input" autocomplete="off" id="typeName" value=""/>-->
+            <!--是否为父节点：<input type="text" id="isParent" value=""/>-->
+            <!--是否启用：<input type="text" id="isClosed" value=""/>-->
+            <!--I D ：<input type="text" id="typeId" value=""/>-->
+            <!--分类名称：<input type="text" id="test" value=""/>-->
+            <!--<input type="button" value="提交" id="handgoSubmit"/>-->
             <div class="layui-form-item">
-                <label class="layui-form-label">开关开</label>
+                <label class="layui-form-label">ID</label>
                 <div class="layui-input-block">
-                    <input type="checkbox" checked="checked" lay-skin="switch" />
+                    <input type="text" id="typeId" name="title" autocomplete="off" placeholder="" class="layui-input layui-disabled"/>
                 </div>
             </div>
-            <input type="button" value="提交" id="handgoSubmit"/>
+            <div class="layui-form-item">
+            <label class="layui-form-label">分类名称</label>
+            <div class="layui-input-block">
+                <input type="text" id="typeName" name="title" autocomplete="off" placeholder="请输入分类名称" class="layui-input"/>
+            </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否可用</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" id="isClosed" lay-filter="switchTest" lay-text="ON|OFF" lay-skin="switch" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否为父节点</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" id="isParent" lay-text="ON|OFF" lay-skin="switch" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <input type="button" id="handgoSubmit" class="layui-btn" lay-submit="" lay-filter="demo1" value="立即提交" />
+            </div>
         </form>
     </div>
 </div>
-<form class="layui-form"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
-    <div class="layui-form-item">
-        <label class="layui-form-label">输入框</label>
-        <div class="layui-input-block">
-            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input"/>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">下拉选择框</label>
-        <div class="layui-input-block">
-            <select name="interest" lay-filter="aihao">
-                <option value="0">写作</option>
-                <option value="1">阅读</option>
-            </select>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">复选框</label>
-        <div class="layui-input-block">
-            <input type="checkbox" name="like[write]" title="写作"/>
-            <input type="checkbox" name="like[read]" title="阅读"/>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">开关关</label>
-        <div class="layui-input-block">
-            <input type="checkbox" lay-skin="switch"/>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">开关开</label>
-        <div class="layui-input-block">
-            <input type="checkbox" checked="checked" lay-skin="switch"/>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">单选框</label>
-        <div class="layui-input-block">
-            <input type="radio" name="sex" value="0" title="男"/>
-            <input type="radio" name="sex" value="1" title="女" checked="checked"/>
-        </div>
-    </div>
-    <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">请填写描述</label>
-        <div class="layui-input-block">
-            <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <div class="layui-input-block">
-            <button class="layui-btn" lay-submit="" lay-filter="*">立即提交</button>
-            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-        </div>
-    </div>
-    <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
-</form>
+<script type="text/javascript" src="../../js/handgo/types.js"></script>
 </body>
 </html>
