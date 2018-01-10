@@ -49,8 +49,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> selectAllUserByPage(Long page) {
-    	Long length = 10L;
+	public List<User> selectAllUserByPageAndLimit(Long page, Long limit) {
+    	Long length = limit;
     	List<User> list = null;
     	if (page == 1) {
 			list = userMapper.selectAllUserByPage(0L, length);

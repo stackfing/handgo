@@ -19,16 +19,10 @@ function zTreeOnClick(event, treeId, treeNode) {
             $("#typeName").attr('value', data.name);
             if (data.parent != null) {
                 $("#isParent").removeAttr('checked');
-                // $("#isParent").attr('value', '否');
-                // $("#isParent").addClass("layui-form-onswitch");
-                // $("#isParent").attr('checked','checked');
             } else {
                 $("#isParent").attr('checked','checked');
-                $("#isParent").attr('value', '是');
             }
-            $("#isClosed").attr('value', '是');
             $("#typeId").attr('value', data.id);
-
             form.render();
         }});
 };

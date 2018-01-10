@@ -26,12 +26,12 @@ public class UserManagerController {
 
 	@GetMapping("/allUser")
 	@ResponseBody
-	public Result allUserListByPage(@RequestParam("page") Long page) {
+	public Result allUserListByPage(@RequestParam("page") Long page, @RequestParam("limit") Long limit) {
 		System.out.println(page);
 //		return new JsonBodyUtil().send(0, "成功", 20, userService.selectAllUserByPage(page));
 		Result result = new Result();
 		result.setCode(ResultCode.SUCCESS);
-		result.setData(userService.selectAllUserByPage(page));
+		result.setData(userService.selectAllUserByPageAndLimit(page, limit));
 		result.setCount(userService.getUserCount());
 //		return HandgoResult.genSuccessResult(userService.selectAllUserByPage(page));
 		return result;

@@ -19,7 +19,7 @@ public interface UserService {
 	//删除用户
 	int deleteUserById(Long uid);
 	//分页查询用户数据
-	List<User> selectAllUserByPage(Long page);
+	List<User> selectAllUserByPageAndLimit(Long page, Long limit);
 
 	List<User> selectAllDeletedUserByPage(Long page);
 

@@ -3,22 +3,22 @@ layui.use('table', function () {
     var table = layui.table;
     table.render({
         elem: '#userlist'
-        , height: 500
-        , limit: 10
+        , height: 'full-100'
+        , limit: 20
         , url: '/admin/users/allUser' //数据接口
         , page: true //开启分页
         , cols: [[ //表头
-            {field: 'uid', title: 'ID', width: 80, sort: true, fixed: 'left', align: 'center'}
-            , {field: 'account', title: '用户名', width: 100, align: 'center'}
-            , {field: 'password', title: '密码', width: 100, sort: true, align: 'center'}
-            , {field: 'phoneNumber', title: '手机号', width: 100, align: 'center'}
-            , {field: 'email', title: '邮箱', width: 100, align: 'center'}
-            , {field: 'permission', title: '权限', width: 100, sort: true, align: 'center'}
-            , {field: 'createDate', title: '创建时间', width: 100, sort: true, align: 'center'}
-            , {field: 'headPhoto', title: '头像', width: 100, align: 'center',templet: '<div><img src="/happy.jpg"/></div>'}
-            , {field: 'lastLogin', title: '上次登录时间', width: 100, align: 'center'}
-            , {field: 'status', title: '状态', width: 100, sort: true, align: 'center'}
-            , {title: '操作', width: 250, toolbar: "#toolBar"}
+            {field: 'uid', title: 'ID', sort: true, fixed: 'left', align: 'center'}
+            , {field: 'account', title: '用户名',align: 'center'}
+            , {field: 'password', title: '密码', sort: true, align: 'center'}
+            , {field: 'phoneNumber', title: '手机号', align: 'center'}
+            , {field: 'email', title: '邮箱',  align: 'center'}
+            , {field: 'permission', title: '权限',  sort: true, align: 'center'}
+            , {field: 'createDate', title: '创建时间',  sort: true, align: 'center'}
+            , {field: 'headPhoto', title: '头像', align: 'center',templet: '<div><img src="/happy.jpg"/></div>'}
+            , {field: 'lastLogin', title: '上次登录时间', align: 'center'}
+            , {field: 'status', title: '状态', sort: true, align: 'center'}
+            , {title: '操作', toolbar: "#toolBar"}
         ]]
     });
     table.on('tool(test)', function (obj) {
