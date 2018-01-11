@@ -1,6 +1,6 @@
 package com.stackfing.admin.mapper;
 
-import com.stackfing.admin.entity.ProductType;
+import com.stackfing.pojo.ProductType;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

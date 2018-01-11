@@ -1,7 +1,7 @@
 package com.stackfing.admin.mapper;
 
 
-import com.stackfing.admin.entity.User;
+import com.stackfing.pojo.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

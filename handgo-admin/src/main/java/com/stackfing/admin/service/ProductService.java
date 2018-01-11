@@ -1,6 +1,6 @@
 package com.stackfing.admin.service;
 
-import com.stackfing.admin.entity.Product;
+import com.stackfing.pojo.Product;
 
 import java.util.List;
 

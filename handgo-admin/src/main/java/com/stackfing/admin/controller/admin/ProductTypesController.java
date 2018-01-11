@@ -1,11 +1,14 @@
 package com.stackfing.admin.controller.admin;
 
-import com.stackfing.admin.entity.ProductType;
 import com.stackfing.admin.pojo.TreeRoot;
 import com.stackfing.admin.service.ProductTypeService;
+import com.stackfing.pojo.ProductType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -23,7 +26,7 @@ public class ProductTypesController {
 //		return "admin/types";
 //	}
 
-	@GetMapping("/types")
+	@GetMapping({"/",""})
 	public String toType() {
 		return "admin/types";
 	}
@@ -40,11 +43,11 @@ public class ProductTypesController {
 		return productTypeService.selectTypeById(id);
 	}
 
-	@PostMapping("")
-	@ResponseBody
-	public String updateType(@RequestBody ProductType productType) {
-		return "ok";
-	}
+//	@PostMapping("")
+//	@ResponseBody
+//	public String updateType(@RequestBody ProductType productType) {
+//		return "ok";
+//	}
 
 
 //	@GetMapping("/allRoot")

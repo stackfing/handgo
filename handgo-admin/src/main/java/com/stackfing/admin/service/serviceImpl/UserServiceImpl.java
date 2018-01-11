@@ -1,8 +1,8 @@
 package com.stackfing.admin.service.serviceImpl;
 
-import com.stackfing.admin.entity.User;
 import com.stackfing.admin.mapper.UserMapper;
 import com.stackfing.admin.service.UserService;
+import com.stackfing.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

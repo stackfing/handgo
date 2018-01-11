@@ -5,7 +5,7 @@
 <mapper namespace="com.stackfing.admin.mapper.UserMapper">
 
     <!--根据id查用户-->
-    <select id="selectUserById" resultType="com.stackfing.admin.entity.User">
+    <select id="selectUserById" resultType="com.stackfing.pojo.User">
         SELECT user.uid
          ,user.account
          ,user.password
@@ -20,7 +20,7 @@
     </select>
 
     <!--根据账号名查用户-->
-    <select id="selectUserByAccount" resultType="com.stackfing.admin.entity.User">
+    <select id="selectUserByAccount" resultType="com.stackfing.pojo.User">
       SELECT user.uid
          ,user.account
          ,user.password
@@ -34,7 +34,7 @@
     </select>
 
     <!--获得所有用户-->
-    <select id="findAll" resultType="com.stackfing.admin.entity.User">
+    <select id="findAll" resultType="com.stackfing.pojo.User">
         SELECT user.uid
          ,user.account
          ,user.password
@@ -52,7 +52,7 @@
         DELETE FROM handgo.user WHERE uid = #{uid}
     </delete>
 
-    <insert id="insertUser" parameterType="com.stackfing.admin.entity.User">
+    <insert id="insertUser" parameterType="com.stackfing.pojo.User">
         INSERT INTO handgo.user(account,
         password,
         email,
@@ -66,7 +66,7 @@
     </insert>
 
     <!--分页查询用户-->
-    <select id="selectAllUserByPage" resultType="com.stackfing.admin.entity.User">
+    <select id="selectAllUserByPage" resultType="com.stackfing.pojo.User">
         SELECT user.uid
          ,user.account
          ,user.password
@@ -79,7 +79,7 @@
          ,user.status FROM handgo.user LIMIT #{offSize},#{length}
     </select>
 
-    <select id="selectAllDeletedUserByPage" resultType="com.stackfing.admin.entity.User">
+    <select id="selectAllDeletedUserByPage" resultType="com.stackfing.pojo.User">
         SELECT user.uid
         ,user.account
         ,user.password
@@ -93,7 +93,7 @@
         ,user.status FROM handgo.user WHERE user.isDeleted = 1 LIMIT #{offSize},#{length}
     </select>
     
-    <update id="updateUser" parameterType="com.stackfing.admin.entity.User">
+    <update id="updateUser" parameterType="com.stackfing.pojo.User">
         UPDATE user SET account=#{account},password=#{password},email=#{email},createDate=#{createDate},headPhoto=#{headPhoto},lastLogin=#{lastLogin},
         permission=#{permission},phoneNumber=#{phoneNumber},status=#{status} WHERE user.uid=#{uid}
     </update>

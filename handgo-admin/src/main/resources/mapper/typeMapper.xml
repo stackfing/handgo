@@ -4,15 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.stackfing.admin.mapper.ProductTypeMapper">
 
-    <select id="selectAllRoot" resultType="com.stackfing.admin.entity.ProductType">
+    <select id="selectAllRoot" resultType="com.stackfing.pojo.ProductType">
         SELECT id, pId, name, parent, myparent FROM product_type WHERE parent IS NULL
     </select>
 
-    <select id="selectAllChildrenByParentId" resultType="com.stackfing.admin.entity.ProductType">
+    <select id="selectAllChildrenByParentId" resultType="com.stackfing.pojo.ProductType">
         SELECT id, pId, name, parent FROM product_type WHERE parent = #{id}
     </select>
 
-    <select id="selectTypeById" resultType="com.stackfing.admin.entity.ProductType">
+    <select id="selectTypeById" resultType="com.stackfing.pojo.ProductType">
         SELECT id, pId, name, parent FROM product_type WHERE id = #{id}
     </select>
 </mapper>

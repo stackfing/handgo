@@ -17,7 +17,7 @@ layui.use('table', function () {
             , {field: 'createDate', title: '创建时间',  sort: true, align: 'center'}
             , {field: 'headPhoto', title: '头像', align: 'center',templet: '<div><img src="/happy.jpg"/></div>'}
             , {field: 'lastLogin', title: '上次登录时间', align: 'center'}
-            , {field: 'status', title: '状态', sort: true, align: 'center'}
+            , {field: 'status', title: '状态', sort: true, align: 'center', templet: '<span class="layui-badge">{{d.status}}}</span>'}
             , {title: '操作', toolbar: "#toolBar"}
         ]]
     });

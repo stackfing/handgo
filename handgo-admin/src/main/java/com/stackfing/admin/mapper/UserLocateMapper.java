@@ -1,6 +1,6 @@
 package com.stackfing.admin.mapper;
 
-import com.stackfing.admin.entity.UserLocate;
+import com.stackfing.pojo.UserLocate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

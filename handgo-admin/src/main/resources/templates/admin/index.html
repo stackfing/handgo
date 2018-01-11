@@ -3,7 +3,6 @@
 <html lang="en"/>
 <head>
     <link rel="stylesheet" type="text/css" href="../css/layui.css"/>
-
     <script src="../js/jquery.min.js"/>
     <meta charset="UTF-8"/>
     <title>后台管理系统</title>
@@ -16,30 +15,6 @@
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item"><a href="/">首页</a></li>
             <li class="layui-nav-item"><a href="">控制台<span class="layui-badge-dot layui-bg-red"></span></a></li>
-            <li class="layui-nav-item">
-                <a href="javascript:;">其它系统</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">邮件管理</a></dd>
-                    <dd><a href="">消息管理</a></dd>
-                    <dd><a href="">授权管理</a></dd>
-                </dl>
-            </li>
-            <li class="layui-nav-item">
-                <!--<span class="layui-badge-dot"></span>-->
-                <span class="layui-badge">6</span>
-                <!--若点击进入所有信息的面板，悬浮则是阅读消息-->
-                <a href="">&nbsp;&nbsp;消息
-                    <dl class="layui-nav-child">
-
-                        <dd><a href="">提示0</a></dd>
-                        <dd><a href="">提示1</a></dd>
-                        <dd><a href="">提示2</a></dd>
-                    </dl>
-                    <!--<span class="layui-badge">9</span>-->
-                </a>
-                <!--消息只是提示，最多负责跳转，编辑就是在单个页面上-->
-            </li>
-
         </ul>
         <ul class="layui-nav layui-layout-right">
 
@@ -65,7 +40,7 @@
                     <li class="layui-nav-item layui-nav-itemed">
                         <a class="" href="javascript:;">用户管理</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;" onclick="toURL('userlist')">用户列表</a></dd>
+                            <dd><a href="javascript:;" data-url="/admin/userlist">用户列表</a></dd>
                             <!--<dd><a href="javascript:;" data-url="/admin/users/allDelUser">删除的用户</a></dd>-->
                         </dl>
                     </li>
@@ -78,11 +53,11 @@
                     <li class="layui-nav-item layui-nav-itemed">
                         <a href="javascript:;">商品管理</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;" onclick="toURL('types')">分类管理</a></dd>
+                            <dd><a href="javascript:;" data-url="/admin/types">分类管理</a></dd>
                             <dd><a href="javascript:;">商品列表</a></dd>
                         </dl>
                     </li>
-                    <li class="layui-nav-item"><a href="javascript:void(0)" onclick="toURL('settings')">系统管理</a></li>
+                    <li class="layui-nav-item"><a href="javascript:void(0)" data-url="/admin/settings">系统管理</a></li>
 
                     <li class="layui-nav-item"><a href="">发布公告</a></li>
                 </ul>
@@ -92,29 +67,29 @@
 
         <div class="layui-body">
             <!-- 内容主体区域 -->
-            <iframe runat="server" id="contentbody" src="/admin/welcome" width="99%" height="100%" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes">
+            <iframe runat="server" id="contentbody" src="/admin/welcome" width="100%" height="100%" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes">
                 <div style="padding: 15px;">内容主体区域</div>
             </iframe>
         </div>
 
     <script>
         /*<![CDATA[*/
-        function toURL(url) {
-            if (url === 'userlist') {
-                $('iframe').attr('src', '/admin/userlist');
-            }
-            if (url == 'settings') {
-                $('iframe').attr('src', '/admin/settings');
-            }
-            if (url === 'types') {
-                $('iframe').attr('src', '/admin/types/types');
-            }
-        }
+        // function toURL(url) {
+        //     if (url === 'userlist') {
+        //         $('iframe').attr('src', '/admin/userlist');
+        //     }
+        //     if (url == 'settings') {
+        //         $('iframe').attr('src', '/admin/settings');
+        //     }
+        //     if (url === 'types') {
+        //         $('iframe').attr('src', '/admin/types/types');
+        //     }
+        // }
 
         // $(".layui-nav-item").children("a").click(function(e){
         //     alert($(this).attr("data-url"));
         // });
-        $("dd").children().click(function () {
+        $("dd").children("a").click(function () {
             $('iframe').attr('src', $(this).attr('data-url'));
         });
         /*]]>*/

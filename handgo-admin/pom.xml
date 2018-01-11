@@ -80,6 +80,11 @@
         <artifactId>spring-boot-starter-test</artifactId>
         <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.stackfing</groupId>
+            <artifactId>handgo-common-pojo</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
     </dependencies>
 

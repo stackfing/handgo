@@ -15,14 +15,9 @@
         <module>../handgo-admin</module>
         <module>../handgo-sso</module>
         <module>../handgo-common</module>
+        <module>../handgo-common-pojo</module>
     </modules>
 
-    <!--<parent>-->
-    <!--<groupId>org.springframework.boot</groupId>-->
-    <!--<artifactId>spring-boot-starter-parent</artifactId>-->
-    <!--<version>1.5.9.RELEASE</version>-->
-    <!--<relativePath/> &lt;!&ndash; lookup parent from mapper &ndash;&gt;-->
-    <!--</parent>-->
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -30,10 +25,6 @@
         <version>1.5.9.RELEASE</version>
         <relativePath/> <!-- lookup parent from mapper -->
     </parent>
-
-    <!--<dependencies>-->
-
-    <!--</dependencies>-->
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -104,28 +95,5 @@
             <!--<artifactId>log4j-over-slf4j</artifactId>-->
         <!--</dependency>-->
     <!--</dependencies>-->
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>1.2.17</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter</artifactId>
-                <version>1.5.9.RELEASE</version>
-            </dependency>
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>1.16.18</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-    <dependencies>
-
-    </dependencies>
 
 </project>

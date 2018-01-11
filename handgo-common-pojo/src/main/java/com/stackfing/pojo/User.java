@@ -1,4 +1,4 @@
-package com.stackfing.admin.entity;
+package com.stackfing.pojo;
 
 
 import lombok.Data;

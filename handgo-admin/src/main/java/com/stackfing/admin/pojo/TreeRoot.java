@@ -1,6 +1,6 @@
 package com.stackfing.admin.pojo;
 
-import com.stackfing.admin.entity.ProductType;
+import com.stackfing.pojo.ProductType;
 import lombok.Data;
 import lombok.ToString;
 

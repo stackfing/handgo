@@ -1,7 +1,7 @@
 package com.stackfing.admin.service;
 
-import com.stackfing.admin.entity.ProductType;
 import com.stackfing.admin.pojo.TreeRoot;
+import com.stackfing.pojo.ProductType;
 
 import java.util.List;
 

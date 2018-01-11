@@ -1,6 +1,6 @@
 package com.stackfing.admin.service;
 
-import com.stackfing.admin.entity.User;
+import com.stackfing.pojo.User;
 
 import java.util.List;
 
