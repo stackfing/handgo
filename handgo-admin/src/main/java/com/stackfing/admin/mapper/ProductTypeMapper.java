@@ -16,4 +16,6 @@ public interface ProductTypeMapper {
 
 	ProductType selectTypeById(Long id);
 
+	int updateTypeById(ProductType productType);
+
 }

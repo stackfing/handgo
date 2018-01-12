@@ -1,5 +1,7 @@
 package com.stackfing.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -21,11 +23,15 @@ public class ProductType {
 
 	private Long id;
 
-	private Long pId;
+//	private Long pId;
 
 	@Max(value = 2)
 	private String name;
 
 	private Long parent;
+
+	private int avaliable;
+
+	private int isRoot;
 
 }

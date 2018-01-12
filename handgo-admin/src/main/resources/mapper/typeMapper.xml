@@ -5,14 +5,18 @@
 <mapper namespace="com.stackfing.admin.mapper.ProductTypeMapper">
 
     <select id="selectAllRoot" resultType="com.stackfing.pojo.ProductType">
-        SELECT id, pId, name, parent, myparent FROM product_type WHERE parent IS NULL
+        SELECT id, avaliable, name, parent, isRoot FROM product_type WHERE isRoot = 1
     </select>
 
     <select id="selectAllChildrenByParentId" resultType="com.stackfing.pojo.ProductType">
-        SELECT id, pId, name, parent FROM product_type WHERE parent = #{id}
+        SELECT id, avaliable, name, parent, isRoot FROM product_type WHERE parent = #{id}
     </select>
 
     <select id="selectTypeById" resultType="com.stackfing.pojo.ProductType">
-        SELECT id, pId, name, parent FROM product_type WHERE id = #{id}
+        SELECT id, avaliable, name, parent, isRoot FROM product_type WHERE id = #{id}
     </select>
+
+    <update id="updateTypeById" parameterType="com.stackfing.pojo.ProductType">
+        UPDATE product_type SET avaliable = #{avaliable}, parent = #{parent},name = #{name}, isRoot = #{isRoot} WHERE id = #{id}
+    </update>
 </mapper>

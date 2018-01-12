@@ -7,17 +7,63 @@ layui.use('form', function(){
 function zTreeOnClick(event, treeId, treeNode) {
     // alert(treeNode.id);
     $.ajax({ url: "/admin/types/" + treeNode.id, context: document.body, success: function(data){
+            // alert(data.parent);
             $("#typeName").attr('value', data.name);
-            if (data.parent != null) {
-                $("#isParent").removeAttr('checked');
-            } else {
-                $("#isParent").attr('checked','checked');
-            }
             $("#typeId").attr('value', data.id);
+            if (data.isRoot == 1) {
+                $("#isParent").attr('checked', 'checked');
+            } else {
+                $("#isParent").removeAttr('checked');
+            }
+
+            if (data.avaliable == true) {
+                $("#avaliable").attr('checked','checked');
+            } else {
+                $("#avaliable").removeAttr('checked');
+            }
+
             form.render();
         }});
 };
+$.fn.serializeObject = function () {
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function () {
+        if (o[this.name]) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+}
+function updateType() {
+    layer.msg(JSON.stringify($("#types").serializeObject()));
+    var body = $("#types").serializeObject();
+    alert(JSON.stringify(body));
+    if (body.avaliable == null) {
+        body.avaliable = 0;
+    } else if (body.avaliable === 1) {
+        body.avaliable = true;
+    }
+    if (body.isRoot == null) {
+        body.isRoot = 0;
+    }
+    $.ajax({
+        type: "post",
+        url: "/admin/types/update",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify($("#types").serializeObject()),
+        dataType: "json",
+        success: function() {
+            layer.msg("提交成");
+        }
 
+    });
+}
 
 //菜单树设置
 var zTreeObj;
@@ -25,7 +71,7 @@ var zTreeObj;
 var setting = {
     async: {
         enable: true,
-        url: "/admin/types/allRoot",
+        url: "/admin/types/list",
         type: "get",
         autoParam:["id"]
     },

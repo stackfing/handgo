@@ -3,6 +3,8 @@ package com.stackfing.admin.service.serviceImpl;
 import com.stackfing.admin.mapper.ProductTypeMapper;
 import com.stackfing.admin.pojo.TreeRoot;
 import com.stackfing.admin.service.ProductTypeService;
+import com.stackfing.common.utils.HandgoResult;
+import com.stackfing.common.utils.Result;
 import com.stackfing.pojo.ProductType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,5 +61,13 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 			treeRoot.add(t);
 		}
 		return treeRoot;
+	}
+
+	@Override
+	public HandgoResult updateTypeById(ProductType productType) {
+    	if (productTypeMapper.updateTypeById(productType) == 1){
+			return new HandgoResult().ok("ok");
+		}
+		return new HandgoResult().faild("faild");
 	}
 }

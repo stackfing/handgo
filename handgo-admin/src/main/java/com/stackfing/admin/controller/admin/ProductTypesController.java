@@ -2,13 +2,11 @@ package com.stackfing.admin.controller.admin;
 
 import com.stackfing.admin.pojo.TreeRoot;
 import com.stackfing.admin.service.ProductTypeService;
+import com.stackfing.common.utils.HandgoResult;
 import com.stackfing.pojo.ProductType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,7 +29,7 @@ public class ProductTypesController {
 		return "admin/types";
 	}
 
-	@GetMapping("/allRoot")
+	@GetMapping("/list")
 	@ResponseBody
 	public List<TreeRoot> getALlRoot() {
 		return productTypeService.getTypesTree();
@@ -42,6 +40,14 @@ public class ProductTypesController {
 	public ProductType getTypeById(@PathVariable Long id) {
 		return productTypeService.selectTypeById(id);
 	}
+
+	@PostMapping("/update")
+	@ResponseBody
+	public HandgoResult updateType(@RequestBody ProductType productType) {
+		System.out.println(productType);
+		return productTypeService.updateTypeById(productType);
+	}
+
 
 //	@PostMapping("")
 //	@ResponseBody

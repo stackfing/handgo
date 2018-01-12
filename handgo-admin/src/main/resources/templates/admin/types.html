@@ -36,29 +36,29 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">ID</label>
                 <div class="layui-input-block">
-                    <input type="text" id="typeId" name="title" autocomplete="off" placeholder="" class="layui-input layui-disabled"/>
+                    <input type="number" id="typeId" name="id" autocomplete="off" placeholder="" class="layui-input"/>
                 </div>
             </div>
             <div class="layui-form-item">
             <label class="layui-form-label">分类名称</label>
             <div class="layui-input-block">
-                <input type="text" id="typeName" name="title" autocomplete="off" placeholder="请输入分类名称" class="layui-input"/>
+                <input type="text" id="typeName" name="typeName" autocomplete="off" placeholder="请输入分类名称" class="layui-input"/>
             </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">是否可用</label>
                 <div class="layui-input-block">
-                    <input type="checkbox" id="isClosed" checked="checked" lay-filter="switchTest" lay-text="ON|OFF" lay-skin="switch" />
+                    <input type="checkbox" id="avaliable" value="1" name="avaliable" lay-filter="switchTest" lay-text="ON|OFF" lay-skin="switch" />
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">是否为父节点</label>
                 <div class="layui-input-block">
-                    <input type="checkbox" id="isParent" lay-text="ON|OFF" lay-skin="switch" />
+                    <input type="checkbox" id="isParent" name="isRoot" value="1" lay-text="ON|OFF" lay-skin="switch" />
                 </div>
             </div>
             <div class="layui-form-item">
-                <input type="button" id="handgoSubmit" class="layui-btn" lay-submit="" lay-filter="demo1" value="立即提交" />
+                <input type="button" onclick="updateType()" id="handgoSubmit" class="layui-btn"  value="立即提交" />
             </div>
         </form>
     </div>
