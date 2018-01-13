@@ -10,14 +10,14 @@ layui.use('table', function () {
         , cols: [[ //表头
             {field: 'uid', title: 'ID', sort: true, fixed: 'left', align: 'center'}
             , {field: 'account', title: '用户名',align: 'center'}
-            , {field: 'password', title: '密码', sort: true, align: 'center'}
+            // , {field: 'password', title: '密码', sort: true, align: 'center'}
             , {field: 'phoneNumber', title: '手机号', align: 'center'}
             , {field: 'email', title: '邮箱',  align: 'center'}
             , {field: 'permission', title: '权限',  sort: true, align: 'center'}
             , {field: 'createDate', title: '创建时间',  sort: true, align: 'center'}
             , {field: 'headPhoto', title: '头像', align: 'center',templet: '<div><img src="/happy.jpg"/></div>'}
             , {field: 'lastLogin', title: '上次登录时间', align: 'center'}
-            , {field: 'status', title: '状态', sort: true, align: 'center', templet: '<span class="layui-badge">{{d.status}}}</span>'}
+            , {field: 'status', title: '状态', sort: true, align: 'center'}
             , {title: '操作', toolbar: "#toolBar"}
         ]]
     });
@@ -107,7 +107,7 @@ function editUser(uid,obj) {
                 '            <div class="layui-form-item">\n' +
                 '                <label class="layui-form-label">密码</label>\n' +
                 '                <div class="layui-input-block">\n' +
-                '                    <input type="text" name="password" autocomplete="off" placeholder="请输入密码" class="layui-input" value="' + data.data.password + '"/>\n' +
+                '                    <input type="password" name="password" autocomplete="off" placeholder="请输入密码" class="layui-input" value="' + data.data.password + '"/>\n' +
                 '                </div>\n' +
                 '            </div>\n' +
                 '            <div class="layui-form-item">\n' +
@@ -158,33 +158,48 @@ function editUser(uid,obj) {
                 // '            </div>\n' +
                 '        </form>';
             if (data.msg === 'SUCCESS') {
-                var index = layer.open({
-                    type: 1 //Page层类型
-                    ,area: ['500px', '600px;']
-                    ,title: '编辑用户'
-                    ,shade: 0.6 //遮罩透明度
-                    ,maxmin: true //允许全屏最小化
-                    ,anim: 5 //0-6的动画形式，-1不开启
-                    ,content: contents
-                    ,btn: ['提交']
-                    ,yes: function() {
-                        $.ajax({
-                            type: "post",
-                            url: "/admin/users/update",
-                            contentType: "application/json; charset=utf-8",
-                            data: JSON.stringify($("#updateEditor").serializeObject()),
-                            dataType: "json",
-                            success:function () {
-                                // alert("success");
-                                layer.msg("提交修改成功");
-                                layer.close(index);
-                                obj.update($("#updateEditor").serializeObject());
-                            },
-                            error: function () {
-                                layer.msg("提交修改失败");
-                            }
-                        });
+                // var index = layer.open({
+                //     type: 1 //Page层类型
+                //     ,area: ['500px', '600px;']
+                //     ,title: '编辑用户'
+                //     ,shade: 0.6 //遮罩透明度
+                //     ,maxmin: true //允许全屏最小化
+                //     ,anim: 5 //0-6的动画形式，-1不开启
+                //     ,content: contents
+                //     ,btn: ['提交']
+                //     ,yes: function() {
+                //         $.ajax({
+                //             type: "post",
+                //             url: "/admin/users/update",
+                //             contentType: "application/json; charset=utf-8",
+                //             data: JSON.stringify($("#updateEditor").serializeObject()),
+                //             dataType: "json",
+                //             success:function () {
+                //                 // alert("success");
+                //                 layer.msg("提交修改成功");
+                //                 layer.close(index);
+                //                 obj.update($("#updateEditor").serializeObject());
+                //             },
+                //             error: function () {
+                //                 layer.msg("提交修改失败");
+                //             }
+                //         });
+                //
+                //     }
+                // });
+                layer.open({
+                    type: 2,
+                    anim: 1,
+                    title: '修改信息',
+                    shadeClose: false,
+                    shade: 0.5,
+                    area: ['380px', '800px'],
+                    content: '/admin/users/' + data.data.uid +'/edit', //iframe的url,
+                    success: function() {
 
+                    },
+                    end: function() {
+                        // layer.msg($("#th").attr('value'));
                     }
                 });
                 layui.use('laydate', function(){
@@ -322,25 +337,6 @@ function addUser() {
 
 //用户详情
 function detail(uid) {
-    // $.get("/admin/users/" + uid, function (data, status) {
-    //     // '用户ID：' + data.uid + '用户名：' + data.account +
-    //     // '密码：' + data.password +
-    //     // '手机号：' + data.phoneNumber +
-    //     // '邮箱：' + data.email +
-    //     // '权限：' + data.permission +
-    //     // '创建时间：' + data.createDate +
-    //     // '上次登录时间：' + data.lastLogin +
-    //     // '状态：' + data.status
-    //     var contents = '<table class="site-table"><thead><tr><th>项目</th><th>信息</th></tr></thead><tbody><tr><td>用户名</td><td>123</td></tr></tbody></table>';
-    //     layer.open({
-    //         title: '详情信息ssssssss'
-    //         ,content: contents
-    //         ,yes: function(index) {
-    //             layer.close(index);
-    //         }
-    //     });
-    // });
-
     $.ajax({
         url: "/admin/users/" + uid,
         type: "get",

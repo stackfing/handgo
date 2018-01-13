@@ -10,6 +10,7 @@ function zTreeOnClick(event, treeId, treeNode) {
             // alert(data.parent);
             $("#typeName").attr('value', data.name);
             $("#typeId").attr('value', data.id);
+            $("#parent").attr('value', data.parent);
             if (data.isRoot == 1) {
                 $("#isParent").attr('checked', 'checked');
             } else {
@@ -21,7 +22,6 @@ function zTreeOnClick(event, treeId, treeNode) {
             } else {
                 $("#avaliable").removeAttr('checked');
             }
-
             form.render();
         }});
 };
@@ -41,9 +41,7 @@ $.fn.serializeObject = function () {
     return o;
 }
 function updateType() {
-    layer.msg(JSON.stringify($("#types").serializeObject()));
     var body = $("#types").serializeObject();
-    alert(JSON.stringify(body));
     if (body.avaliable == null) {
         body.avaliable = 0;
     } else if (body.avaliable === 1) {
@@ -59,7 +57,10 @@ function updateType() {
         data: JSON.stringify($("#types").serializeObject()),
         dataType: "json",
         success: function() {
-            layer.msg("提交成");
+            layer.msg("修改成功！");
+        },
+        error: function() {
+            layer.msg("网络连接错误，请重试！");
         }
 
     });

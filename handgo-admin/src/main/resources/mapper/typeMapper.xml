@@ -16,7 +16,7 @@
         SELECT id, avaliable, name, parent, isRoot FROM product_type WHERE id = #{id}
     </select>
 
-    <update id="updateTypeById" parameterType="com.stackfing.pojo.ProductType">
-        UPDATE product_type SET avaliable = #{avaliable}, parent = #{parent},name = #{name}, isRoot = #{isRoot} WHERE id = #{id}
+    <update id="updateType" parameterType="com.stackfing.pojo.ProductType">
+        UPDATE product_type SET avaliable = #{avaliable}, name = #{name}, isRoot = #{isRoot} WHERE id = #{id}
     </update>
 </mapper>

@@ -64,8 +64,8 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 	}
 
 	@Override
-	public HandgoResult updateTypeById(ProductType productType) {
-    	if (productTypeMapper.updateTypeById(productType) == 1){
+	public HandgoResult updateType(ProductType productType) {
+    	if (productTypeMapper.updateType(productType) == 1){
 			return new HandgoResult().ok("ok");
 		}
 		return new HandgoResult().faild("faild");

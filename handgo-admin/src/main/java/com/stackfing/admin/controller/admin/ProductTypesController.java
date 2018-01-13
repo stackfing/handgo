@@ -45,7 +45,7 @@ public class ProductTypesController {
 	@ResponseBody
 	public HandgoResult updateType(@RequestBody ProductType productType) {
 		System.out.println(productType);
-		return productTypeService.updateTypeById(productType);
+		return productTypeService.updateType(productType);
 	}
 
 

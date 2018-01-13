@@ -18,5 +18,5 @@ public interface ProductTypeService {
 
 	List<TreeRoot> getTypesTree();
 
-	HandgoResult updateTypeById(ProductType productType);
+	HandgoResult updateType(ProductType productType);
 }
