@@ -2,6 +2,7 @@ package com.stackfing.admin.controller.admin;
 
 import com.stackfing.admin.service.ProductTypeService;
 import com.stackfing.admin.service.UserService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ public class AdminIndexController {
 	@Autowired
 	private UserService userService;
 
+	@ApiOperation("values")
 	@GetMapping("/")
 	public String index() {
 		return "admin/index";
