@@ -8,16 +8,6 @@ spring:
     hibernate:
       ddl-auto: create-drop
     show-sql: true
-  resources:
-    chain:
-      strategy:
-        content:
-          enabled: true
-          paths: /**
-  redis:
-    host: localhost
-  freemarker:
-    cache: false
 server:
   port: 8888
 #mybatis:

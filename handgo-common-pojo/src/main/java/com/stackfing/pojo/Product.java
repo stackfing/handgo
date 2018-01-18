@@ -1,36 +1,46 @@
 package com.stackfing.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
+import java.util.Date;
 
 @Data
-@NoArgsConstructor
-@ToString
+@Entity
 public class Product {
 
-    private Long pid;   //id
+	@Id
+	@GeneratedValue
+    private Long id;   //id
 
     @NotNull
-    private String productName; //产品名
+    private String name; //产品名
 
     @NotNull
-    private String productPhoto;    //产品图片地址
+    private String photo;    //产品图片地址
 
-    private ProductType productType;    //产品类型
+//    private ProductCategory category;    //产品类型
 
     @NotNull
-    private Float nowPrice; //价格
+    private BigDecimal price; //价格
 
     @NotNull
     private int quantity;   //供货数量
 
-    @NotNull
     private int sold;   //已经出售数量
 
     @NotNull
-    private int status; //产品状态
+    private int status; //产品状态 1 上架 0 下架
+
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+	private Date createTime;
+
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+	private Date updateTime;
 
 }

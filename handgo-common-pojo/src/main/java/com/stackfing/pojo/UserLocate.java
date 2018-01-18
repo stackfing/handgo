@@ -4,25 +4,24 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-@NoArgsConstructor
 @Data
-@ToString
+@Entity
 public class UserLocate {
 
-    @Min(1)
-    @Max(5)
-    private int locateId;	//收货地址id
+	@Id
+	@GeneratedValue
+	private Integer id;
 
-    @NotNull
-    private String locate;	//收货地址
+	private String name;	//地址
 
-    @NotNull
-    private int isPrimary = 0;	//是否默认地址
-
-    private User user;
+	@NotNull
+	private boolean primary;//默认地址
 
 }

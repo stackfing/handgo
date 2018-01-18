@@ -4,12 +4,9 @@ spring:
     url: jdbc:mysql://localhost:3306/handgo?charset=utf8&useSSL=true&useUnicode=true&characterEncoding=utf8
     username: root
     password: root
-#  jpa:
-#    hibernate:
-#      ddl-auto: update
-#    show-sql: true
-  thymeleaf:
-    cache: false
-    cache-period: 0
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
 server:
-  port: 8888
+  port: 8889

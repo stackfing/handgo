@@ -58,10 +58,10 @@ public class SSOController {
 	public HandgoResult doLogin(@RequestBody User user, String redirect, HttpServletResponse response, Model model) {
 		System.out.println(redirect);
 		if (user.getAccount() == null) {
-			return new HandgoResult().faild("账号不能为空");
+			return HandgoResult.error("账号不错为空");
 		}
 		if (user.getPassword() == null) {
-			return new HandgoResult().faild("密码不能为空");
+			return HandgoResult.error("密码不能为空");
 		}
 		if (redirect == null) {
 			redirect = "";
@@ -75,7 +75,7 @@ public class SSOController {
 	@ResponseBody
 	public HandgoResult logout(String token, HttpServletResponse response) throws IOException {
 		if (token == null) {
-			return new HandgoResult().faild("token为空");
+			return HandgoResult.error("token 为空");
 		}
 		response.sendRedirect("http://localhost:8888");
 		return ssoService.logout(token);

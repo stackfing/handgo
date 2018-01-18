@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @Date: 上午10:37 18-1-13
  */
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/product")
 public class ProductController {
 
-	@GetMapping("/product")
+	@GetMapping("")
 	public String toProduct() {
-		return "admin/product";
+		return "product";
 	}
 
 

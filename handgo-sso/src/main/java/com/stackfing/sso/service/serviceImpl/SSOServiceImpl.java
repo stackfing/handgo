@@ -36,7 +36,7 @@ public class SSOServiceImpl implements SSOService {
 		HandgoResult handgoResult = null;
 		if (type == 1) {
 			//用户名
-			handgoResult = new HandgoResult().Build(200).ok("ok");
+			handgoResult = new HandgoResult().Build(200).Build("ok");
 		}
 
 		if (type == 2) {
@@ -63,7 +63,7 @@ public class SSOServiceImpl implements SSOService {
 		HandgoResult handgoResult = null;
 		if (account.equals("a") && password.equals("a")) {
 			handgoResult = new HandgoResult();
-			handgoResult.ok("ok").Build(200);
+			handgoResult.Build(200).Build("ok");
 			ValueOperations<String, String> stringStringValueOperations = redisTemplate.opsForValue();
 			String uuid = UUID.randomUUID().toString();
 			Cookie cookie = new Cookie("token", uuid);
@@ -72,7 +72,7 @@ public class SSOServiceImpl implements SSOService {
 			handgoResult.setData(null);
 		}
 		if (handgoResult == null) {
-			handgoResult = new HandgoResult().faild("登录失败！").Build("密码错误！");
+			handgoResult = new HandgoResult().Build("登录失败").Build(400);
 		}
 		System.out.println(handgoResult);
 		return handgoResult;
@@ -81,9 +81,8 @@ public class SSOServiceImpl implements SSOService {
 
 	@Override
 	public HandgoResult logout(String token) {
-		HandgoResult result = new HandgoResult();
 		redisTemplate.delete(token);
-		return result.ok("ok").Build(200);
+		return HandgoResult.success("ok");
 	}
 
 	/**

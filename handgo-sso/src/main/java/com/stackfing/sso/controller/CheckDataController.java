@@ -43,7 +43,7 @@ public class CheckDataController {
 		handgoResult = ssoService.checkData(type, data);
 
 		if (handgoResult == null) {
-			handgoResult = new HandgoResult(500, "faild", "服务器内部错误");
+			handgoResult = new HandgoResult().Build("服务器内部错误").Build(500);
 		}
 
 		return handgoResult;

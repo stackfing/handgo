@@ -1,21 +1,21 @@
-package com.stackfing.admin.mapper;
-
-import com.stackfing.pojo.ProductType;
-import org.springframework.stereotype.Repository;
-
-import java.util.List;
-
-@Repository
-public interface ProductTypeMapper {
-
-	List<ProductType> findAll();
-
-	List<ProductType> selectAllRoot();
-
-	List<ProductType> selectAllChildrenByParentId(Long id);
-
-	ProductType selectTypeById(Long id);
-
-	int updateType(ProductType productType);
-
-}
+//package com.stackfing.admin.mapper;
+//
+//import com.stackfing.pojo.ProductCategory;
+//import org.springframework.stereotype.Repository;
+//
+//import java.util.List;
+//
+//@Repository
+//public interface ProductTypeMapper {
+//
+//	List<ProductCategory> findAll();
+//
+//	List<ProductCategory> selectAllRoot();
+//
+//	List<ProductCategory> selectAllChildrenByParentId(Long id);
+//
+//	ProductCategory selectTypeById(Long id);
+//
+//	int updateType(ProductCategory productCategory);
+//
+//}

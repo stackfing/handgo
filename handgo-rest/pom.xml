@@ -97,6 +97,11 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.2.2</version>
         </dependency>
+        <dependency>
+            <groupId>com.stackfing</groupId>
+            <artifactId>handgo-admin</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
