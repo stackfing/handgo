@@ -10,6 +10,8 @@
 
 <div style="padding: 15px;">
     <button class="layui-btn layui-bg-green" onclick="add()"><i class="layui-icon" style="font-size: 20px;">&#xe608;</i>添加</button>
+    <button class="layui-btn layui-bg-green" onclick="refresh()"><i class="layui-icon" style="font-size: 20px;">&#x1002;</i>刷新</button>
+
     <div id="productTable" lay-filter="demo" class="layui-col-md12"></div>
 </div>
 
@@ -99,6 +101,11 @@
             }
         });
         layer.full(index);
+    }
+
+    function refresh() {
+        
+        layer.msg('刷新');
     }
 
 

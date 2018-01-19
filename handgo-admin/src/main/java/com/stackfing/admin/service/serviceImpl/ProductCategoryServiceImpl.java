@@ -2,6 +2,7 @@ package com.stackfing.admin.service.serviceImpl;
 
 import com.stackfing.admin.dao.ProductCategoryDao;
 import com.stackfing.admin.service.ProductCategoryService;
+import com.stackfing.common.enums.ProductRootEnum;
 import com.stackfing.common.utils.HandgoResult;
 import com.stackfing.common.utils.ObjectUtil;
 import com.stackfing.pojo.ProductCategory;
@@ -67,12 +68,12 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
 	@Override
 	public HandgoResult getCategory() {
-		return HandgoResult.success(productCategoryDao.findAllByParentIsNull());
+		return HandgoResult.success(productCategoryDao.findAllByRootTag(ProductRootEnum.ISROOT.getTag()));
 	}
 
 	@Override
 	public HandgoResult getSubCategoryById(Long id) {
-		return HandgoResult.success(productCategoryDao.findAllByParent(id));
+		return HandgoResult.success(productCategoryDao.findAllByParentEquals(id));
 	}
 }
 

@@ -56,6 +56,36 @@ public class HandgoResult {
 		return handgoResult;
 	}
 
+	public static HandgoResult success(int code, Object data) {
+		HandgoResult handgoResult = new HandgoResult();
+		handgoResult.msg = "ok";
+		handgoResult.code = code;
+		if (data instanceof List) {
+			List datas = new ArrayList();
+			datas.addAll((Collection) data);
+			handgoResult.data = datas;
+			return handgoResult;
+		} else {
+			handgoResult.data = data;
+		}
+		return handgoResult;
+	}
+
+	public static HandgoResult success(int code, String msg, Object data) {
+		HandgoResult handgoResult = new HandgoResult();
+		handgoResult.msg = msg;
+		handgoResult.code = code;
+		if (data instanceof List) {
+			List datas = new ArrayList();
+			datas.addAll((Collection) data);
+			handgoResult.data = datas;
+			return handgoResult;
+		} else {
+			handgoResult.data = data;
+		}
+		return handgoResult;
+	}
+
 	public static HandgoResult success(String msg, Object data, Long total) {
 		HandgoResult handgoResult = new HandgoResult();
 		handgoResult.code = 200;

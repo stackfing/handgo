@@ -13,10 +13,10 @@ import java.util.List;
  */
 public interface ProductCategoryDao extends JpaRepository<ProductCategory, Long> {
 
-	List<ProductCategory> findAllByParentIsNull();
+	List<ProductCategory> findAllByRootTag(Integer tag);
 
 	List<ProductCategory> findAllByParentIsNull(PageRequest pageRequest);
 
-	List<ProductCategory> findAllByParent(Long id);
+	List<ProductCategory> findAllByParentEquals(Long id);
 
 }
