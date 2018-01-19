@@ -5,11 +5,6 @@
     <link type="text/css" rel="stylesheet" href="/static/css/layui.css">
     <script src="/static/layui.all.js"></script>
     <script src="/static/js/jquery-3.2.1.min.js"></script>
-    <style>
-        .layui-show {
-            height: 100%;
-        }
-    </style>
 </head>
 <body>
 <div class="layui-layout layui-layout-admin">
@@ -38,7 +33,7 @@
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;">商品管理<span class="layui-nav-more"></span></a>
                     <dl class="layui-nav-child">
-                        <dd class="layui-this"><a href="javascript:;" data-url="/product">商品列表</a></dd>
+                        <dd class="layui-this"><a href="javascript:;" data-url="/productPage">商品列表</a></dd>
                         <dd><a href="javascript:;" data-url="/admin/addProduct">添加商品</a></dd>
                     </dl>
                 </li>
@@ -78,18 +73,14 @@
     </div>
     <div class="layui-body" overflow="auto">
         <!-- 内容主体区域 -->
-
-        <iframe id="framecontent" src="/product" height="99%" width="100%" overflow="auto" frameborder=0 marginheight=0 marginwidth=0 scrolling=no></iframe>
+        <iframe id="framecontent" class="layui-col-md12" src="/productPage" height="99%" overflow="auto" frameborder=0 marginheight=0 marginwidth=0 scrolling=no></iframe>
     </div>
 
 </div>
 <script>
-
     $('.layui-nav-child').children('dd').children('a').on('click', function () {
         $('#framecontent').attr('src', $(this).attr('data-url'));
     });
-
-
 </script>
 <script src="/static/layui.all.js"></script>
 </body>

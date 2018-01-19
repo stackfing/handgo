@@ -1,23 +1,70 @@
 package com.stackfing.admin.controller.admin;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.stackfing.admin.service.ProductService;
+import com.stackfing.common.utils.HandgoResult;
+import com.stackfing.common.utils.ObjectUtil;
+import com.stackfing.pojo.Product;
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Author: fing
  * @Description:
  * @Date: 上午10:37 18-1-13
  */
-@Controller
+
+@Slf4j
+@RestController
 @RequestMapping("/product")
 public class ProductController {
 
+	@Autowired
+	ProductService productService;
+
+	@ApiOperation("产品列表")
 	@GetMapping("")
-	public String toProduct() {
-		return "product";
+	public HandgoResult getProductList(@RequestParam(required = false) Integer page
+			, @RequestParam(required = false) Integer limit) {
+		if (ObjectUtil.validate(page) || ObjectUtil.validate(limit)) {
+			return productService.getProductList(page, limit);
+		}
+		return HandgoResult.error("参数错误，请重试");
 	}
 
+	@ApiOperation("根据产品ID查询产品信息")
+	@GetMapping("{id}")
+	public HandgoResult getProductById(@PathVariable Long id) {
+		return productService.getProductById(id);
+	}
 
+	@ApiOperation("添加产品")
+	@PostMapping("")
+	public HandgoResult addProduct(@RequestBody(required = false) Product product) {
+		if (ObjectUtil.validate(product)) {
+			return productService.addProduct(product);
+		}
+		return HandgoResult.error("参数错误");
+	}
+
+	@ApiOperation("更新产品")
+	@PutMapping("/{id}")
+	public HandgoResult updateProduct(@RequestBody Product product, BindingResult bindingResult
+			, @PathVariable Long id) {
+		if (bindingResult.hasErrors()) {
+			return HandgoResult.error("参数不足");
+		}
+		if (ObjectUtil.validate(product)) {
+			return productService.updateProductById(id, product);
+		}
+		return HandgoResult.error("参数错误");
+	}
+
+	@ApiOperation("删除指定 ID 产品")
+	@DeleteMapping("/{id}")
+	public HandgoResult deleteById(@PathVariable Long id) {
+		return productService.deleteById(id);
+	}
 }

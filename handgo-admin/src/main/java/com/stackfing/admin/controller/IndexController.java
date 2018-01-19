@@ -35,7 +35,7 @@ public class IndexController {
 //		response.addCookie(cookie);
 //		response.addCookie(cookie1);
 //		return "index";
-		return "redirect:/admin";
+		return "index";
 	}
 
 //	@RequestMapping(value = "/gouploadimg", method = RequestMethod.GET)

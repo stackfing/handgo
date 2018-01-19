@@ -37,11 +37,11 @@ public class Product {
 //    @NotNull
     private int status; //产品状态 1 上架 0 下架
 
-	@JsonIgnore
+//	@JsonIgnore
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 	private Date createTime;
 
-	@JsonIgnore
+//	@JsonIgnore
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 	private Date updateTime;
 

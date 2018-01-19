@@ -5,54 +5,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("")
 public class AdminIndexController {
 
-//	@Autowired
-//	private ProductTypeService productTypeService;
-//
-//	@Autowired
-//	private UserService userService;
-
-//	@ApiOperation("values")
 	@GetMapping("")
 	public String index() {
 		return "index";
 	}
-//
-//	@GetMapping("")
-//	public String toindex() {
-//		return "admin/index";
-//	}
-//
-//	@GetMapping("/userlist")
-//	public String toTeset() {
-//		return "admin/users";
-//	}
-//
-//	@GetMapping("/welcome")
-//	public String toHistory() {
-//		return "admin/welcome";
-//	}
-//
-//	@GetMapping("/settings")
-//	public String toSettings() {
-//		return "admin/settings";
-//	}
 
-//	@GetMapping("/login")
-//	public String toLogin() {
-//		return "admin/login";
-//	}
-//
-//	@PostMapping("/login")
-//	public String doLogin(String account, String password) {
-//		if (null == account || null == password) {
-//
-//		} else {
-//
-//		}
-//		return "";
-//	}
+	@GetMapping("/productPage")
+	public String pro() {
+		return "product";
+	}
+
+	@GetMapping("/productEdit")
+	public String productEdit() {
+		return "product-edit";
+	}
 
 }
