@@ -11,6 +11,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.hateoas.PagedResources;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
+import org.thymeleaf.util.Validate;
 
 import java.util.List;
 import java.util.Map;
@@ -45,11 +47,11 @@ public class ProductService {
 	}
 
 	public HandgoResult updateProductById(Long id, Product product) {
-		Product save = productDao.save(product);
 		if (id != product.getId()) {
-			log.info("更新失败，ID 不一致");
-			return HandgoResult.error("更新失败");
+			log.info("更新产品失败，ID 不一致");
+			return HandgoResult.error("更新产品失败，ID 不一致");
 		}
+		Product save = productDao.save(product);
 		if (save.equals(product)) {
 			log.info("更新成功");
 			return HandgoResult.success("更新成功");
@@ -58,15 +60,20 @@ public class ProductService {
 		return HandgoResult.error("更新失败");
 	}
 
-
-	@Transactional
 	public HandgoResult addProduct(Product product) {
-		Product one = productDao.findOne(product.getId());
-		if ( !ObjectUtil.validate(one) ) {
-			if ( null !=  productDao.save(product)) {
-				return HandgoResult.success("添加成功");
-			}
+		Product save = productDao.save(product);
+		if (ObjectUtil.validate(save)) {
+			return HandgoResult.success("添加成功");
 		}
 		return HandgoResult.error("添加失败，产品已存在！");
 	}
+
+	public HandgoResult deleteById(Long id) {
+		if (1 == productDao.deleteById(id)) {
+			return HandgoResult.success("删除成功");
+		} else {
+			return HandgoResult.error("删除失败！");
+		}
+	}
+
 }

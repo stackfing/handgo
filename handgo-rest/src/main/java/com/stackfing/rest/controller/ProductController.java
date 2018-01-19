@@ -2,8 +2,6 @@ package com.stackfing.rest.controller;
 
 import com.stackfing.common.utils.HandgoResult;
 import com.stackfing.common.utils.ObjectUtil;
-import com.stackfing.rest.dao.ProductDao;
-import com.stackfing.common.utils.Result;
 import com.stackfing.pojo.Product;
 import com.stackfing.rest.service.ProductService;
 import io.swagger.annotations.ApiOperation;
@@ -12,9 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * @Author: fing
@@ -32,7 +27,8 @@ public class ProductController {
 
 	@ApiOperation("产品列表")
 	@GetMapping("")
-	public HandgoResult getProductList(@RequestParam(required = false) Integer page,@RequestParam(required = false) Integer limit) {
+	public HandgoResult getProductList(@RequestParam(required = false) Integer page
+			, @RequestParam(required = false) Integer limit) {
 		if (ObjectUtil.validate(page) || ObjectUtil.validate(limit)) {
 			return productService.getProductList(page, limit);
 		}
@@ -46,7 +42,7 @@ public class ProductController {
 	}
 
 	@ApiOperation("添加产品")
-	@PostMapping("/")
+	@PostMapping("")
 	public HandgoResult addProduct(@RequestBody(required = false) Product product) {
 		if (ObjectUtil.validate(product)) {
 			return productService.addProduct(product);
@@ -55,8 +51,8 @@ public class ProductController {
 	}
 
 	@ApiOperation("更新产品")
-	@PostMapping("/{id}")
-	public HandgoResult updateProduct(@RequestBody(required = false) @Validated Product product, BindingResult  bindingResult
+	@PutMapping("/{id}")
+	public HandgoResult updateProduct(@RequestBody Product product, BindingResult bindingResult
 			, @PathVariable Long id) {
 		if (bindingResult.hasErrors()) {
 			return HandgoResult.error("参数不足");
@@ -67,4 +63,9 @@ public class ProductController {
 		return HandgoResult.error("参数错误");
 	}
 
+	@ApiOperation("删除指定 ID 产品")
+	@DeleteMapping("/{id}")
+	public HandgoResult deleteById(@PathVariable Long id) {
+		return productService.deleteById(id);
+	}
 }
