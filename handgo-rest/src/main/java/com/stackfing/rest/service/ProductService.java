@@ -1,22 +1,19 @@
 package com.stackfing.rest.service;
 
+import com.stackfing.pojo.ProductCategory;
+import com.stackfing.rest.dao.ProductCategoryDao;
 import com.stackfing.common.utils.HandgoResult;
 import com.stackfing.common.utils.ObjectUtil;
 import com.stackfing.pojo.Product;
 import com.stackfing.rest.dao.ProductDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.hateoas.PagedResources;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.annotation.Validated;
-import org.thymeleaf.util.Validate;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @Author: fing
@@ -30,6 +27,9 @@ public class ProductService {
 
 	@Autowired
 	private ProductDao productDao;
+
+	@Autowired
+	private ProductCategoryDao productCategoryDao;
 
 	public HandgoResult getProductList(Integer page, Integer limit) {
 		List list = productDao.findAll(new PageRequest(page - 1, limit)).getContent();
@@ -46,11 +46,13 @@ public class ProductService {
 		}
 	}
 
+	@Transactional
 	public HandgoResult updateProductById(Long id, Product product) {
 		if (id != product.getId()) {
 			log.info("更新产品失败，ID 不一致");
 			return HandgoResult.error("更新产品失败，ID 不一致");
 		}
+		product.setUpdateTime(new Date());
 		Product save = productDao.save(product);
 		if (save.equals(product)) {
 			log.info("更新成功");
@@ -60,12 +62,17 @@ public class ProductService {
 		return HandgoResult.error("更新失败");
 	}
 
+	@Transactional
 	public HandgoResult addProduct(Product product) {
-		Product save = productDao.save(product);
-		if (ObjectUtil.validate(save)) {
-			return HandgoResult.success("添加成功");
+		if (validateCategory(product)) {
+			product.setCreateTime(new Date());
+			Product save = productDao.save(product);
+			if (ObjectUtil.validate(save)) {
+				return HandgoResult.success("添加成功");
+			}
+			return HandgoResult.error("添加失败，产品已存在！");
 		}
-		return HandgoResult.error("添加失败，产品已存在！");
+		return HandgoResult.error("添加失败，产品分类不存在！");
 	}
 
 	public HandgoResult deleteById(Long id) {
@@ -76,4 +83,13 @@ public class ProductService {
 		}
 	}
 
+
+	private boolean validateCategory(Product product) {
+		ProductCategory category = productCategoryDao.findOne(product.getProductCategoryId());
+		if (!ObjectUtil.validate(category)) {
+			log.info("【 添加产品 】 产品分类不存在");
+			return false;
+		}
+		return true;
+	}
 }

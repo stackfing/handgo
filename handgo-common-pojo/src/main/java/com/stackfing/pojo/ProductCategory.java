@@ -1,27 +1,19 @@
 package com.stackfing.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.validation.constraints.Max;
+import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
 public class ProductCategory {
-
-//    private Long typeId;    //类型id
-//
-//    @NotNull
-//    private String typeName;    //类型名
-//
-//	@NotNull
-//	private String typeLink; //地址
 
 	@Id
 	@GeneratedValue
@@ -34,5 +26,15 @@ public class ProductCategory {
 	private int avaliable;	//可用 0 不可用 1 可用
 
 	private int rootTag;	//根节点标志
+
+//	@Transient
+//	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+	@JsonIgnore
+	private Date createTime;
+
+//	@Transient
+//	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+	@JsonIgnore
+	private Date updateTime;
 
 }
