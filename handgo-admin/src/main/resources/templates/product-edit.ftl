@@ -6,20 +6,21 @@
     <script src="/static/layui.all.js"></script>
     <script src="/static/js/jquery-3.2.1.min.js"></script>
 </head>
-<body>
-<h1 class="layui-header"><i class="layui-icon" style="font-size: 30px;">&#xe60a;</i>添加产品</h1>
+<body class="layui-col-md12">
+<h1 class="layui-header"><i class="layui-icon" style="font-size: 30px;">&#xe60a;</i>编辑</h1>
 <hr>
 <form class="layui-form layui-col-md12" style="margin: auto;" lay-filter="formDemo"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
     <div class="layui-form-item">
         <label class="layui-form-label"><span style="color: red;">*</span>&nbsp产品名称</label>
         <div class="layui-inline">
-            </span><input type="text" name="" lay-verify="required" placeholder="请输入产品名称" autocomplete="off" class="layui-input">
+            <input name="id" type="hidden" id="product-id" class="layui-input">
+            </span><input type="text" name="name" id="product-name" lay-verify="required" placeholder="请输入产品名称" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label"><span style="color: red;">*</span>&nbsp价格</label>
         <div class="layui-inline">
-            <input type="text" name="price" lay-verify="required" placeholder="￥" autocomplete="off" class="layui-input">
+            <input type="text" id="product-price" name="price" lay-verify="required" placeholder="￥" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
@@ -41,7 +42,7 @@
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label"><span style="color: red;">*</span>&nbsp分类</label>
+        <label class="layui-form-label"><span style="color: red;">*</span>&nbsp产品图片</label>
         <div class="layui-input-block">
             <div class="layui-upload">
                 <button type="button" class="layui-btn" id="test1">上传图片</button>
@@ -125,6 +126,12 @@
         form.on('select(subCategory)', function (data) {
             // layer.msg(data.value);
             $("#text-selector").attr('value', data.value);
+        });
+        form.on('submit(sub)', function(data){
+            layer.alert(JSON.stringify(data.field), {
+                title: '最终的提交信息'
+            });
+            return false;
         });
     });
     layui.use('upload', function() {

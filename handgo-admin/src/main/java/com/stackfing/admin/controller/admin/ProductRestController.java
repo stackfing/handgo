@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("/product")
-public class ProductController {
+public class ProductRestController {
 
 	@Autowired
 	ProductService productService;

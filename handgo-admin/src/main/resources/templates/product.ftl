@@ -6,13 +6,14 @@
     <#--<script src="/static/layui.all.js"></script>-->
     <script src="/static/js/jquery-3.2.1.min.js"></script>
 </head>
-<body>
+<body class="layui-col-md12">
 
-<div style="padding: 15px;">
-    <button class="layui-btn layui-bg-green" onclick="add()"><i class="layui-icon" style="font-size: 20px;">&#xe608;</i>添加</button>
-    <button class="layui-btn layui-bg-green" onclick="refresh()"><i class="layui-icon" style="font-size: 20px;">&#x1002;</i>刷新</button>
-
-    <div id="productTable" lay-filter="demo" class="layui-col-md12"></div>
+<div style="padding: 30px;">
+    <div class="layui-col-md12">
+        <button class="layui-btn layui-bg-green" onclick="add()"><i class="layui-icon" style="font-size: 20px;">&#xe608;</i>添加</button>
+        <button class="layui-btn layui-bg-green layui-layout-right" onclick="refresh()"><i class="layui-icon" style="font-size: 20px;">&#x1002;</i></button>
+    </div>
+    <div id="productTable" lay-filter="demo" class="layui-col-md12" style="margin-top: 10px"></div>
 </div>
 
 <script type="text/html" id="barDemo">
@@ -27,7 +28,7 @@
         //第一个实例
         table.render({
             elem: '#productTable'
-            , height: 315
+            , height: 'full-100'
             , url: '/product' //数据接口
             , page: true //开启分页
             , request: {
@@ -42,7 +43,8 @@
                 , dataName: 'data' //数据列表的字段名称，默认：data
             }
             , cols: [[ //表头
-                {field: 'id', title: 'ID', sort: true, fixed: 'left'}
+                {type:'checkbox'}
+                , {field: 'id', title: 'ID', sort: true, fixed: 'left'}
                 , {field: 'name', title: '商品名' }
                 , {field: 'price', title: '单价'}
                 , {field: 'quantity', title: '库存' }
@@ -88,23 +90,27 @@
         layer.full(index);
     }
 
-    function edit() {
+    function edit(obj) {
         var index = layer.open({
             type: 2,
-            content: '/product/productEdit',
-            title: '编辑中',
+            content: '/productEdit',
+            title: '编辑产品',
             success: function (layero, index) {
                 var body = layer.getChildFrame('body', index);
                 var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
-                console.log(body.html()) //得到iframe页的body内容
-                body.find('input').val('Hi，我是从父页来的')
+                // console.log(body.html()) //得到iframe页的body内容
+                var data = obj.data;
+                body.find('#product-name').val(data.name);
+                body.find('#product-id').val(data.id);
+                body.find('#product-price').val(data.price);
+                body.find('#product-quantity').val(data.quantity);
             }
         });
         layer.full(index);
     }
 
     function refresh() {
-        
+
         layer.msg('刷新');
     }
 
