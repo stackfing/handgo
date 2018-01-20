@@ -24,6 +24,12 @@
         </div>
     </div>
     <div class="layui-form-item">
+        <label class="layui-form-label"><span style="color: red;">*</span>&nbsp价格</label>
+        <div class="layui-inline">
+            <input type="text" id="product-quantity" name="quantity" lay-verify="required" placeholder="￥" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
         <label class="layui-form-label"><span style="color: red;">*</span>&nbsp分类</label>
             <div class="layui-inline">
                 <select id="categorySelector" name="" lay-verify="required" lay-filter="category">
@@ -36,7 +42,7 @@
                 </select>
             </div>
             <div class="layui-inline">
-                <input type="hidden" class="text-selector">
+                <input type="hidden" name="productCategoryId" id="product-cagegory" class="text-selector">
                 <div class="layui-form-mid layui-word-aux" id="text-selector-div"></div>
             </div>
     </div>
@@ -49,7 +55,7 @@
                 <div class="layui-upload-list">
                     <img class="layui-upload-img" height="100px" width="100px" id="demo1">
                     <p id="photo"></p>
-                    <input class="layui-input" id="photoInput" type="hidden">
+                    <input class="layui-input" id="photoInput" name="photo" type="hidden">
                 </div>
             </div>
         </div>
@@ -95,6 +101,7 @@
         layer.msg(layedit.getContent(editor));
         alert(layedit.getContent(editor));
     }
+
     layui.use('form', function(){
         var form = layui.form;
         //一级选择框点击
@@ -113,6 +120,8 @@
                 form.render('select');
             });
         });
+
+
         //一级选择框初始化
         $.getJSON('/category/list', function (data) {
             var list = data.data;
@@ -123,17 +132,43 @@
             $("#categorySelector").html(content);
             form.render('select');
         });
+
+        //选择框点击
         form.on('select(subCategory)', function (data) {
             // layer.msg(data.value);
             $("#text-selector").attr('value', data.value);
+            $("#product-cagegory").attr('value', data.value);
         });
+
+        //表单提交
         form.on('submit(sub)', function(data){
-            layer.alert(JSON.stringify(data.field), {
-                title: '最终的提交信息'
-            });
+            if (data.field.id === "") {
+                //添加
+                var data = JSON.stringify(data.field);
+                data = data.replace(',"file":""','');
+                $.ajax({
+                    url: '/product',
+                    type: 'post',
+                    contentType: 'application/json; charset=utf-8',
+                    data: data,
+                    success: function(data) {
+                        if (data.code == 200){
+                            layer.msg(data.msg);
+                        }
+                    }
+                })
+            } else {
+                var data = JSON.stringify(data.field);
+                data = data.replace(',"file":""','');
+                $.post('/product', function() {
+
+                });
+            }
             return false;
         });
     });
+
+    //上传文件
     layui.use('upload', function() {
         var $ = layui.jquery
                 , upload = layui.upload;

@@ -11,14 +11,29 @@
 <div style="padding: 30px;">
     <div class="layui-col-md12">
         <button class="layui-btn layui-bg-green" onclick="add()"><i class="layui-icon" style="font-size: 20px;">&#xe608;</i>添加</button>
+        <div class="layui-inline" style="margin-left: 100px;">
+            <input type="text" class="layui-input" placeholder="搜索商品名">
+        </div>
+        <button class="layui-btn">sadf</button>
         <button class="layui-btn layui-bg-green layui-layout-right" onclick="refresh()"><i class="layui-icon" style="font-size: 20px;">&#x1002;</i></button>
     </div>
+
     <div id="productTable" lay-filter="demo" class="layui-col-md12" style="margin-top: 10px"></div>
 </div>
 
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script type="text/html" id="statusTpl">
+    {{#  if(d.status === 0){ }}
+    <span class="layui-badge layui-bg-gray">下架</span>
+    {{#  } else { }}
+    <span class="layui-badge layui-bg-red">上架</span>
+    {{#  } }}
+</script>
+<script type="text/html" id="photoTpl">
+    <img src="{{d.photo}}" width="100" height="100">
 </script>
 <script src="/static/layui.all.js"></script>
 <script>
@@ -31,6 +46,7 @@
             , height: 'full-100'
             , url: '/product' //数据接口
             , page: true //开启分页
+            , id: 'productTables'
             , request: {
                 pageName: 'page' //页码的参数名称，默认：page
                 , limitName: 'limit' //每页数据量的参数名，默认：limit
@@ -44,13 +60,13 @@
             }
             , cols: [[ //表头
                 {type:'checkbox'}
-                , {field: 'id', title: 'ID', sort: true, fixed: 'left'}
+                , {field: 'id', title: 'ID', sort: true, fixed: ''}
                 , {field: 'name', title: '商品名' }
                 , {field: 'price', title: '单价'}
                 , {field: 'quantity', title: '库存' }
                 , {field: 'productDescription', title: '商品描述'}
-                , {field: 'photo', title: '商品小图'}
-                , {field: 'status', title: '状态'}
+                , {field: 'photo', title: '商品小图', templet: '#photoTpl'}
+                , {field: 'status', title: '状态', templet: '#statusTpl'}
                 , {field: 'productCategoryId', title: '类目ID'}
                 , {field: 'updateTime', title: '更新时间'}
                 , {field: 'createTime', title: '创建时间'}
@@ -58,6 +74,7 @@
             ]]
         });
     });
+
 
     table.on('tool(demo)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
         var data = obj.data //获得当前行数据
@@ -110,8 +127,11 @@
     }
 
     function refresh() {
-
-        layer.msg('刷新');
+        table.reload('productTables', {
+            page: {
+                curr: 1
+            }
+        });
     }
 
 
