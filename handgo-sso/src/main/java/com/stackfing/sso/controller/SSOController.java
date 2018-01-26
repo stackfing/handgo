@@ -4,6 +4,7 @@ import com.stackfing.common.utils.HandgoResult;
 import com.stackfing.sso.pojo.User;
 import com.stackfing.sso.service.serviceImpl.SSOServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -101,5 +102,12 @@ public class SSOController {
 			return null;
 		}
 //		return "userInfo('" + account + "')";
+	}
+
+	@GetMapping("/session")
+	@ResponseBody
+	public String se(HttpServletRequest request) {
+		System.out.println(request.getSession().getAttribute("abc"));
+		return (String) request.getSession().getAttribute("abc");
 	}
 }

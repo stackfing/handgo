@@ -38,14 +38,14 @@
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;">商城管理<span class="layui-nav-more"></span></a>
                     <dl class="layui-nav-child">
-                        <dd class=""><a href="javascript:;" data-url="/productPage">商品列表</a></dd>
-                        <dd><a href="javascript:;" data-url="/admin/addProduct">分类管理</a></dd>
+                        <dd class=""><a href="javascript:;" data-url="/product">商品列表</a></dd>
+                        <dd><a href="javascript:;" data-url="/category">分类管理</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item layui-nav-itemed">
                     <a href="javascript:;">商品分类管理<span class="layui-nav-more"></span></a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" data-url="/admin/productCategory">分类列表</a></dd>
+                        <dd><a href="javascript:;" data-url="/admin/category">分类列表</a></dd>
                         <#--<dd><a href="javascript:;" data-url="/admin/addProductCategory">添加分类</a></dd>-->
                     </dl>
                 </li>

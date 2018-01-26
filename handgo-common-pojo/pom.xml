@@ -20,9 +20,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.stackfing</groupId>
-            <artifactId>handgo-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

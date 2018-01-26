@@ -28,7 +28,7 @@
 <script type="text/html" id="statusTpl">
     {{#  if(d.status === 0){ }}
     <span class="layui-badge layui-bg-gray">下架</span>
-    {{#  } else { }}
+    {{#  } else if(d.status === 1) { }}
     <span class="layui-badge layui-bg-red">上架</span>
     {{#  } }}
 </script>
@@ -44,7 +44,7 @@
         table.render({
             elem: '#productTable'
             , height: 'full-100'
-            , url: '/product' //数据接口
+            , url: '/v1/product' //数据接口
             , page: true //开启分页
             , id: 'productTables'
             , request: {
@@ -54,7 +54,7 @@
             , response: {
                 statusName: 'code' //数据状态的字段名称，默认：code
                 , statusCode: 200 //成功的状态码，默认：0
-                , msgName: 'msg' //状态信息的字段名称，默认：msg
+                , msgName: 'message' //状态信息的字段名称，默认：msg
                 , countName: 'total' //数据总数的字段名称，默认：count
                 , dataName: 'data' //数据列表的字段名称，默认：data
             }
@@ -64,10 +64,10 @@
                 , {field: 'name', title: '商品名' }
                 , {field: 'price', title: '单价'}
                 , {field: 'quantity', title: '库存' }
-                , {field: 'productDescription', title: '商品描述'}
-                , {field: 'photo', title: '商品小图', templet: '#photoTpl'}
-                , {field: 'status', title: '状态', templet: '#statusTpl'}
-                , {field: 'productCategoryId', title: '类目ID'}
+                , {field: 'sold', title: '已售' }
+                , {field: 'description', title: '商品描述'}
+                , {field: 'photo', title: '商品小图', templet: '#photoTpl', align: 'center'}
+                , {field: 'status', title: '状态', templet: '#statusTpl', align: 'center'}
                 , {field: 'updateTime', title: '更新时间'}
                 , {field: 'createTime', title: '创建时间'}
                 , {fixed: '', title: '操作', width: 165, align: 'center', toolbar: '#barDemo'}
@@ -84,6 +84,7 @@
                 obj.del(); //删除对应行（tr）的DOM结构
                 layer.close(index);
                 //向服务端发送删除指令
+                deleteData(obj);
             });
         } else if (layEvent === 'edit') {
             layer.msg('编辑操作');
@@ -91,6 +92,16 @@
         }
     });
 
+    function deleteData(obj) {
+        $.ajax({
+            url: '/v1/product/' + obj.data.id
+            ,type: 'delete'
+            ,data: null
+            ,success: function(data) {
+                layer.msg(data.msg);
+            }
+        });
+    }
 
     function add() {
         var index = layer.open({

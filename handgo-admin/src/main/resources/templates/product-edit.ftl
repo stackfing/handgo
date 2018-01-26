@@ -70,7 +70,7 @@
         <label class="layui-form-label">请填写描述</label>
         <div class="layui-input-block">
             <#--<textarea placeholder="请输入内容" class="layui-textarea"></textarea>-->
-                <textarea id="description" style="display: none;"></textarea>
+                <textarea id="description" name="description" style="display: none;"></textarea>
         </div>
     </div>
     <div class="layui-form-item">
@@ -80,6 +80,7 @@
         </div>
     </div>
 </form>
+<button onclick="shows()">sadfsdf</button>
 <script src="/static/layui.all.js"></script>
 <script>
 
@@ -95,12 +96,6 @@
         });
         editor = layedit.build('description'); //建立编辑器
     });
-
-
-    function test() {
-        layer.msg(layedit.getContent(editor));
-        alert(layedit.getContent(editor));
-    }
 
     layui.use('form', function(){
         var form = layui.form;
@@ -142,6 +137,7 @@
 
         //表单提交
         form.on('submit(sub)', function(data){
+            data.field.description = layedit.getContent(editor)
             if (data.field.id === "") {
                 //添加
                 var data = JSON.stringify(data.field);
@@ -153,16 +149,12 @@
                     data: data,
                     success: function(data) {
                         if (data.code == 200){
-                            layer.msg(data.msg);
+                            layer.msg("提交成功");
                         }
                     }
                 })
             } else {
-                var data = JSON.stringify(data.field);
-                data = data.replace(',"file":""','');
-                $.post('/product', function() {
-
-                });
+                return false;
             }
             return false;
         });

@@ -6,10 +6,10 @@ spring:
     password: root
   jpa:
     hibernate:
-#      ddl-auto: update
+      ddl-auto: create-drop
     show-sql: true
 server:
-  port: 8888
+  port: 8891
 #mybatis:
 #  mapper-locations: classpath*:/mapper/**Mapper.xml
 #  typeAliasesPackage: com.stackfing.entity

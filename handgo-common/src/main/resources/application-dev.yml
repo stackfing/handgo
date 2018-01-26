@@ -20,7 +20,7 @@ spring:
   redis:
     host: localhost
 server:
-  port: 8888
+  port: 8890
 mybatis:
   mapperLocations: classpath:mapper/*.xml
   typeAliasesPackage: com.stackfing.entity

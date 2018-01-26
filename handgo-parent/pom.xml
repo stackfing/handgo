@@ -16,7 +16,7 @@
         <module>../handgo-sso</module>
         <module>../handgo-common</module>
         <module>../handgo-common-pojo</module>
-        <module>../handgo-rest</module>
+        <module>../handgo-front</module>
     </modules>
 
 
