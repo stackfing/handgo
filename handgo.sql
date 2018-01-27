@@ -16,6 +16,114 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `category`
+--
+
+DROP TABLE IF EXISTS `category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `category` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `avaliable` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `parent` bigint(20) DEFAULT NULL,
+  `root_tag` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `category`
+--
+
+LOCK TABLES `category` WRITE;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,1,'1',0,1),(2,1,'1',0,1),(3,1,'1',0,1),(4,1,'1',0,1),(5,1,'1',0,1),(6,1,'1',0,1),(7,1,'1',0,1),(8,1,'1',0,1),(9,1,'1',0,1),(10,1,'1',0,1),(11,1,'1',0,1),(12,1,'1',0,1),(13,1,'1',0,1),(14,1,'1',0,1),(15,1,'1',0,1),(16,1,'1',0,1);
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `description`
+--
+
+DROP TABLE IF EXISTS `description`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `description` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `description` varchar(255) DEFAULT NULL,
+  `product_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `description`
+--
+
+LOCK TABLES `description` WRITE;
+/*!40000 ALTER TABLE `description` DISABLE KEYS */;
+/*!40000 ALTER TABLE `description` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `kill_product`
+--
+
+DROP TABLE IF EXISTS `kill_product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `kill_product` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `emd_time` date DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `price` decimal(19,2) DEFAULT NULL,
+  `product_id` bigint(20) DEFAULT NULL,
+  `start_time` date DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `kill_product`
+--
+
+LOCK TABLES `kill_product` WRITE;
+/*!40000 ALTER TABLE `kill_product` DISABLE KEYS */;
+INSERT INTO `kill_product` VALUES (1,'2018-01-26','1','1',1.00,1,'2018-01-26','/product/1');
+/*!40000 ALTER TABLE `kill_product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `notice`
+--
+
+DROP TABLE IF EXISTS `notice`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notice` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` varchar(255) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notice`
+--
+
+LOCK TABLES `notice` WRITE;
+/*!40000 ALTER TABLE `notice` DISABLE KEYS */;
+INSERT INTO `notice` VALUES (1,'内容','../images/1.jpg','测试标题','【测试】'),(2,'测试','../images/1.jpg','测试标题','测试标题'),(3,'测试','../images/1.jpg','测试标题','测试标题'),(4,'测试','../images/1.jpg','测试标题 ','测试标题'),(5,'测试','../images/1.jpg','测试标题','测试标题'),(6,'测试','../images/1.jpg','测试标题','测试标题'),(7,'测试','../images/1.jpg','测试标题','测试标题'),(8,'测试','../images/1.jpg','测试标题','测试标题');
+/*!40000 ALTER TABLE `notice` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `product`
 --
 
@@ -23,18 +131,17 @@ DROP TABLE IF EXISTS `product`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `product` (
-  `pid` bigint(20) NOT NULL AUTO_INCREMENT,
-  `now_price` float NOT NULL,
-  `product_name` varchar(255) NOT NULL,
-  `product_photo` varchar(255) NOT NULL,
-  `quantity` int(11) NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `create_time` datetime DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `price` decimal(19,2) DEFAULT NULL,
+  `quantity` bigint(20) DEFAULT NULL,
   `sold` int(11) NOT NULL,
   `status` int(11) NOT NULL,
-  `product_type_type_id` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`pid`),
-  KEY `FK74i1cg9mw0lw6bfnem4apsxpq` (`product_type_type_id`),
-  CONSTRAINT `FK74i1cg9mw0lw6bfnem4apsxpq` FOREIGN KEY (`product_type_type_id`) REFERENCES `product_type` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `update_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,133 +150,40 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
+INSERT INTO `product` VALUES (1,'2018-01-26 14:11:16','1','1',1.00,1,1,1,'2018-01-26 14:11:21');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `product_description`
+-- Table structure for table `product_info`
 --
 
-DROP TABLE IF EXISTS `product_description`;
+DROP TABLE IF EXISTS `product_info`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `product_description` (
-  `productId` bigint(20) DEFAULT NULL,
-  `description` text,
-  KEY `product_description_product_pid_fk` (`productId`),
-  CONSTRAINT `product_description_product_pid_fk` FOREIGN KEY (`productId`) REFERENCES `product` (`pid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `product_description`
---
-
-LOCK TABLES `product_description` WRITE;
-/*!40000 ALTER TABLE `product_description` DISABLE KEYS */;
-/*!40000 ALTER TABLE `product_description` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `product_photo`
---
-
-DROP TABLE IF EXISTS `product_photo`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `product_photo` (
-  `productUrl` varchar(255) DEFAULT NULL,
-  `productId` bigint(20) DEFAULT NULL,
-  KEY `product_photo_product_pid_fk` (`productId`),
-  CONSTRAINT `product_photo_product_pid_fk` FOREIGN KEY (`productId`) REFERENCES `product` (`pid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `product_photo`
---
-
-LOCK TABLES `product_photo` WRITE;
-/*!40000 ALTER TABLE `product_photo` DISABLE KEYS */;
-/*!40000 ALTER TABLE `product_photo` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `product_type`
---
-
-DROP TABLE IF EXISTS `product_type`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `product_type` (
+CREATE TABLE `product_info` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `pId` bigint(20) NOT NULL,
+  `current_price` decimal(19,2) DEFAULT NULL,
+  `discription` varchar(255) DEFAULT NULL,
+  `discuss_count` bigint(20) DEFAULT NULL,
+  `moth_sale` bigint(20) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `parent` bigint(20) DEFAULT NULL,
-  `myparent` bigint(20) DEFAULT NULL,
-  `isRoot` tinyint(1) DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `parent` (`parent`),
-  CONSTRAINT `parent` FOREIGN KEY (`parent`) REFERENCES `product_type` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `product_type`
---
-
-LOCK TABLES `product_type` WRITE;
-/*!40000 ALTER TABLE `product_type` DISABLE KEYS */;
-INSERT INTO `product_type` VALUES (1,2,'服装',NULL,NULL,0),(2,2,'科技数码',NULL,NULL,0),(3,2,'生活用品',NULL,NULL,0),(4,2,'男装',1,NULL,0),(5,2,'女装',1,NULL,0),(6,2,'手机',2,NULL,0),(7,2,'电脑',2,NULL,0),(8,2,'吹风机',3,NULL,0),(10,2,'sdfjsfjsodjfsi',1,NULL,0);
-/*!40000 ALTER TABLE `product_type` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `provider`
---
-
-DROP TABLE IF EXISTS `provider`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `provider` (
-  `pid` bigint(20) NOT NULL AUTO_INCREMENT,
-  `account` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `permission` int(11) NOT NULL DEFAULT '1',
-  `status` int(11) NOT NULL,
-  PRIMARY KEY (`pid`)
+  `original_price` decimal(19,2) DEFAULT NULL,
+  `photos` tinyblob,
+  `product_id` bigint(20) DEFAULT NULL,
+  `sale_amount` bigint(20) DEFAULT NULL,
+  `stock` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `provider`
+-- Dumping data for table `product_info`
 --
 
-LOCK TABLES `provider` WRITE;
-/*!40000 ALTER TABLE `provider` DISABLE KEYS */;
-/*!40000 ALTER TABLE `provider` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `site_setting`
---
-
-DROP TABLE IF EXISTS `site_setting`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `site_setting` (
-  `siteName` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `site_setting`
---
-
-LOCK TABLES `site_setting` WRITE;
-/*!40000 ALTER TABLE `site_setting` DISABLE KEYS */;
-INSERT INTO `site_setting` VALUES ('电子商城');
-/*!40000 ALTER TABLE `site_setting` ENABLE KEYS */;
+LOCK TABLES `product_info` WRITE;
+/*!40000 ALTER TABLE `product_info` DISABLE KEYS */;
+/*!40000 ALTER TABLE `product_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -180,19 +194,18 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
-  `uid` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `account` varchar(255) NOT NULL,
-  `createDate` date NOT NULL,
+  `create_time` date NOT NULL,
   `email` varchar(255) NOT NULL,
-  `headPhoto` varchar(255) DEFAULT NULL,
-  `lastLogin` date DEFAULT NULL,
+  `head_photo` varchar(255) DEFAULT NULL,
+  `last_login_time` date DEFAULT NULL,
   `password` varchar(255) NOT NULL,
-  `permission` int(11) NOT NULL,
-  `phoneNumber` varchar(255) NOT NULL,
+  `permission` varchar(255) NOT NULL,
+  `phone_number` varchar(255) NOT NULL,
   `status` int(11) NOT NULL,
-  `isDeleted` int(11) DEFAULT '0',
-  PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=10017 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -201,35 +214,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'1222','2017-12-21','213@22','1','2017-12-21','213',3123,'321',1,0),(2,'2','2017-12-22','213@22','1','2017-12-21','321',132,'321',1,0),(3,'1233','2017-12-21','123@qq','321','2017-12-21','21',321,'321',1,0),(4,'12','2017-12-21','213@22','231','2017-12-21','21',321321,'321',1,1),(10002,'123','2018-01-10','123@12','12','2018-01-10','123',123,'123',1,0),(10003,'34','2017-12-21','1@2','1','2018-01-10','2',132,'1',1,0),(10004,'123','2018-01-10','123','1','2018-01-10','123',123,'123',1,0),(10005,'account','2018-01-10','123','1','2018-01-10','password',123,'123',1,0),(10006,'213','2018-01-10','213','123','2018-01-10','123',123,'123',1,0),(10007,'123','2018-01-04','312','121','2018-01-25','123',123,'231',1,0),(10008,'1','2018-01-11','5','1','2018-01-11','3',6,'4',1,0),(10009,'1','2018-01-11','5','1','2018-01-11','3',6,'4',1,0),(10010,'1','2018-01-11','5','1','2018-01-11','3',6,'4',1,0),(10011,'12222222222','2018-01-11','22222','111111','2018-01-11','2',2,'3',1,0),(10012,'2','2018-01-11','5','1','2018-01-11','3',6,'4',1,0),(10013,'1','2018-01-11','1','1','2018-01-11','1',1,'1',1,0),(10014,'acount','2018-01-11','1','1','2018-01-11','acount',1,'1',1,0),(10015,'1','2018-01-11','5','1','2018-01-11','3',6,'4',1,0),(10016,'123','1111-11-11','123','1','1111-11-12','123',123,'123',1,0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `user_locate`
---
-
-DROP TABLE IF EXISTS `user_locate`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_locate` (
-  `locate_id` int(11) NOT NULL AUTO_INCREMENT,
-  `is_primary` int(11) NOT NULL,
-  `locate` varchar(255) NOT NULL,
-  `user_uid` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`locate_id`),
-  KEY `FKi6ud3025b9563jxu3yu7tl2nu` (`user_uid`),
-  CONSTRAINT `FKi6ud3025b9563jxu3yu7tl2nu` FOREIGN KEY (`user_uid`) REFERENCES `user` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user_locate`
---
-
-LOCK TABLES `user_locate` WRITE;
-/*!40000 ALTER TABLE `user_locate` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user_locate` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -241,4 +226,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-11 13:04:31
+-- Dump completed on 2018-01-27 18:00:50
