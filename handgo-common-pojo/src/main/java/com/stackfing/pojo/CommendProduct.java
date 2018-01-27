@@ -5,27 +5,23 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.math.BigDecimal;
-import java.sql.Date;
 
 /**
  * @Author: fing
  * @Description:
- * @Date: 下午2:27 18-1-26
+ * @Date: 下午6:28 18-1-27
  */
 
 @Data
 @Entity
-public class KillProduct {
+public class CommendProduct {
 
 	@Id
 	@GeneratedValue
 	private Long id;
 
+	private Long categoryId;
+
 	private Long productId;
-
-	private Date startTime;
-
-	private Date emdTime;
 
 }

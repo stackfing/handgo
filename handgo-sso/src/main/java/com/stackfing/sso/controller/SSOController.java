@@ -29,22 +29,9 @@ public class SSOController {
 
 	@GetMapping("/login")
 	public String toLogin(String redirect, Model model, HttpServletRequest request, HttpServletResponse response) {
-		if (request.getCookies() != null) {
-			Cookie[] cookies = request.getCookies();
-			for (Cookie cookie :
-					cookies) {
-				if (cookie.getName().equals("token")) {
-					if (ssoService.isAlive(cookie.getValue())) {
-						if (redirect == null) {
-							return "redirect:http://localhost:8888";
-						} else {
-							return "redirect:" + redirect;
-						}
-					}
-				}
-			}
+		if (request.getSession().getAttribute("id") != null) {
+			return "redirect:http://i.stackfing.com/home";
 		}
-		model.addAttribute("redirect", redirect);
 		return "login";
 	}
 
@@ -54,21 +41,16 @@ public class SSOController {
 	}
 
 	@PostMapping("/login")
-	@ResponseBody
-	public HandgoResult doLogin(@RequestBody User user, String redirect, HttpServletResponse response, Model model) {
-		System.out.println(redirect);
-		if (user.getAccount() == null) {
-			return HandgoResult.error("账号不错为空");
-		}
-		if (user.getPassword() == null) {
-			return HandgoResult.error("密码不能为空");
-		}
+	public String doLogin(User user, String redirect, HttpServletResponse response, Model model, HttpServletRequest request) throws IOException {
 		if (redirect == null) {
-			redirect = "";
+			redirect = "http://i.stackfing.com/home";
 		}
-		model.addAttribute("redirect", redirect);
-		return ssoService.login(user.getAccount(), user.getPassword(), response);
-//		return new HandgoResult().ok("ok");
+		if (request.getSession().getAttribute("id") != null) {
+			return "redirect:http://i.stackfing.com/home";
+		}
+		request.getSession().setAttribute("id", user.getAccount());
+		System.out.println(request.getSession().getAttribute("id"));
+		return "redirect:http://i.stackfing.com/home";
 	}
 
 	@GetMapping("/logout")
@@ -100,13 +82,14 @@ public class SSOController {
 		} else {
 			return null;
 		}
-//		return "userInfo('" + account + "')";
 	}
 
 	@GetMapping("/session")
 	@ResponseBody
 	public String se(HttpServletRequest request) {
-		System.out.println(request.getSession().getAttribute("abc"));
-		return (String) request.getSession().getAttribute("abc");
+		request.getSession().setAttribute("id", "123123");
+
+		System.out.println(request.getSession().getAttribute("id"));
+		return (String) request.getSession().getAttribute("id");
 	}
 }

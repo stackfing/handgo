@@ -5,18 +5,16 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.math.BigDecimal;
-import java.sql.Date;
 
 /**
  * @Author: fing
  * @Description:
- * @Date: 下午2:27 18-1-26
+ * @Date: 下午7:29 18-1-27
  */
 
 @Data
 @Entity
-public class KillProduct {
+public class ProductPhotos {
 
 	@Id
 	@GeneratedValue
@@ -24,8 +22,6 @@ public class KillProduct {
 
 	private Long productId;
 
-	private Date startTime;
-
-	private Date emdTime;
+	private String url;
 
 }

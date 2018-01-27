@@ -6,5 +6,9 @@ spring:
     password: root
   freemarker:
     cache: false
+  session:
+    store-type: redis
 server:
   port: 8893
+  redis:
+    host: localhost

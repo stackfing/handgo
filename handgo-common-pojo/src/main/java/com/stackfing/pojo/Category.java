@@ -18,18 +18,8 @@ public class Category {
 
 	private Long parent;	//父节点
 
-	private int avaliable;	//可用 0 不可用 1 可用
+	private int available;	//可用 0 不可用 1 可用
 
 	private int rootTag;	//根节点标志
-
-//	@Transient
-//	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-//	@JsonIgnore
-//	private Date createTime;
-
-//	@Transient
-//	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-//	@JsonIgnore
-//	private Date updateTime;
 
 }

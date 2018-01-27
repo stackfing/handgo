@@ -54,9 +54,9 @@ public class IndexController {
 		modelMap.put("categorys", categoryService.getCategoryParent());
 		modelMap.put("Notices", noticeService.getNoticeList());
 		modelMap.put("commendList", getFrontCommendVoList());
-		System.out.println(getFrontCommendVoList().toString());
-		System.out.println(noticeService.getNoticeList());
-		System.out.println(categoryService.getCategoryParent().toString());
+//		System.out.println(getFrontCommendVoList().toString());
+//		System.out.println(noticeService.getNoticeList());
+//		System.out.println(categoryService.getCategoryParent().toString());
 		return "home/home2";
 	}
 
@@ -81,8 +81,9 @@ public class IndexController {
 			for (Product product : products) {
 				FrontProductVo vo = new FrontProductVo();
 				vo.setId(product.getId());
-				vo.setPhoto(product.getPhoto());
+				vo.setPhoto(product.getPhotos());
 				vo.setTitle(product.getName());
+				vo.setPrice(product.getCurrentPrice());
 				frontProductVolist.add(vo);
 			}
 

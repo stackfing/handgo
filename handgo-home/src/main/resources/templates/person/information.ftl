@@ -46,7 +46,7 @@
 							<p class="am-form-help">头像</p>
 
 							<div class="info-m">
-								<div><b>用户名：<i>小叮当</i></b></div>
+								<div><b>用户名：<i>${id!}</i></b></div>
 								<div class="vip">
                                       <span></span><a href="#">会员专享</a>
 								</div>

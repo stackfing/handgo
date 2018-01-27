@@ -405,30 +405,20 @@
         <div class="am-u-sm-5 am-u-md-3 text-one list">
             <div class="word">
                         <#list (commend.categoryList) as item>
-
                         <a class="outer" href="#"><span class="inner"><b class="text">${item.name}</b></span></a>
                         </#list>
-            <#--<a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>-->
-            <#--<a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>-->
-            <#--<a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>-->
-            <#--<a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>-->
-            <#--<a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>-->
-            <#--<a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>-->
-            <#--<a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>-->
-            <#--<a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>-->
-            <#--<a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>-->
             </div>
                     <#list (commend.starProduct) as start>
 
                         <#if (start_index) == 0>
-                        <a href="# ">
+                        <a href="/item/${start.id}">
                             <img src="../images/5.jpg"/>
                             <div class="outer-con ">
                                 <div class="title ">
                                     ${start.title}
                                 </div>
                                 <div class="sub-title ">
-                                    当小鱼儿恋上软豆腐
+                                    ￥${start.price}
                                 </div>
                             </div>
                         </a>
@@ -442,11 +432,11 @@
                                 ${start.title}
                             </div>
                             <div class="sub-title ">
-                                ¥13.8
+                                ¥${start.price}
                             </div>
 
                         </div>
-                        <a href="# "><img src="../images/act1.png"/></a>
+                        <a href="/item/${start.id}"><img src="${start.photo}"/></a>
                     </div>
                         <#elseif (start_index == 2)>
                 <li>
@@ -457,11 +447,11 @@
                                 ${start.title}
                             </div>
                             <div class="sub-title ">
-                                ¥4.8
+                                ¥${start.price}
                             </div>
 
                         </div>
-                        <a href="# "><img src="../images/1.jpg "/></a>
+                        <a href="/item/${start.id}"><img src="${start.photo}"/></a>
                     </div>
                 </li>
                         <#elseif (start_index == 3)>
@@ -473,11 +463,11 @@
                                     ${start.title}
                                 </div>
                                 <div class="sub-title ">
-                                    ¥4.8
+                                    ¥${start.price}
                                 </div>
 
                             </div>
-                            <a href="# "><img src="../images/2.jpg "/></a>
+                            <a href="/item/${start.id}"><img src="${start.photo}"/></a>
                         </div>
                     </li>
                         <#elseif (start_index == 4)>
@@ -486,14 +476,14 @@
                             <div class="boxLi"></div>
                             <div class="outer-con ">
                                 <div class="title ">
-                                    小优布丁
+                                    ${start.title}
                                 </div>
                                 <div class="sub-title ">
-                                    ¥${start_index}
+                                    ¥${start.price}
                                 </div>
 
                             </div>
-                            <a href="# "><img src="../images/5.jpg"/></a>
+                            <a href="/item/${start.id}"><img src="${start.photo}"/></a>
                         </div>
                     </li>
                         <#elseif (start_index == 5)>
@@ -502,14 +492,14 @@
                             <div class="boxLi"></div>
                             <div class="outer-con ">
                                 <div class="title ">
-                                    小优布丁
+                                    ${start.title}
                                 </div>
                                 <div class="sub-title ">
-                                    ¥${start_index}
+                                    ¥${start.price}
                                 </div>
 
                             </div>
-                            <a href="# "><img src="../images/3.jpg"/></a>
+                            <a href="/item/${start.id}"><img src="${start.photo}"/></a>
                         </div>
                     </li>
                         <#elseif (start_index == 6)>
@@ -521,11 +511,11 @@
                                     ${start.title}
                                 </div>
                                 <div class="sub-title ">
-                                    ¥${start_index}
+                                    ¥${start.price}
                                 </div>
 
                             </div>
-                            <a href="# "><img src="../images/4.jpg"/></a>
+                            <a href="/item/${start.id}"><img src="${start.photo}"/></a>
                         </div>
                     </li>
             </div>

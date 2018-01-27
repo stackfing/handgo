@@ -19,13 +19,22 @@ public class Product {
 
     private String name; //产品名
 
-    private String photo;    //产品图片地址
+	private Long categoryId;
 
-    private BigDecimal price; //价格
+    private String photos;    //产品图片地址
 
-    private Long quantity;   //供货数量
+	private BigDecimal originalPrice; //原价格
 
-    private int sold;   //已经出售数量
+	private String description;
+
+    private BigDecimal currentPrice; //现价格
+
+    private Long stock;   //供货数量
+
+    private int saleAmount;   //已经出售数量
+
+	//月销量
+	private Long mothSale;
 
     private int status; //产品状态 1 上架 0 下架
 

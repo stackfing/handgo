@@ -31,4 +31,5 @@ public interface ProductService {
 	List<Product> getHotProduct();
 
 	List<Product> getProductByCategoryId(Integer id);
+
 }

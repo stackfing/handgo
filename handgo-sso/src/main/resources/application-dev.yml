@@ -19,6 +19,8 @@ spring:
           paths: /**
   redis:
     host: localhost
+  session:
+    store-type: redis
 server:
   port: 8892
 mybatis:

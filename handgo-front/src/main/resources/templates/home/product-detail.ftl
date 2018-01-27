@@ -28,45 +28,6 @@
 
 		<!--顶部导航条 -->
         <#include "../common/header.ftl">
-		<#--<div class="am-container header">-->
-			<#--<ul class="message-l">-->
-				<#--<div class="topMessage">-->
-					<#--<div class="menu-hd">-->
-						<#--<a href="#" target="_top" class="h">亲，请登录</a>-->
-						<#--<a href="#" target="_top">免费注册</a>-->
-					<#--</div>-->
-				<#--</div>-->
-			<#--</ul>-->
-			<#--<ul class="message-r">-->
-				<#--<div class="topMessage home">-->
-					<#--<div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>-->
-				<#--</div>-->
-				<#--<div class="topMessage my-shangcheng">-->
-					<#--<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>-->
-				<#--</div>-->
-				<#--<div class="topMessage mini-cart">-->
-					<#--<div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>-->
-				<#--</div>-->
-				<#--<div class="topMessage favorite">-->
-					<#--<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>-->
-			<#--</ul>-->
-			<#--</div>-->
-
-			<#--<!--悬浮搜索框&ndash;&gt;-->
-
-			<#--<div class="nav white">-->
-				<#--<div class="logo"><img src="../images/logo.png" /></div>-->
-				<#--<div class="logoBig">-->
-					<#--<li><img src="../images/logobig.png" /></li>-->
-				<#--</div>-->
-				<#--<div class="search-bar pr">-->
-					<#--<a name="index_none_header_sysc" href="#"></a>-->
-					<#--<form>-->
-						<#--<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">-->
-						<#--<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">-->
-					<#--</form>-->
-				<#--</div>-->
-			<#--</div>-->
 
 			<div class="clear"></div>
             <b class="line"></b>
@@ -75,19 +36,7 @@
 				<!--分类-->
 			<div class="nav-table">
 					   <div class="long-title"><span class="all-goods">全部分类</span></div>
-					   <div class="nav-cont">
-							<ul>
-								<li class="index"><a href="#">首页</a></li>
-                                <li class="qc"><a href="#">闪购</a></li>
-                                <li class="qc"><a href="#">限时抢</a></li>
-                                <li class="qc"><a href="#">团购</a></li>
-                                <li class="qc last"><a href="#">大包装</a></li>
-							</ul>
-						    <div class="nav-extra">
-						    	<i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利
-						    	<i class="am-icon-angle-right" style="padding-left: 10px;"></i>
-						    </div>
-						</div>
+					   <#include "../common/nav-content.ftl">
 			</div>
 				<ol class="am-breadcrumb am-breadcrumb-slash">
 					<li><a href="#">首页</a></li>
@@ -180,11 +129,11 @@
 							<div class="tb-detail-price">
 								<li class="price iteminfo_price">
 									<dt>促销价</dt>
-									<dd><em>¥</em><b class="sys_item_price">${product.price}</b>  </dd>
+									<dd><em>¥</em><b class="sys_item_price">${product.currentPrice}</b>  </dd>
 								</li>
 								<li class="price iteminfo_mktprice">
 									<dt>原价</dt>
-									<dd><em>¥</em><b class="sys_item_mktprice">98.00</b></dd>									
+									<dd><em>¥</em><b class="sys_item_mktprice">${product.currentPrice}</b></dd>
 								</li>
 								<div class="clear"></div>
 							</div>
@@ -217,13 +166,13 @@
 							<!--销量-->
 							<ul class="tm-ind-panel">
 								<li class="tm-ind-item tm-ind-sellCount canClick">
-									<div class="tm-indcon"><span class="tm-label">月销量</span><span class="tm-count">1015</span></div>
+									<div class="tm-indcon"><span class="tm-label">月销量</span><span class="tm-count">${product.mothSale}</span></div>
 								</li>
 								<li class="tm-ind-item tm-ind-sumCount canClick">
-									<div class="tm-indcon"><span class="tm-label">累计销量</span><span class="tm-count">6015</span></div>
+									<div class="tm-indcon"><span class="tm-label">累计销量</span><span class="tm-count">${product.saleAmount}</span></div>
 								</li>
 								<li class="tm-ind-item tm-ind-reviewCount canClick tm-line3">
-									<div class="tm-indcon"><span class="tm-label">累计评价</span><span class="tm-count">640</span></div>
+									<div class="tm-indcon"><span class="tm-label">累计评价</span><span class="tm-count">${product.mothSale}</span></div>
 								</li>
 							</ul>
 							<div class="clear"></div>
@@ -286,7 +235,7 @@
 													</div>
 													<div class="text-info">
 														<span class="J_Price price-now">¥39.00</span>
-														<span id="Stock" class="tb-hidden">库存<span class="stock">1000</span>件</span>
+														<span id="Stock" class="tb-hidden">库存<span class="stock">${product.stock}</span>件</span>
 													</div>
 												</div>
 
@@ -488,14 +437,14 @@
 											<h4>商品细节</h4>
 										</div>
 										<div class="twlistNews">
-                                            ${product.description}
-											<#--<img src="../images/tw1.jpg" />-->
-											<#--<img src="../images/tw2.jpg" />-->
-											<#--<img src="../images/tw3.jpg" />-->
-											<#--<img src="../images/tw4.jpg" />-->
-											<#--<img src="../images/tw5.jpg" />-->
-											<#--<img src="../images/tw6.jpg" />-->
-											<#--<img src="../images/tw7.jpg" />-->
+
+											<img src="../images/tw1.jpg" />
+											<img src="../images/tw2.jpg" />
+											<img src="../images/tw3.jpg" />
+											<img src="../images/tw4.jpg" />
+											<img src="../images/tw5.jpg" />
+											<img src="../images/tw6.jpg" />
+											<img src="../images/tw7.jpg" />
 										</div>
 									</div>
 									<div class="clear"></div>
@@ -1146,29 +1095,7 @@
 
 						<div class="clear"></div>
 
-						<div class="footer">
-							<div class="footer-hd">
-								<p>
-									<a href="#">恒望科技</a>
-									<b>|</b>
-									<a href="#">商城首页</a>
-									<b>|</b>
-									<a href="#">支付宝</a>
-									<b>|</b>
-									<a href="#">物流</a>
-								</p>
-							</div>
-							<div class="footer-bd">
-								<p>
-									<a href="#">关于恒望</a>
-									<a href="#">合作伙伴</a>
-									<a href="#">联系我们</a>
-									<a href="#">网站地图</a>
-									<em>© 2015-2025 Hengwang.com 版权所有. 更多模板 <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></em>
-								</p>
-							</div>
-						</div>
-					</div>
+						<#include "../common/footer.ftl">
 
 				</div>
 			</div>

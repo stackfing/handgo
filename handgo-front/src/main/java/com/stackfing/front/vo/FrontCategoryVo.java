@@ -2,6 +2,8 @@ package com.stackfing.front.vo;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 /**
  * @Author: fing
  * @Description:
@@ -14,5 +16,4 @@ public class FrontCategoryVo {
 	private String name;
 
 	private Long id;
-
 }
