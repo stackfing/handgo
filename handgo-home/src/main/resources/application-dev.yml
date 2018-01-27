@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/handgo?charset=utf8&useSSL=true&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: root
+  freemarker:
+    cache: false
+server:
+  port: 8893

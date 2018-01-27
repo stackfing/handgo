@@ -27,8 +27,16 @@ public class ProductController {
 		Product product = productService.getProductById(id);
 		ProductVo productVo = new ProductVo();
 		BeanUtils.copyProperties(product, productVo);
+		productVo.setDescription("\n" +
+				"\t\t\t\t\t\t\t\t\t\t\t<img src=\"../images/tw1.jpg\">\n" +
+				"\t\t\t\t\t\t\t\t\t\t\t<img src=\"../images/tw2.jpg\">\n" +
+				"\t\t\t\t\t\t\t\t\t\t\t<img src=\"../images/tw3.jpg\">\n" +
+				"\t\t\t\t\t\t\t\t\t\t\t<img src=\"../images/tw4.jpg\">\n" +
+				"\t\t\t\t\t\t\t\t\t\t\t<img src=\"../images/tw5.jpg\">\n" +
+				"\t\t\t\t\t\t\t\t\t\t\t<img src=\"../images/tw6.jpg\">\n" +
+				"\t\t\t\t\t\t\t\t\t\t\t<img src=\"../images/tw7.jpg\">");
 		model.addAttribute("product", productVo);
-		return "product-detail";
+		return "home/product-detail";
 	}
 
 }

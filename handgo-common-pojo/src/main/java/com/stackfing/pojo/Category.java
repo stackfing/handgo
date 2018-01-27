@@ -12,11 +12,11 @@ public class Category {
 
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private Long id;
 
 	private String name;	//分类名
 
-	private int parent;	//父节点
+	private Long parent;	//父节点
 
 	private int avaliable;	//可用 0 不可用 1 可用
 

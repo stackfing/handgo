@@ -17,6 +17,7 @@
         <module>../handgo-common</module>
         <module>../handgo-common-pojo</module>
         <module>../handgo-front</module>
+        <module>../handgo-home</module>
     </modules>
 
 

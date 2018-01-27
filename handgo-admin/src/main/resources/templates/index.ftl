@@ -40,6 +40,7 @@
                     <dl class="layui-nav-child">
                         <dd class=""><a href="javascript:;" data-url="/product">商品列表</a></dd>
                         <dd><a href="javascript:;" data-url="/category">分类管理</a></dd>
+                        <dd><a href="javascript:;" data-url="/notice">公告管理</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item layui-nav-itemed">

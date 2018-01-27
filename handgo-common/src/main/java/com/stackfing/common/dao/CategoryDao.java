@@ -15,7 +15,7 @@ import java.util.List;
  * @Description:
  * @Date: 下午3:39 18-1-19
  */
-public interface CategoryDao extends JpaRepository<Category, Integer> {
+public interface CategoryDao extends JpaRepository<Category, Long> {
 
 	List<Category> findAllByRootTag(Integer tag);
 
@@ -26,5 +26,5 @@ public interface CategoryDao extends JpaRepository<Category, Integer> {
 	@Transactional
 	@Modifying
 	@Query("DELETE FROM Category WHERE id = :id")
-	int deleteById(@Param("id") Integer id);
+	int deleteById(@Param("id") Long id);
 }

@@ -1,6 +1,7 @@
 package com.stackfing.common.service.serviceImpl;
 
 import com.stackfing.common.dao.CategoryDao;
+import com.stackfing.common.enums.ProductRootEnum;
 import com.stackfing.common.exception.HandgoException;
 import com.stackfing.common.service.CategoryService;
 import com.stackfing.common.vo.CategoryVo;
@@ -28,7 +29,7 @@ public class CategoryServiceImpl implements CategoryService {
 	private CategoryDao categoryDao;
 
 	@Override
-	public Category update(Integer id, CategoryVo vo) {
+	public Category update(Long id, CategoryVo vo) {
 		if (null == id) {
 			throw new HandgoException("产品 ID 为空");
 		}
@@ -60,18 +61,27 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public List<Category> getSubCategoryById(Integer id) {
-		//TODO 获得子列表
-		return null;
+	public List<Category> getSubCategoryById(Long id) {
+		return categoryDao.findAllByParent(id);
 	}
 
 	@Override
-	public int deleteById(Integer id) {
+	public int deleteById(Long id) {
 		if (null == id) {
 			log.warn("参数不能为空");
 			throw new HandgoException("参数不能为空");
 		}
 		return categoryDao.deleteById(id);
+	}
+
+	@Override
+	public List<Category> getCategoryParent() {
+		return categoryDao.findAllByRootTag(ProductRootEnum.ISROOT.getTag());
+	}
+
+	@Override
+	public Category getCategoryById(Long id) {
+		return categoryDao.findOne(id);
 	}
 }
 

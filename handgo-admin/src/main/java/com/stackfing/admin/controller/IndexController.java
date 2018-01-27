@@ -13,14 +13,15 @@ public class IndexController {
 		return "index";
 	}
 
-	@GetMapping("/session")
-	@ResponseBody
-	public String set(HttpServletRequest request) {
-		if (request.getSession().getAttribute("abc") == null) {
-			System.out.println("session 为空");
-		}
-		request.getSession().setAttribute("abc", "asdfsadfsadf");
-		System.out.println(request.getSession().getAttribute("abc"));
-		return "ok";
-	}
+
+//	@GetMapping("/session")
+//	@ResponseBody
+//	public String set(HttpServletRequest request) {
+//		if (request.getSession().getAttribute("abc") == null) {
+//			System.out.println("session 为空");
+//		}
+//		request.getSession().setAttribute("abc", "asdfsadfsadf");
+//		System.out.println(request.getSession().getAttribute("abc"));
+//		return "ok";
+//	}
 }

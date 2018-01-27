@@ -28,7 +28,7 @@ public class CategoryRestController {
 	}
 
 	@GetMapping("/{id}")
-	public Result getCategoryById(@PathVariable Integer id) {
+	public Result getCategoryById(@PathVariable Long id) {
 		return Result.success(categoryService.getSubCategoryById(id));
 	}
 

@@ -1,0 +1,53 @@
+@charset "utf-8";
+/* CSS Document */
+,.pointlist ul li:hover,.pointlist ul li:focus{background: none;}
+.usable,.pointshop,thead,.signIn{display:none;}
+.pointlist ul{width:90%;margin:10px auto ;border-radius:5px ;border:2px solid #F03726 ;background:#F03726 ;}
+.pointlist ul li{text-align: center;background:#fff ;}
+.pointlist ul li:first-child{border-radius:5px 0px 0px 5px;}
+.pointlist ul li:last-child{border-radius:0px 5px 5px 0px;}
+.am-nav-tabs > li {margin-bottom: 0px;}
+.am-nav-tabs > li.am-active {background:#F03726 ;border: none;}
+.pointlist ul li a,.pointlist ul li a:hover{color: #F03726 ;height:30px ;line-height:30px ;font-size:14px ;}
+.pointlist ul li.am-active a{color:#fff !important;}
+.pointlist table{border-bottom: 1px solid #eeeeee;}
+.pointlist table tbody tr {border-bottom:none ;border-top: 1px solid #eeeeee;}
+
+@media only screen and (min-width:640px) 
+{
+.usable,.pointshop{display:block;background:#fff ;color: #000;text-align: left;}	
+.usable{font-size: 14px;height:60px;padding-top:10px ;}
+/*积分商城*/
+.pointsTitle{position: relative;height: 80px;border: 1px solid #DBDBDB;padding:10px ;margin:10px 0px 20px;}
+.pointshop{position: absolute;top:10px;left:110px;padding:25px 0px 0px;height: 60px;}
+.pointshop a {height:30px ;line-height:30px ;font-size:14px ;padding:0px 10px ;background: #F03726 ;color: #fff;border-radius:5px ;}
+.pointshop i {display: none;}
+.pointlist ul {width:100%;border: none; background:#F5F5F5;border-bottom: 1px solid #DBDBDB;border-radius:0px 0px ;margin:0px 0px ;}
+.pointlist ul li{max-width: 100px;background:#F5F5F5;border-radius:0px 0px !important;}
+.am-nav-tabs > li.am-active {background:#fff ;border-top: 2px solid #F03726;border-left: 1px solid #DBDBDB;border-right: 1px solid #DBDBDB;margin-bottom: -1px;z-index:9 ;}
+.pointlist ul li.am-active a{color:#000 !important;}
+.am-tabs-bd .am-tab-panel{padding:0px ;}
+.am-tabs-bd{border:none ;}
+/*签到*/
+.signIn {display: block;width:40%;position: absolute;top:10px;left:50%;right:auto;text-align:left;height:60px ;padding:15px 0px 0px 60px;border-left: 1px solid #DBDBDB ;}
+.signIn a{color: #000;}
+.signIn a em{display: block;}
+.signIn a i{display: block;color: #F03726;font-size:36px ;position: absolute;left:12px;top:10px}
+/*表格*/
+thead{display:table-header-group;}
+.pointlist table tr{border-collapse: collapse;}
+.pointlist table td,.pointlist table th{border: 1px solid #DFDFDF;padding: 2px;text-align: center !important;}
+.pointlist .pointNum ,.pointlist .pointTime{position:static;height: 25px;line-height: 25px;padding-top: 0px;}
+.pointlist table thead tr{height: 30px; line-height: 30px;}
+.pointlist b{display: block;border-left: 1px solid #DBDBDB;border-right: 1px solid #DBDBDB;height:30px ;width: 100%;}
+
+
+}
+@media only screen and (min-width:1260px) 
+{
+.pointsTitle{max-width: 800px;margin-left:20px ;}
+.usable span{color: #F03726;font-weight: 600;}
+/*表格*/
+.pointlist{max-width:800px ;margin:20px 0px 0px 20px;}
+
+}
