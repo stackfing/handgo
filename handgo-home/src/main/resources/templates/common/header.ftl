@@ -3,10 +3,21 @@
     <div class="am-container header">
         <ul class="message-l">
             <div class="topMessage">
+
+                <#if (username??)>
                 <div class="menu-hd">
-                    <a href="http://sso.stackfing.com/login" target="_top" class="h">亲，请登录</a>
-                    <a href="http://sso.stackfing.com/login" target="_top">免费注册</a>
-                </div>
+                    <a href="http://i.stackfing.com/" target="_top" class="h">${username!}</a>
+                <#else>
+                    <div class="menu-hd">
+                        <a href="http://sso.stackfing.com/login" target="_top" class="h">亲，请登录</a>
+                        <a href="http://sso.stackfing.com/register" target="_top">免费注册</a>
+                    </div>
+                </#if>
+
+            <#--<div class="menu-hd">-->
+            <#--<a href="http://sso.stackfing.com/login" target="_top" class="h">亲，请登录</a>-->
+            <#--<a href="http://sso.stackfing.com/login" target="_top">免费注册</a>-->
+            <#--</div>-->
             </div>
         </ul>
         <ul class="message-r">
@@ -18,19 +29,22 @@
                 </div>
             </div>
             <div class="topMessage mini-cart">
-                <div class="menu-hd"><a id="mc-menu-hd" href="/shopcart" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a>
+                <div class="menu-hd"><a id="mc-menu-hd" href="/shopcart" target="_top"><i
+                        class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum"
+                                                                                              class="h">0</strong></a>
                 </div>
             </div>
             <div class="topMessage favorite">
                 <div class="menu-hd"><a href="/collection" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a>
                 </div>
-            </div></ul>
+            </div>
+        </ul>
     </div>
 
     <!--悬浮搜索框-->
 
     <div class="nav white">
-        <#--<div class="logo"><img src="../images/logo.png"></div>-->
+    <#--<div class="logo"><img src="../images/logo.png"></div>-->
         <div class="logoBig">
             <li><a href="/"><img src="../images/logobig.png"></a></li>
         </div>

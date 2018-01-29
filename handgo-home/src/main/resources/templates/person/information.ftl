@@ -46,7 +46,7 @@
 							<p class="am-form-help">头像</p>
 
 							<div class="info-m">
-								<div><b>用户名：<i>${id!}</i></b></div>
+								<div><b>用户名：<i>${username!}</i></b></div>
 								<div class="vip">
                                       <span></span><a href="#">会员专享</a>
 								</div>
@@ -55,12 +55,12 @@
 
 						<!--个人信息 -->
 						<div class="info-main">
-							<form class="am-form am-form-horizontal">
+							<form action="/person/information/${id}" method="post" class="am-form am-form-horizontal">
 
 								<div class="am-form-group">
 									<label for="user-name2" class="am-form-label">昵称</label>
 									<div class="am-form-content">
-										<input type="text" id="user-name2" placeholder="nickname">
+										<input type="text" value="${userimformation.account!}" id="user-name2" placeholder="nickname">
                                           <small>昵称长度不能超过40个汉字</small>
 									</div>
 								</div>
@@ -68,7 +68,7 @@
 								<div class="am-form-group">
 									<label for="user-name" class="am-form-label">姓名</label>
 									<div class="am-form-content">
-										<input type="text" id="user-name2" placeholder="name">
+										<input type="text" value="${userimformation.account}" id="user-name2" placeholder="name">
                                          
 									</div>
 								</div>
@@ -76,12 +76,23 @@
 								<div class="am-form-group">
 									<label class="am-form-label">性别</label>
 									<div class="am-form-content sex">
-										<label class="am-radio-inline">
-											<input type="radio" name="radio10" value="male" data-am-ucheck> 男
-										</label>
-										<label class="am-radio-inline">
-											<input type="radio" name="radio10" value="female" data-am-ucheck> 女
-										</label>
+                                        <#if (userimformation.sex == true)>
+                                            <label class="am-radio-inline">
+                                                <input type="radio" name="radio10" value="male" checked> 男
+                                            </label>
+                                            <label class="am-radio-inline">
+                                                <input type="radio" name="radio10" value="male" data-am-ucheck> 女
+                                            </label>
+                                        <#else>
+                                            <label class="am-radio-inline">
+                                                <input type="radio" name="radio10" value="male" data-am-ucheck> 男
+                                            </label>
+                                            <label class="am-radio-inline">
+                                                <input type="radio" name="radio10" value="male" checked> 女
+                                            </label>
+                                        </#if>
+
+
 										<label class="am-radio-inline">
 											<input type="radio" name="radio10" value="secret" data-am-ucheck> 保密
 										</label>
@@ -116,14 +127,14 @@
 								<div class="am-form-group">
 									<label for="user-phone" class="am-form-label">电话</label>
 									<div class="am-form-content">
-										<input id="user-phone" placeholder="telephonenumber" type="tel">
+										<input id="user-phone" value="${userimformation.phoneNumber}" placeholder="telephonenumber" type="tel">
 
 									</div>
 								</div>
 								<div class="am-form-group">
 									<label for="user-email" class="am-form-label">电子邮件</label>
 									<div class="am-form-content">
-										<input id="user-email" placeholder="Email" type="email">
+										<input id="user-email" value="${userimformation.email}" placeholder="Email" type="email">
 
 									</div>
 								</div>
@@ -154,9 +165,19 @@
 									</div>
 								</div>
 								<div class="info-btn">
-									<div class="am-btn am-btn-danger">保存修改</div>
+                                    <input type="hidden" value="${id}">
+									<#--<div class="am-btn am-btn-danger" id="save">保存修改</div>-->
+                                    <input type="submit" class="am-btn am-btn-danger" value="保存修改">
 								</div>
-
+                            <script>
+                                $.ajax({
+                                    url: ''
+                                    , type: ''
+                                    , contentType: ''
+                                    , success: function(data){}
+                                    , error: function(data){}
+                                });
+                            </script>
 							</form>
 						</div>
 

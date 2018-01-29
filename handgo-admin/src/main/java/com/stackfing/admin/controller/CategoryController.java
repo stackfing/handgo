@@ -11,11 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 
 @Controller
-@RequestMapping("/category")
 public class CategoryController {
 
-	@GetMapping("")
+	@GetMapping("/category")
 	public String category() {
 		return "category";
+	}
+
+	@GetMapping("/categoryEdit")
+	public String edit() {
+		return "category-add";
 	}
 }

@@ -6,5 +6,7 @@ spring:
     password: root
   freemarker:
     cache: false
+  jpa:
+    show-sql: true
 server:
   port: 8889

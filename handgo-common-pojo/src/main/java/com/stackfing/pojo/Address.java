@@ -9,20 +9,24 @@ import javax.persistence.Id;
 /**
  * @Author: fing
  * @Description:
- * @Date: 下午6:35 18-1-27
+ * @Date: 下午2:16 18-1-29
  */
-
 @Data
 @Entity
-public class CommendCategory {
+public class Address {
 
 	@Id
 	@GeneratedValue
-	private Long id;
+	private Integer id;
 
-	private Long  categoryId;
+	private Long customerId;
 
-	private String description;
+	private int isPrimary;
 
-	private boolean rootTag;
+	private String name;
+
+	private String phoneNumber;
+
+	private String address;
+
 }

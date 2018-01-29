@@ -206,37 +206,76 @@
         <!--导航 -->
         <script type="text/javascript">
 
+            // if(!window.localStorage){
+            //     alert("浏览器支持localstorage");
+            // }else{
+            //     var storage=window.localStorage;
+            //     //写入a字段
+            //     storage["a"]=1;
+            //     //写入b字段
+            //     storage.b=1;
+            //     //写入c字段
+            //     storage.setItem("c",3);
+            //     console.log(storage.a);
+            //     // console.log(typeof storage["a"]);
+            //     // console.log(typeof storage["b"]);
+            //     // console.log(typeof storage["c"]);
+            //     /*分割线*/
+            //     storage.a=4;
+            //     console.log(storage.a);
+            //     if (storage.a != null) {
+            //         alert('not null');
+            //     }
+            //     storage.clear();
+            //     // if (storage.a == null) {
+            //     //     alert('null');
+            //     // }
+            // }
+
+
             (function () {
                 $('.am-slider').flexslider();
             });
 
             $(document).ready(function () {
-
+                //拿到storage
+                var storage = window.localStorage;
+                //清空storage
+                storage.clear();
+                //鼠标经过事件
                 $(".category-list li").hover(function () {
                     //在这里添加动态显示菜单栏
                     // sort-side
-                    var isHovered = false;
-                    if (isHovered == false) {
+                    var hoverTag = $(this).attr('data-url');
+                    if(!storage) {
+                        alert('您的浏览器不支持localStorage!');
+                    }else {
                         //在这里添加数据渲染
                         // $(".sort-side .dl-sort").append('<button>asdfasdf</button>');
-                        $.ajax({
-                            url: '/v1/category/' + $(this).attr('data-url'),
-                            cache: true,
-                            type: 'get',
-                            success: function (data) {
-                                var content = '<dl class="dl-sort"><dt><span title="' + data.name + '">' + data.name + '</span></dt>';
 
-                                // $("li .menu-srot .sort-side").append('<dl class="dl-sort"><dt><span title=' + data.name +'</span></dt>');
-                                var sub = data.subCategories;
-                                for (var i = 0; i < sub.length; i++) {
-                                    content += '<dd><a title="' + sub[i].name + '" href="/category/' + sub[i].id + '"><span>' + sub[i].name + '</span></a></dd>';
+                        if (storage[hoverTag] == null) {
+                            //localStorage为空
+                            $.ajax({
+                                url: '/v1/category/' + $(this).attr('data-url'),
+                                cache: true,
+                                type: 'get',
+                                success: function (data) {
+                                    var content = '<dl class="dl-sort"><dt><span title="' + data.name + '">' + data.name + '</span></dt>';
+                                    var sub = data.subCategories;
+                                    for (var i = 0; i < sub.length; i++) {
+                                        content += '<dd><a title="' + sub[i].name + '" href="/category/' + sub[i].id + '"><span>' + sub[i].name + '</span></a></dd>';
+                                    }
+                                    content += '<dl>';
+                                    $("li .menu-srot .sort-side").append(content);
+                                    storage[hoverTag] = content;
                                 }
-                                content += '<dl>';
-                                $("li .menu-srot .sort-side").append(content);
-                            }
-                        });
-                        isHovered = true;
+                            });
+                        } else {
+                            //不为空
+                            $("li .menu-srot .sort-side").append(storage[$(this).attr('data-url')]);
+                        }
                     }
+
                     $(".category-content .category-list li.first .menu-in").css("display", "none");
                     $(".category-content .category-list li.first").removeClass("hover");
                     $(this).addClass("hover");
@@ -263,7 +302,7 @@
                 </a>
             </div>
             <div class="am-u-sm-3">
-                <a href="#"><img src="../images/mansmall.jpg"/>
+                <a href="http://i.stackfing.com/"><img src="../images/mansmall.jpg"/>
                     <div class="title">个人中心</div>
                 </a>
             </div>
@@ -361,12 +400,12 @@
                         <#list killList as item>
                         <div class="am-u-sm-3 sale-item">
                             <div class="s-img">
-                                <a href="${item.url!}"><img src="${item.photo!}"/></a>
+                                <a href="http://go.stackfing.com/item/${item.id!}"><img src="${item.photo!}"/></a>
                             </div>
                             <div class="s-info">
-                                <a href="#"><p class="s-title">${item.name!}</p></a>
+                                <a href="http://go.stackfing.com/item/${item.id}"><p class="s-title">${item.name!}</p></a>
                                 <div class="s-price">￥<b>${item.price!}</b>
-                                    <a class="s-buy" href="${item.url!}">秒杀</a>
+                                    <a class="s-buy" href="${item.id!}">秒杀</a>
                                 </div>
                             </div>
                         </div>
@@ -386,7 +425,7 @@
 
             <div class="am-container ">
                 <div class="shopTitle ">
-                    <h4 class="floor-title">${commend.title}</h4>
+                    <h4 class="floor-title">${commend.title!}</h4>
                     <div class="floor-subtitle"><em class="am-icon-caret-left"></em>
                         <h3>${commend.subtitle}</h3></div>
                 <#--<div class="today-brands " style="right:0px ;top:13px;">-->

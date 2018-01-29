@@ -17,10 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/person")
 public class PersonController {
 
-	@GetMapping("/information")
-	public String information() {
-		return "person/information";
-	}
+
 
 	@GetMapping("/safety")
 	public String safety() {

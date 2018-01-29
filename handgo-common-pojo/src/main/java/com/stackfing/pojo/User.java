@@ -16,20 +16,22 @@ public class User {
 
 	@Id
 	@GeneratedValue
-	private Long id;
+	protected Long id;
 
-	private boolean sex;
+	protected boolean sex;
 
-	private String account;
+	protected String account;
 
-	private String password;
+	protected String password;
 
-	private String phoneNumber;
+	protected String phoneNumber;
 
-	private int status = 0;
+	protected String email;
 
-	private Date createTime;
+	protected int status = 0;
 
-	private Date updateTime;
+	protected Date createTime;
+
+	protected Date updateTime;
 
 }

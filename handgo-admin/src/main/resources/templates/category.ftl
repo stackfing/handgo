@@ -90,7 +90,7 @@
     function add() {
         var index = layer.open({
             type: 2,
-            content: '/productEdit',
+            content: '/categoryEdit',
             title: '添加产品',
             success: function (layero, index) {
                 // var body = layer.getChildFrame('body', index);

@@ -1,6 +1,9 @@
 package com.stackfing.sso.controller;
 
+import com.stackfing.common.service.CustomerService;
+import com.stackfing.common.service.serviceImpl.CustomerServiceImpl;
 import com.stackfing.common.utils.HandgoResult;
+import com.stackfing.pojo.Customer;
 import com.stackfing.sso.pojo.User;
 import com.stackfing.sso.service.serviceImpl.SSOServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,9 @@ public class SSOController {
 
 	@Autowired
 	private SSOServiceImpl ssoService;
+
+	@Autowired
+	private CustomerServiceImpl customerService;
 
 	@GetMapping("")
 	public String index() {
@@ -48,7 +54,8 @@ public class SSOController {
 		if (request.getSession().getAttribute("id") != null) {
 			return "redirect:http://i.stackfing.com/home";
 		}
-		request.getSession().setAttribute("id", user.getAccount());
+		Customer customer = customerService.findByAccount(user.getAccount());
+		request.getSession().setAttribute("id", customer.getId());
 		System.out.println(request.getSession().getAttribute("id"));
 		return "redirect:http://i.stackfing.com/home";
 	}

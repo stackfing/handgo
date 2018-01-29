@@ -21,47 +21,7 @@
 	<body>
 
 		<!--顶部导航条 -->
-		<div class="am-container header">
-			<ul class="message-l">
-				<div class="topMessage">
-					<div class="menu-hd">
-						<a href="#" target="_top" class="h">亲，请登录</a>
-						<a href="#" target="_top">免费注册</a>
-					</div>
-				</div>
-			</ul>
-			<ul class="message-r">
-				<div class="topMessage home">
-					<div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
-				</div>
-				<div class="topMessage my-shangcheng">
-					<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
-				</div>
-				<div class="topMessage mini-cart">
-					<div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
-				</div>
-				<div class="topMessage favorite">
-					<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
-			</ul>
-			</div>
-
-			<!--悬浮搜索框-->
-
-			<div class="nav white">
-				<div class="logo"><img src="../images/logo.png" /></div>
-				<div class="logoBig">
-					<li><img src="../images/logobig.png" /></li>
-				</div>
-
-				<div class="search-bar pr">
-					<a name="index_none_header_sysc" href="#"></a>
-					<form>
-						<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
-						<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
-					</form>
-				</div>
-			</div>
-
+            <#include "../common/header.ftl">
 			<div class="clear"></div>
 			<div class="concent">
 				<!--地址 -->
@@ -74,81 +34,55 @@
 						<div class="clear"></div>
 						<ul>
 							<div class="per-border"></div>
-							<li class="user-addresslist defaultAddr">
+							<#list address as addr>
+                                <#if (addr.isPrimary == 1)>
+                            <li class="user-addresslist defaultAddr">
+                                <#else>
+                            <li class="user-addresslist">
+                                </#if>
 
-								<div class="address-left">
-									<div class="user DefaultAddr">
 
-										<span class="buy-address-detail">   
-                   <span class="buy-user">艾迪 </span>
-										<span class="buy-phone">15888888888</span>
+                                    <div class="address-left">
+                                        <div class="user DefaultAddr">
+
+										<span class="buy-address-detail">
+                   <span class="buy-user">${addr.name}</span>
+										<span class="buy-phone">${addr.phoneNumber}</span>
 										</span>
-									</div>
-									<div class="default-address DefaultAddr">
-										<span class="buy-line-title buy-line-title-type">收货地址：</span>
-										<span class="buy--address-detail">
-								   <span class="province">湖北</span>省
-										<span class="city">武汉</span>市
-										<span class="dist">洪山</span>区
-										<span class="street">雄楚大道666号(中南财经政法大学)</span>
-										</span>
+                                        </div>
+                                        <div class="default-address DefaultAddr">
+                                            <span class="buy-line-title buy-line-title-type">收货地址：</span>
+                                            <span class="buy--address-detail">
+								   <#--<span class="province">湖北</span>省-->
+                                   <#--<span class="city">武汉</span>市-->
+                                   <#--<span class="dist">洪山</span>区-->
+                                   <#--<span class="street">雄楚大道666号(中南财经政法大学)</span>-->
+                                   <#--</span>-->
+                                       ${addr.address}
 
-										</span>
-									</div>
-									<ins class="deftip">默认地址</ins>
-								</div>
-								<div class="address-right">
-									<a href="../person/address.html">
-										<span class="am-icon-angle-right am-icon-lg"></span></a>
-								</div>
-								<div class="clear"></div>
+                                            </span>
+                                        </div>
+                                        <#if (addr.isPrimary == 1)><ins class="deftip">默认地址</ins></#if>
+                                    </div>
+                                    <div class="address-right">
+                                        <a href="../person/address.html">
+                                            <span class="am-icon-angle-right am-icon-lg"></span></a>
+                                    </div>
+                                    <div class="clear"></div>
 
-								<div class="new-addr-btn">
-									<a href="#" class="hidden">设为默认</a>
-									<span class="new-addr-bar hidden">|</span>
-									<a href="#">编辑</a>
-									<span class="new-addr-bar">|</span>
-									<a href="javascript:void(0);" onclick="delClick(this);">删除</a>
-								</div>
+                                <#if (addr.isPrimary == 0)>
+                                        <div class="new-addr-btn">
+                                            <a href="#">设为默认</a>
+                                            <span class="new-addr-bar">|</span>
+                                            <a href="#">编辑</a>
+                                            <span class="new-addr-bar">|</span>
+                                            <a href="javascript:void(0);"  onclick="delClick(this);">删除</a>
+                                        </div>
+                                </#if>
 
-							</li>
+                                </li>
 							<div class="per-border"></div>
-							<li class="user-addresslist">
-								<div class="address-left">
-									<div class="user DefaultAddr">
-
-										<span class="buy-address-detail">   
-                   <span class="buy-user">艾迪 </span>
-										<span class="buy-phone">15877777777</span>
-										</span>
-									</div>
-									<div class="default-address DefaultAddr">
-										<span class="buy-line-title buy-line-title-type">收货地址：</span>
-										<span class="buy--address-detail">
-								   <span class="province">湖北</span>省
-										<span class="city">武汉</span>市
-										<span class="dist">武昌</span>区
-										<span class="street">东湖路75号众环大厦9栋9层999</span>
-										</span>
-
-										</span>
-									</div>
-									<ins class="deftip hidden">默认地址</ins>
-								</div>
-								<div class="address-right">
-									<span class="am-icon-angle-right am-icon-lg"></span>
-								</div>
-								<div class="clear"></div>
-
-								<div class="new-addr-btn">
-									<a href="#">设为默认</a>
-									<span class="new-addr-bar">|</span>
-									<a href="#">编辑</a>
-									<span class="new-addr-bar">|</span>
-									<a href="javascript:void(0);"  onclick="delClick(this);">删除</a>
-								</div>
-
-							</li>
+                            </#list>
 
 						</ul>
 
@@ -441,7 +375,7 @@
 
 									<div id="holyshit269" class="submitOrder">
 										<div class="go-btn-wrap">
-											<a id="J_Go" href="success.html" class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</a>
+											<a id="J_Go" href="/success" class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</a>
 										</div>
 									</div>
 									<div class="clear"></div>
@@ -452,28 +386,7 @@
 						<div class="clear"></div>
 					</div>
 				</div>
-				<div class="footer">
-					<div class="footer-hd">
-						<p>
-							<a href="#">恒望科技</a>
-							<b>|</b>
-							<a href="#">商城首页</a>
-							<b>|</b>
-							<a href="#">支付宝</a>
-							<b>|</b>
-							<a href="#">物流</a>
-						</p>
-					</div>
-					<div class="footer-bd">
-						<p>
-							<a href="#">关于恒望</a>
-							<a href="#">合作伙伴</a>
-							<a href="#">联系我们</a>
-							<a href="#">网站地图</a>
-							<em>© 2015-2025 Hengwang.com 版权所有. 更多模板 <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></em>
-						</p>
-					</div>
-				</div>
+				<#include "../common/footer.ftl">
 			</div>
 			<div class="theme-popover-mask"></div>
 			<div class="theme-popover">

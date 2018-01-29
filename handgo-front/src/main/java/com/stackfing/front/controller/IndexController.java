@@ -1,9 +1,6 @@
 package com.stackfing.front.controller;
 
-import com.stackfing.common.service.CategoryService;
-import com.stackfing.common.service.FrontCommendService;
-import com.stackfing.common.service.KillProductService;
-import com.stackfing.common.service.NoticeService;
+import com.stackfing.common.service.*;
 import com.stackfing.common.vo.NoticeVo;
 import com.stackfing.common.vo.ProductVo;
 import com.stackfing.front.vo.*;
@@ -44,20 +41,35 @@ public class IndexController {
 	private NoticeService noticeService;
 
 	@Autowired
+	private ProductService productService;
+
+	@Autowired
 	private FrontCommendService frontCommendService;
 
 	@GetMapping("")
 	public String index(ModelMap modelMap, HttpServletRequest request) {
 		String username = (String) request.getSession().getAttribute("username");
 		modelMap.put("username", username);
-		modelMap.put("killList", killProductService.productList());
+		modelMap.put("killList", getKillProductVo());
 		modelMap.put("categorys", categoryService.getCategoryParent());
 		modelMap.put("Notices", noticeService.getNoticeList());
 		modelMap.put("commendList", getFrontCommendVoList());
-//		System.out.println(getFrontCommendVoList().toString());
-//		System.out.println(noticeService.getNoticeList());
-//		System.out.println(categoryService.getCategoryParent().toString());
 		return "home/home2";
+	}
+
+	private List<KillProductVo> getKillProductVo() {
+		List<KillProduct> list = killProductService.productList();
+		List<KillProductVo> volist = new ArrayList<>();
+		for (KillProduct killProduct : list) {
+			Product product = productService.getProductById(killProduct.getId());
+			KillProductVo killProductVo = new KillProductVo();
+			killProductVo.setId(product.getId());
+			killProductVo.setPhoto(product.getPhotos());
+			killProductVo.setPrice(product.getCurrentPrice());
+			killProductVo.setName(product.getName());
+			volist.add(killProductVo);
+		}
+		return volist;
 	}
 
 	private List<FrontCommendVo> getFrontCommendVoList() {
@@ -92,6 +104,11 @@ public class IndexController {
 		}
 
 		return list;
+	}
+
+	@GetMapping("/success")
+	public String success() {
+		return "home/success";
 	}
 
 	@GetMapping("/notice")

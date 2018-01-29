@@ -133,7 +133,7 @@
 								</li>
 								<li class="price iteminfo_mktprice">
 									<dt>原价</dt>
-									<dd><em>¥</em><b class="sys_item_mktprice">${product.currentPrice}</b></dd>
+									<dd><em>¥</em><b class="sys_item_mktprice">${product.originalPrice}</b></dd>
 								</li>
 								<div class="clear"></div>
 							</div>
@@ -270,18 +270,18 @@
 
 						<div class="pay">
 							<div class="pay-opt">
-							<a href="home.html"><span class="am-icon-home am-icon-fw">首页</span></a>
+							<a href="http://go.stackfing.com"><span class="am-icon-home am-icon-fw">首页</span></a>
 							<a><span class="am-icon-heart am-icon-fw">收藏</span></a>
 							
 							</div>
 							<li>
 								<div class="clearfix tb-btn tb-btn-buy theme-login">
-									<a id="LikBuy" title="点此按钮到下一步确认购买信息" href="#">立即购买</a>
+									<a id="LikBuy" title="点此按钮到下一步确认购买信息" href="javascript:;">立即购买</a>
 								</div>
 							</li>
 							<li>
 								<div class="clearfix tb-btn tb-btn-basket theme-login">
-									<a id="LikBasket" title="加入购物车" href="#"><i></i>加入购物车</a>
+									<a id="LikBasket" title="加入购物车" href="/shopcart"><i></i>加入购物车</a>
 								</div>
 							</li>
 						</div>
