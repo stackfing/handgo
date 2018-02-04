@@ -1,16 +1,8 @@
 ## 简介
 
-基于 Spring Boot 的一个购物商城
-
+基于 Spring Boot，前后端分离的一个购物商城项目
 
 ### 【项目施工中...欢迎 star】
-
-#### 首页
-
-<div style="align: center">
-<img src="./project/front.png"/>
-</div>
-
 
 #### 后台截图
 
@@ -18,8 +10,10 @@
 <img src="./project/admin0.png"/>
 </div>
 
-<div style="align: center;margin-top:20px;">
-<img src="./project/admin1.png"/>
+#### 首页
+
+<div style="align: center">
+<img src="./project/front.png"/>
 </div>
 
 ### 本地开发运行部署
@@ -34,24 +28,12 @@
 
 ### 技术一览表
 
-所用技术：
-
-* Spring Boot
-
-* MyBatis
+* Spring 全家桶
 
 * MySQL
 
-* Thymeleaf (本项目将弃用)
-
 * Freemarker
 
-前端技术：
+* Vue 全家桶
 
-* JQuery
-
-UI:
-
-* Layui
-
-* zTree
+* Element
