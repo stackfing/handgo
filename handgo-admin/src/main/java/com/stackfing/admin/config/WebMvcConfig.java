@@ -3,10 +3,7 @@ package com.stackfing.admin.config;
 import com.stackfing.admin.interceptor.LoginInterceptor;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.*;
 
 /**
  * @Author: fing
@@ -33,5 +30,11 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/webjars/**")
 				.addResourceLocations("classpath:/META-INF/resources/webjars/");
 		registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+	}
+
+	@Override
+	public void addCorsMappings(CorsRegistry registry) {
+//		super.addCorsMappings(registry);
+		registry.addMapping("/**").allowedOrigins("http://localhost:8080").allowedMethods("GET","POST","DELETE","PUT");
 	}
 }

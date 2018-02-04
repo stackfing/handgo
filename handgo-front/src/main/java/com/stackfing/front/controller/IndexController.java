@@ -1,6 +1,7 @@
 package com.stackfing.front.controller;
 
 import com.stackfing.common.service.*;
+import com.stackfing.common.utils.OrderUtil;
 import com.stackfing.common.vo.NoticeVo;
 import com.stackfing.common.vo.ProductVo;
 import com.stackfing.front.vo.*;
@@ -19,8 +20,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import sun.font.FontConfigManager;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @Author: fing
@@ -53,7 +57,8 @@ public class IndexController {
 		modelMap.put("killList", getKillProductVo());
 		modelMap.put("categorys", categoryService.getCategoryParent());
 		modelMap.put("Notices", noticeService.getNoticeList());
-		modelMap.put("commendList", getFrontCommendVoList());
+//		modelMap.put("commendList", getFrontCommendVoList());
+		System.out.println(OrderUtil.newOrder());
 		return "home/home2";
 	}
 

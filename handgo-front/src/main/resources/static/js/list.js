@@ -25,7 +25,7 @@ $(function () {
         var $ww = $(window).width();
         if ($ww >= 1025) {
             //跳转到下单
-            window.location='/pay';
+            window.location='/pay/?item=123';
         }
     });
 })

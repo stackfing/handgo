@@ -11,6 +11,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * @Author: fing
  * @Description:
@@ -26,7 +29,7 @@ public class ProductRestController {
 	@ApiOperation("获得产品列表")
 	@GetMapping("")
 	public LayuiVo getProductList(@RequestParam(required = false) Integer page
-		, @RequestParam(required = false) Integer limit) {
+		, @RequestParam(required = false) Integer limit, HttpServletRequest request ,HttpServletResponse res) {
 		//TODO layuiVO 返回 大小
 		LayuiVo layuiVo = new LayuiVo();
 		if (null == page && null == limit) {
@@ -34,6 +37,9 @@ public class ProductRestController {
 			layuiVo.setTotal(10);
 			layuiVo.setCode(ResultCode.SUCCESS);
 			layuiVo.setData(productService.getProductList());
+			System.out.println(request.getHeader("Set-Cookie") + "---------------------------");
+			res.addHeader("Set-Cookie", "uid=112; Path=/; HttpOnly");
+			res.addHeader("Admins", "admin");
 			return layuiVo;
 //			return LayuiVo.success(productService.getProductList());
 		}
@@ -41,6 +47,7 @@ public class ProductRestController {
 		layuiVo.setData(productService.getProductList(page, limit));
 		layuiVo.setTotal(10);
 		layuiVo.setCode(ResultCode.SUCCESS);
+//		res.addHeader("refresh","1");
 		return layuiVo;
 //		return Result.success(productService.getProductList(page, limit));
 	}
