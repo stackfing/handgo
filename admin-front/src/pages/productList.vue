@@ -3,32 +3,32 @@
         <div>{{currentPrice | priceFilter}}</div>
         <head-top :titleItemtest='item'></head-top>
         <div id='content'>
-            <el-table :data="tableData" style="width: 100%">
+            <el-table v-loading="loading" :data="tableData" style="width: 100%">
                 <el-table-column type="expand">
                     <template slot-scope="props">
-                                                                                                            <el-form label-position="left" inline class="demo-table-expand">
-                                                                                                              <el-form-item label="商品名称">
-                                                                                                                <span>{{ props.row.name }}</span>
-                                                                                                              </el-form-item>
-                                                                                                              <el-form-item label="库存">
-                                                                                                                <span>{{ props.row.stock }}</span>
-                                                                                                              </el-form-item>
-                                                                                                              <el-form-item label="已售数量">
-                                                                                                                <span>{{ props.row.saleAmount }}</span>
-                                                                                                              </el-form-item>
-                                                                                                              <el-form-item label="创建时间">
-                                                                                                                <span>{{ props.row.createTime }}</span>
-                                                                                                              </el-form-item>
-                                                                                                              <el-form-item label="更新时间">
-                                                                                                                <span>{{ props.row.updateTime }}</span>
-                                                                                                              </el-form-item>
-                                                                                                              <el-form-item label="状态">
-                                                                                                                <span>{{ props.row.status }}</span>
-                                                                                                              </el-form-item>
-                                                                                                              <el-form-item label="商品描述">
-                                                                                                                <span>{{ props.row.desc }}</span>
-                                                                                                              </el-form-item>
-                                                                                                            </el-form>
+                                                                                                                            <el-form label-position="left" inline class="demo-table-expand">
+                                                                                                                              <el-form-item label="商品名称">
+                                                                                                                                <span>{{ props.row.name }}</span>
+                                                                                                                              </el-form-item>
+                                                                                                                              <el-form-item label="库存">
+                                                                                                                                <span>{{ props.row.stock }}</span>
+                                                                                                                              </el-form-item>
+                                                                                                                              <el-form-item label="已售数量">
+                                                                                                                                <span>{{ props.row.saleAmount }}</span>
+                                                                                                                              </el-form-item>
+                                                                                                                              <el-form-item label="创建时间">
+                                                                                                                                <span>{{ props.row.createTime }}</span>
+                                                                                                                              </el-form-item>
+                                                                                                                              <el-form-item label="更新时间">
+                                                                                                                                <span>{{ props.row.updateTime }}</span>
+                                                                                                                              </el-form-item>
+                                                                                                                              <el-form-item label="状态">
+                                                                                                                                <span>{{ props.row.status }}</span>
+                                                                                                                              </el-form-item>
+                                                                                                                              <el-form-item label="商品描述">
+                                                                                                                                <span>{{ props.row.desc }}</span>
+                                                                                                                              </el-form-item>
+                                                                                                                            </el-form>
 </template>
     </el-table-column>
     <el-table-column
@@ -50,6 +50,20 @@
     <el-table-column
       label="描述"
       prop="description">
+    </el-table-column>
+    <el-table-column
+      label="姓名"
+      width="180">
+<template slot-scope="scope">
+    <div slot="reference" class="name-wrapper">
+        <div v-if="scope.row.status == 1">
+            <el-tag size="medium" type="danger">上架</el-tag>
+        </div>
+        <div v-if="scope.row.status == 0">
+            <el-tag size="medium" type="info">下架</el-tag>
+        </div>
+    </div>
+</template>
     </el-table-column>
     <el-table-column label="操作">
 <template slot-scope="scope">
@@ -75,11 +89,11 @@
         <el-form-item label='描述' prop='description'>
           <el-input v-model='editForm.description'></el-input>
         </el-form-item>
-        <el-form-item label='产品名' prop='name'>
+        <!-- <el-form-item label='产品名' prop='name'>
           <el-input v-model='name'></el-input>
-        </el-form-item>
+        </el-form-item> -->
          <el-form-item label="状态" prop="delivery">
-             <el-switch v-model="editForm.status"></el-switch>
+             <el-switch :active-value="1" :inactive-value="0" v-model="editForm.status"></el-switch>
          </el-form-item>
         <el-form-item>
          <el-button type="primary" @click="submitForm('editForm')">提交修改</el-button>
@@ -112,6 +126,7 @@
                 description: '',
                 editForm: {},
                 tableData: [],
+                loading: true,
                 dialogTableVisible: false,
                 editData: [{
                     date: '10-10-10',
@@ -121,40 +136,58 @@
                 rulet: {
                     name: [{
                         required: true,
-                        message: 'required',
-                        // trigger: 'blur'
+                        message: '请填写产品名称',
+                        trigger: 'change'
                     }],
                     currentPrice: [{
                         required: true,
-                        message: 'required'
+                        message: '请填写修改后的价格',
+                        trigger: 'change'
+                    }],
+                    originalPrice: [{
+                        required: true,
+                        message: '请填写原价',
+                        trigger: 'change'
                     }]
                 }
             }
         },
         methods: {
-            // handleOpen(key, keyPath) {
-            //     console.log(key, keyPath);
-            // },
-            // handleClose(key, keyPath) {
-            //     console.log(key, keyPath);
-            // },
             handleEdit(index, row) {
                 this.dialogTableVisible = true
                 console.log(this.$refs.editForm)
-                // this.editForm = row
                 this.editForm = Object.assign({}, row)
-                // console.log(this.editForm)
             },
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        alert('submit!');
+                        var _this = this;
+                        var data = _this.editForm
+                        console.log(JSON.stringify(data))
+                        this.$http.put('http://localhost:8888/v1/product/' + _this.editForm.id, JSON.stringify(data)).then(res => {
+                            if (res.status == 200) {
+                                _this.$message({
+                                    type: 'success',
+                                    message: res.body.msg
+                                })
+                                _this.dialogTableVisible = false
+                                this.$http.get('http://localhost:8888/v1/product?page=1&limit=10').then(function(data) {
+                                    this.loading = true;
+                                    _this.tableData = data.body.data
+                                    this.loading = false;
+                                })
+                            }
+                        }).catch(res => {
+                            _this.$message({
+                                type: 'error',
+                                message: '网络错误，请重试'
+                            })
+                        })
                     } else {
                         console.log('error submit!!');
                         return false;
                     }
                 });
-                // console.log(this.$refs[formName])
             },
             resetForm(formName) {
                 this.$refs[formName].resetFields();
@@ -166,9 +199,7 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    // alert('sdf')
-                    
-                    this.$http.delete('/v1/product/' + row.id).then(response => {
+                    this.$http.delete('http://localhost:8888/v1/product/' + row.id).then(response => {
                         if (response.data.code == 200) {
                             rows.splice(index, 1);
                             this.$message({
@@ -176,9 +207,9 @@
                                 message: '删除成功'
                             });
                         }
-                    }).catch(response=>{
+                    }).catch(response => {
                         this.$message({
-                            type:'error',
+                            type: 'error',
                             message: '网络错误'
                         })
                     });
@@ -190,15 +221,12 @@
                 });
             }
         },
-        created: function() {
-            // console.log(vm.$data)
-        },
         mounted: function() {
             var _this = this;
-            this.$http.get('/v1/product?page=1&limit=10').then(function(data) {
-                console.log(data)
+            this.$http.get('http://localhost:8888/v1/product?page=1&limit=10').then(function(data) {
+                this.loading = true;
                 _this.tableData = data.body.data
-                // alert(data.body.data)
+                this.loading = false;
             })
         },
         filters: {

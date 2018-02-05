@@ -14,6 +14,6 @@ public interface AddressDao extends JpaRepository<Address, Integer> {
 
 	List<Address> findByCustomerId(Long id);
 
-	Address findByCustomerIdAndiAndIsPrimary(Long id);
+	Address findByCustomerIdAndIsPrimary(Long id, Integer primary);
 
 }

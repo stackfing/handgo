@@ -3,7 +3,7 @@
         <side-bar id="sideBar" />
         <div style="padding-left:300px">
             <head-nav/>
-            <tabs/>
+            <!-- <tabs/> -->
             <!-- <welcome/> -->
             <transition name='fade' mode="out-in">
                 <router-view/>

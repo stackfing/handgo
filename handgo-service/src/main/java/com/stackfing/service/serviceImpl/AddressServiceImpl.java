@@ -1,5 +1,6 @@
 package com.stackfing.service.serviceImpl;
 
+import com.stackfing.common.enums.AddressEnum;
 import com.stackfing.service.dao.AddressDao;
 import com.stackfing.service.AddressService;
 import com.stackfing.pojo.Address;
@@ -26,7 +27,7 @@ public class AddressServiceImpl implements AddressService {
 
 	@Override
 	public Address findPrimaryByCustomerId(Long id) {
-		return addressDao.findByCustomerIdAndiAndIsPrimary(id);
+		return addressDao.findByCustomerIdAndIsPrimary(id, AddressEnum.IS_PRIMARY.getCode());
 	}
 
 	@Override

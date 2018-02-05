@@ -1,5 +1,6 @@
 package com.stackfing.admin.controller.restController;
 
+import com.stackfing.common.utils.HandgoResult;
 import com.stackfing.common.utils.Result;
 import com.stackfing.common.vo.LayuiVo;
 import com.stackfing.service.CategoryService;
@@ -19,12 +20,14 @@ public class CategoryRestController {
 	private CategoryService categoryService;
 
 	@GetMapping("")
-	public LayuiVo getCategoryList(@RequestParam(required = false) Integer page
+	public Result getCategoryList(@RequestParam(required = false) Integer page
 		, @RequestParam(required = false)  Integer limit) {
 		if (null == page || limit == null) {
-			return (LayuiVo) LayuiVo.success(categoryService.findAll());
+//			return (LayuiVo) LayuiVo.success(categoryService.findAll());
+			return Result.success(categoryService.findAll());
 		}
-		return LayuiVo.success(categoryService.findAll(page, limit), 100);
+		return Result.success(categoryService.findAll(page, limit));
+//		return LayuiVo.success(categoryService.findAll(page, limit), 100);
 	}
 
 	@GetMapping("/{id}")

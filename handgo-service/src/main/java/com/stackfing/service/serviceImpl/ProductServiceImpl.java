@@ -6,6 +6,7 @@ import com.stackfing.service.ProductService;
 import com.stackfing.service.dao.CategoryDao;
 import com.stackfing.service.dao.ProductDao;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -57,8 +58,11 @@ public class ProductServiceImpl implements ProductService {
 		if (productById.getId() != vo.getId()) {
 			throw new HandgoException("ID 不一致");
 		}
-		productById.setUpdateTime(new Date());
-		return productDao.save(productById);
+//		BeanUtils.copyProperties(productById, vo);
+		System.out.println(vo);
+		System.out.println(productById);
+		vo.setUpdateTime(new Date());
+		return productDao.save(vo);
 	}
 
 	@Override

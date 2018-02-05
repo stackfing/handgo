@@ -70,8 +70,9 @@ public class ProductRestController {
 	@ApiOperation("更新产品")
 	@PutMapping("/{id}")
 	public Result update(@PathVariable Long id, @RequestBody Product vo) {
+		System.out.println(vo);
 		Product product = productService.updateProductById(id, vo);
-		if (product == null) {
+		if (product != null) {
 			return Result.success("更新成功");
 		}
 		return Result.error("更新失败");
