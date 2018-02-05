@@ -1,6 +1,5 @@
 package com.stackfing.admin.controller.restController;
 
-import com.stackfing.common.service.BannerService;
 import com.stackfing.common.service.serviceImpl.BannerServiceImpl;
 import com.stackfing.common.utils.HandgoResult;
 import org.springframework.beans.factory.annotation.Autowired;

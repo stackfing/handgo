@@ -32,7 +32,7 @@
     <div class="nav white">
         <#--<div class="logo"><img src="../images/logo.png"></div>-->
         <div class="logoBig">
-            <li><a href="/"><img src="../images/logobig.png"></a></li>
+            <li><a href="/"><img src="/images/logobig.png"></a></li>
         </div>
 
         <div class="search-bar pr">

@@ -25,7 +25,6 @@
 
 	<body>
 
-
 		<!--顶部导航条 -->
         <#include "../common/header.ftl">
 
@@ -119,7 +118,7 @@
 						<!--规格属性-->
 						<!--名称-->
 						<div class="tb-detail-hd">
-							<h1>	
+							<h1>
 				 <#--良品铺子 手剥松子218g 坚果炒货 巴西松子-->
                                 ${product.name}
 	          </h1>
@@ -272,7 +271,7 @@
 							<div class="pay-opt">
 							<a href="http://go.stackfing.com"><span class="am-icon-home am-icon-fw">首页</span></a>
 							<a><span class="am-icon-heart am-icon-fw">收藏</span></a>
-							
+
 							</div>
 							<li>
 								<div class="clearfix tb-btn tb-btn-buy theme-login">
@@ -319,21 +318,21 @@
 					</div>
 				</div>
 				<div class="clear"></div>
-				
-							
+
+
 				<!-- introduce-->
 
 				<div class="introduce">
 					<div class="browse">
-					    <div class="mc"> 
-						     <ul>					    
-						     	<div class="mt">            
-						            <h2>看了又看</h2>        
+					    <div class="mc">
+						     <ul>
+						     	<div class="mt">
+						            <h2>看了又看</h2>
 					            </div>
-						     	
+
 							      <li class="first">
-							      	<div class="p-img">                    
-							      		<a  href="#"> <img class="" src="../images/browse1.jpg"> </a>               
+							      	<div class="p-img">
+							      		<a  href="#"> <img class="" src="../images/browse1.jpg"> </a>
 							      	</div>
 							      	<div class="p-name"><a href="#">
 							      		【三只松鼠_开口松子】零食坚果特产炒货东北红松子原味
@@ -342,8 +341,8 @@
 							      	<div class="p-price"><strong>￥35.90</strong></div>
 							      </li>
 							      <li>
-							      	<div class="p-img">                    
-							      		<a  href="#"> <img class="" src="../images/browse1.jpg"> </a>               
+							      	<div class="p-img">
+							      		<a  href="#"> <img class="" src="../images/browse1.jpg"> </a>
 							      	</div>
 							      	<div class="p-name"><a href="#">
 							      		【三只松鼠_开口松子】零食坚果特产炒货东北红松子原味
@@ -352,37 +351,37 @@
 							      	<div class="p-price"><strong>￥35.90</strong></div>
 							      </li>
 							      <li>
-							      	<div class="p-img">                    
-							      		<a  href="#"> <img class="" src="../images/browse1.jpg"> </a>               
+							      	<div class="p-img">
+							      		<a  href="#"> <img class="" src="../images/browse1.jpg"> </a>
 							      	</div>
 							      	<div class="p-name"><a href="#">
 							      		【三只松鼠_开口松子】零食坚果特产炒货东北红松子原味
 							      	</a>
 							      	</div>
 							      	<div class="p-price"><strong>￥35.90</strong></div>
-							      </li>							      
+							      </li>
 							      <li>
-							      	<div class="p-img">                    
-							      		<a  href="#"> <img class="" src="../images/browse1.jpg"> </a>               
+							      	<div class="p-img">
+							      		<a  href="#"> <img class="" src="../images/browse1.jpg"> </a>
 							      	</div>
 							      	<div class="p-name"><a href="#">
 							      		【三只松鼠_开口松子】零食坚果特产炒货东北红松子原味
 							      	</a>
 							      	</div>
 							      	<div class="p-price"><strong>￥35.90</strong></div>
-							      </li>							      
+							      </li>
 							      <li>
-							      	<div class="p-img">                    
-							      		<a  href="#"> <img class="" src="../images/browse1.jpg"> </a>               
+							      	<div class="p-img">
+							      		<a  href="#"> <img class="" src="../images/browse1.jpg"> </a>
 							      	</div>
 							      	<div class="p-name"><a href="#">
 							      		【三只松鼠_开口松子218g】零食坚果特产炒货东北红松子原味
 							      	</a>
 							      	</div>
 							      	<div class="p-price"><strong>￥35.90</strong></div>
-							      </li>							      
-					      
-						     </ul>					
+							      </li>
+
+						     </ul>
 					    </div>
 					</div>
 					<div class="introduceMain">
@@ -452,13 +451,13 @@
 								</div>
 
 								<div class="am-tab-panel am-fade">
-									
+
                                     <div class="actor-new">
-                                    	<div class="rate">                
-                                    		<strong>100<span>%</span></strong><br> <span>好评度</span>            
+                                    	<div class="rate">
+                                    		<strong>100<span>%</span></strong><br> <span>好评度</span>
                                     	</div>
-                                        <dl>                    
-                                            <dt>买家印象</dt>                    
+                                        <dl>
+                                            <dt>买家印象</dt>
                                             <dd class="p-bfc">
                                             			<q class="comm-tags"><span>味道不错</span><em>(2177)</em></q>
                                             			<q class="comm-tags"><span>颗粒饱满</span><em>(1860)</em></q>
@@ -468,10 +467,10 @@
                                             			<q class="comm-tags"><span>个个开口</span><em>(1392)</em></q>
                                             			<q class="comm-tags"><span>价格便宜</span><em>(1119)</em></q>
                                             			<q class="comm-tags"><span>特价买的</span><em>(865)</em></q>
-                                            			<q class="comm-tags"><span>皮很薄</span><em>(831)</em></q> 
-                                            </dd>                                           
-                                         </dl> 
-                                    </div>	
+                                            			<q class="comm-tags"><span>皮很薄</span><em>(831)</em></q>
+                                            </dd>
+                                         </dl>
+                                    </div>
                                     <div class="clear"></div>
 									<div class="tb-r-filter-bar">
 										<ul class=" tb-taglist am-avg-sm-4">

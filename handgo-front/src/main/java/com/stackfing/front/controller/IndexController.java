@@ -57,7 +57,7 @@ public class IndexController {
 		modelMap.put("killList", getKillProductVo());
 		modelMap.put("categorys", categoryService.getCategoryParent());
 		modelMap.put("Notices", noticeService.getNoticeList());
-//		modelMap.put("commendList", getFrontCommendVoList());
+		modelMap.put("commendList", getFrontCommendVoList());
 		System.out.println(OrderUtil.newOrder());
 		return "home/home2";
 	}
