@@ -1,12 +1,10 @@
 package com.stackfing.admin.controller.restController;
 
-import com.stackfing.common.service.NoticeService;
 import com.stackfing.common.utils.Result;
 import com.stackfing.common.vo.NoticeVo;
 import com.stackfing.pojo.Notice;
-import org.apache.ibatis.annotations.Delete;
+import com.stackfing.service.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -33,8 +31,8 @@ public class NoticeRestController {
 	}
 
 	@PutMapping("/{id}")
-	public Result update(@PathVariable Integer id, @RequestBody NoticeVo vo) {
-		return Result.success(noticeService.save(id, vo));
+	public Result update(@PathVariable Integer id, @RequestBody Notice notice) {
+		return Result.success(noticeService.save(id, notice));
 	}
 
 	@PostMapping("")

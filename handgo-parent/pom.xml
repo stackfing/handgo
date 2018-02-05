@@ -15,9 +15,10 @@
         <module>../handgo-admin</module>
         <module>../handgo-sso</module>
         <module>../handgo-common</module>
-        <module>../handgo-common-pojo</module>
+        <module>../handgo-pojo</module>
         <module>../handgo-front</module>
         <module>../handgo-home</module>
+        <module>../handgo-service</module>
     </modules>
 
 

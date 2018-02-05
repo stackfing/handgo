@@ -1,7 +1,7 @@
 package com.stackfing.sso.controller;
 
-import com.stackfing.common.service.CustomerService;
-import com.stackfing.common.service.serviceImpl.CustomerServiceImpl;
+import com.stackfing.service.CustomerService;
+import com.stackfing.service.serviceImpl.CustomerServiceImpl;
 import com.stackfing.common.utils.HandgoResult;
 import com.stackfing.pojo.Customer;
 import com.stackfing.sso.pojo.User;

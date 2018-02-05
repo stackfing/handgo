@@ -1,9 +1,7 @@
 package com.stackfing.front.controller;
 
-import com.stackfing.common.service.CategoryService;
-import com.stackfing.common.service.ProductService;
+import com.stackfing.service.ProductService;
 import com.stackfing.common.utils.Result;
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

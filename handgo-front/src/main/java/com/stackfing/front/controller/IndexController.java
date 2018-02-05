@@ -1,30 +1,22 @@
 package com.stackfing.front.controller;
 
-import com.stackfing.common.service.*;
 import com.stackfing.common.utils.OrderUtil;
-import com.stackfing.common.vo.NoticeVo;
-import com.stackfing.common.vo.ProductVo;
 import com.stackfing.front.vo.*;
 import com.stackfing.pojo.Category;
 import com.stackfing.pojo.KillProduct;
 import com.stackfing.pojo.Notice;
 import com.stackfing.pojo.Product;
-import org.springframework.beans.BeanUtils;
+import com.stackfing.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
-import sun.font.FontConfigManager;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 /**
  * @Author: fing
@@ -55,7 +47,7 @@ public class IndexController {
 		String username = (String) request.getSession().getAttribute("username");
 		modelMap.put("username", username);
 		modelMap.put("killList", getKillProductVo());
-		modelMap.put("categorys", categoryService.getCategoryParent());
+		modelMap.put("categorys", categoryService.findAllParent());
 		modelMap.put("Notices", noticeService.getNoticeList());
 		modelMap.put("commendList", getFrontCommendVoList());
 		System.out.println(OrderUtil.newOrder());
@@ -140,9 +132,9 @@ public class IndexController {
 	@GetMapping("/v1/category/{id}")
 	@ResponseBody
 	public CategoryVo getSubCategory(@PathVariable Long id) {
-		List<Category> subCategoryById = categoryService.getSubCategoryById(id);
+		List<Category> subCategoryById = categoryService.findAllSubCategoryById(id);
 		CategoryVo vo = new CategoryVo();
-		vo.setName(categoryService.getCategoryById(id).getName());
+		vo.setName(categoryService.findById(id).getName());
 		vo.setSubCategories(subCategoryById);
 		return vo;
 	}

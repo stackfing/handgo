@@ -1,6 +1,6 @@
 package com.stackfing.home.controller;
 
-import com.stackfing.common.service.serviceImpl.CustomerServiceImpl;
+import com.stackfing.service.serviceImpl.CustomerServiceImpl;
 import com.stackfing.pojo.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

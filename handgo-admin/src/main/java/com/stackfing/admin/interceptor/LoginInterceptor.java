@@ -1,7 +1,5 @@
 package com.stackfing.admin.interceptor;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -17,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
-	@Autowired
-	private RedisTemplate<String, String> redisTemplate;
+//	@Autowired
+//	private RedisTemplate<String, String> redisTemplate;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

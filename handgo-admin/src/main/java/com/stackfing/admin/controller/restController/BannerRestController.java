@@ -1,6 +1,6 @@
 package com.stackfing.admin.controller.restController;
 
-import com.stackfing.common.service.serviceImpl.BannerServiceImpl;
+import com.stackfing.service.serviceImpl.BannerServiceImpl;
 import com.stackfing.common.utils.HandgoResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,9 +24,9 @@ public class BannerRestController {
 	@GetMapping("")
 	public HandgoResult list(@RequestParam(required = false) Integer page, @RequestParam(required = false) Integer size) {
 		if (page == null || size == null) {
-			return HandgoResult.success(bannerService.getBannerList());
+			return HandgoResult.success(bannerService.findAll());
 		}
-		return HandgoResult.success(bannerService.getBannerList(page,size));
+		return HandgoResult.success(bannerService.findAll(page,size));
 	}
 
 }

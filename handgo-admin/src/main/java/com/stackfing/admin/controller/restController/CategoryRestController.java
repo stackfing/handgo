@@ -1,8 +1,8 @@
 package com.stackfing.admin.controller.restController;
 
-import com.stackfing.common.service.CategoryService;
 import com.stackfing.common.utils.Result;
 import com.stackfing.common.vo.LayuiVo;
+import com.stackfing.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,14 +22,14 @@ public class CategoryRestController {
 	public LayuiVo getCategoryList(@RequestParam(required = false) Integer page
 		, @RequestParam(required = false)  Integer limit) {
 		if (null == page || limit == null) {
-			return (LayuiVo) LayuiVo.success(categoryService.getCategoryList());
+			return (LayuiVo) LayuiVo.success(categoryService.findAll());
 		}
-		return LayuiVo.success(categoryService.getCategoryList(page, limit), 100);
+		return LayuiVo.success(categoryService.findAll(page, limit), 100);
 	}
 
 	@GetMapping("/{id}")
 	public Result getCategoryById(@PathVariable Long id) {
-		return Result.success(categoryService.getSubCategoryById(id));
+		return Result.success(categoryService.findById(id));
 	}
 
 }

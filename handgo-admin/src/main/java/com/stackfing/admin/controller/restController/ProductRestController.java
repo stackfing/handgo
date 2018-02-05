@@ -1,11 +1,11 @@
 package com.stackfing.admin.controller.restController;
 
-import com.stackfing.common.service.ProductService;
-import com.stackfing.common.vo.LayuiVo;
-import com.stackfing.common.vo.ProductVo;
 import com.stackfing.common.enums.ResultCode;
 import com.stackfing.common.utils.Result;
+import com.stackfing.common.vo.LayuiVo;
+import com.stackfing.common.vo.ProductVo;
 import com.stackfing.pojo.Product;
+import com.stackfing.service.ProductService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +55,8 @@ public class ProductRestController {
 	@ApiOperation("添加产品")
 	@PostMapping("")
 	public Result save(@RequestBody ProductVo vo) {
-		return Result.success(productService.createProduct(vo, vo.getDescription()));
+//		return Result.success(productService.createProduct(vo, vo.getDescription()));
+		return null;
 	}
 
 	@ApiOperation("根据 ID 查询产品")
@@ -68,8 +69,8 @@ public class ProductRestController {
 
 	@ApiOperation("更新产品")
 	@PutMapping("/{id}")
-	public Result update(@PathVariable Long id, @RequestBody ProductVo productVo) {
-		Product product = productService.updateProductById(id, productVo);
+	public Result update(@PathVariable Long id, @RequestBody Product vo) {
+		Product product = productService.updateProductById(id, vo);
 		if (product == null) {
 			return Result.success("更新成功");
 		}
