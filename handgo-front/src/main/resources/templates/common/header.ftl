@@ -1,11 +1,12 @@
 <div class="hmtop">
+
     <!--顶部导航条 -->
     <div class="am-container header">
         <ul class="message-l">
             <div class="topMessage">
-                <div class="menu-hd">
-                    <a href="http://sso.stackfing.com/login" target="_top" class="h">亲，请登录</a>
-                    <a href="http://sso.stackfing.com/login" target="_top">免费注册</a>
+                <div class="menu-hd" id="tt">
+                    <#--<a href="http://sso.stackfing.com/login" target="_top" class="h">亲，请登录</a>-->
+                    <#--<a href="http://sso.stackfing.com/login" target="_top">免费注册</a>-->
                 </div>
             </div>
         </ul>
@@ -46,3 +47,4 @@
 
     <div class="clear"></div>
 </div>
+<script src="/login.js"></script>

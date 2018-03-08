@@ -1,5 +1,6 @@
 package com.stackfing.sso.controller;
 
+import com.stackfing.common.utils.Result;
 import com.stackfing.service.CustomerService;
 import com.stackfing.service.serviceImpl.CustomerServiceImpl;
 import com.stackfing.common.utils.HandgoResult;
@@ -98,5 +99,15 @@ public class SSOController {
 
 		System.out.println(request.getSession().getAttribute("id"));
 		return (String) request.getSession().getAttribute("id");
+	}
+
+	@PostMapping("/v1/login")
+	@ResponseBody
+	public Result lo(@RequestBody User user) {
+		System.out.println(user);
+		if (user.getAccount().equals("test") && user.getPassword().equals("test")) {
+			return Result.success(user, "ok");
+		}
+		return null;
 	}
 }

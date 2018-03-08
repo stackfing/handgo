@@ -38,7 +38,7 @@ public class ProductRestController {
 			layuiVo.setCode(ResultCode.SUCCESS);
 			layuiVo.setData(productService.getProductList());
 			System.out.println(request.getHeader("Set-Cookie") + "---------------------------");
-			res.addHeader("Set-Cookie", "uid=112; Path=/; HttpOnly");
+			res.addHeader("Authorization", "uid=112; Path=/; HttpOnly");
 			res.addHeader("Admins", "admin");
 			return layuiVo;
 //			return LayuiVo.success(productService.getProductList());

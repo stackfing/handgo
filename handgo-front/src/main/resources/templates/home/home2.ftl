@@ -206,33 +206,6 @@
         <!--导航 -->
         <script type="text/javascript">
 
-            // if(!window.localStorage){
-            //     alert("浏览器支持localstorage");
-            // }else{
-            //     var storage=window.localStorage;
-            //     //写入a字段
-            //     storage["a"]=1;
-            //     //写入b字段
-            //     storage.b=1;
-            //     //写入c字段
-            //     storage.setItem("c",3);
-            //     console.log(storage.a);
-            //     // console.log(typeof storage["a"]);
-            //     // console.log(typeof storage["b"]);
-            //     // console.log(typeof storage["c"]);
-            //     /*分割线*/
-            //     storage.a=4;
-            //     console.log(storage.a);
-            //     if (storage.a != null) {
-            //         alert('not null');
-            //     }
-            //     storage.clear();
-            //     // if (storage.a == null) {
-            //     //     alert('null');
-            //     // }
-            // }
-
-
             (function () {
                 $('.am-slider').flexslider();
             });
@@ -407,12 +380,11 @@
                                 <a href="http://go.stackfing.com/item/${item.id}"><p class="s-title">${item.name!}</p>
                                 </a>
                                 <div class="s-price">￥<b>${item.price!}</b>
-                                    <a class="s-buy" href="${item.id!}">秒杀</a>
+                                    <a class="s-buy" href="http://go.stackfing.com/item/${item.id!}">秒杀</a>
                                 </div>
                             </div>
                         </div>
                         </#list>
-
 
             </div>
         </#if>

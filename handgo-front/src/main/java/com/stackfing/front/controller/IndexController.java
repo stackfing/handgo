@@ -1,6 +1,7 @@
 package com.stackfing.front.controller;
 
 import com.stackfing.common.utils.OrderUtil;
+import com.stackfing.front.pojo.Index;
 import com.stackfing.front.vo.*;
 import com.stackfing.pojo.Category;
 import com.stackfing.pojo.KillProduct;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,12 +46,12 @@ public class IndexController {
 
 	@GetMapping("")
 	public String index(ModelMap modelMap, HttpServletRequest request) {
-		String username = (String) request.getSession().getAttribute("username");
-		modelMap.put("username", username);
+//		request.getSession().setAttribute("username","admin");
 		modelMap.put("killList", getKillProductVo());
 		modelMap.put("categorys", categoryService.findAllParent());
 		modelMap.put("Notices", noticeService.getNoticeList());
-		modelMap.put("commendList", getFrontCommendVoList());
+//		modelMap.put("commendList", getFrontCommendVoList());
+		modelMap.put("ttt", "123");
 		System.out.println(OrderUtil.newOrder());
 		return "home/home2";
 	}
