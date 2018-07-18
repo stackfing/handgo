@@ -121,10 +121,7 @@ public class IndexController {
 		return "person/index";
 	}
 
-	@GetMapping("/shopcart")
-	public String shopCart() {
-		return "home/shopcart";
-	}
+
 
 	@GetMapping("/collection")
 	public String collection() {

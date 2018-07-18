@@ -37,4 +37,6 @@ public class Customer {
 	private Date createTime;
 
 	private Date updateTime;
+
+	private Date lastLogin;
 }

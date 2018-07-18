@@ -9,7 +9,7 @@
             </el-table-column>
             <el-table-column label="地址">
                 <template slot-scope="scope">
-                    <a :href='scope.row.url' target="_blank">{{scope.row.url}}</a>
+                    <img :src="scope.row.url" />
                 </template>
             </el-table-column>
         </el-table>

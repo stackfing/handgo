@@ -7,6 +7,8 @@ import com.stackfing.pojo.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Author: fing
  * @Description:
@@ -43,5 +45,10 @@ public class CustomerServiceImpl implements CustomerService {
 			throw new HandgoException("找不到这个用户");
 		}
 		return one;
+	}
+
+	@Override
+	public List<Customer> findAll() {
+		return customerDao.findAll();
 	}
 }

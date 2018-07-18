@@ -11,22 +11,22 @@ Vue.config.productionTip = false
 
 // Vue.prototype.HOST = ''
 
-router.beforeEach((to, from, next) => {
-  if(to.meta.requireAuth) {
-    if(localStorage.getItem('username') === 'username'){
-      // alert(from)
-      console.log(to)
-      next()
-    } else {
-      next({
-        path: '/login'
-      })
-    }
+// router.beforeEach((to, from, next) => {
+//   if(to.meta.requireAuth) {
+//     if(localStorage.getItem('username') === 'username'){
+//       // alert(from)
+//       console.log(to)
+//       next()
+//     } else {
+//       next({
+//         path: '/login'
+//       })
+//     }
     
-  } else {
-    next()
-  }
-})
+//   } else {
+//     next()
+//   }
+// })
 
 /* eslint-disable no-new */
 new Vue({
