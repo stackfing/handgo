@@ -1,6 +1,7 @@
 package com.stackfing.admin.service.base;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @Author: fing
@@ -15,6 +16,7 @@ public interface BaseService<T, R> {
 
 	List<T> list(int size, int page);
 
-	void save(T model);
+	T save(T model);
 
+	Optional<T> findOneById(R id);
 }

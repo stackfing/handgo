@@ -1,10 +1,9 @@
 package com.stackfing.admin.entity;
 
 import lombok.Data;
+import org.hibernate.mapping.UniqueKey;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -22,12 +21,14 @@ public class User {
 	@GeneratedValue
 	private Long id;
 
+	@Column(unique = true)
 	private String username;
 
 	private String avatar;
 
 	private String sex;
 
+	@Column(unique = true)
 	private String email;
 
 	private Date updateTime;

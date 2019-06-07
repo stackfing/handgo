@@ -1,11 +1,11 @@
 package com.stackfing.admin.service.base;
 
-import com.stackfing.admin.service.base.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @Author: fing
@@ -33,7 +33,12 @@ public abstract class BaseServiceImpl<T, R> implements BaseService<T, R> {
 	}
 
 	@Override
-	public void save(T model) {
-		repository.save(model);
+	public Optional<T> findOneById(R id) {
+		return repository.findById(id);
+	}
+
+	@Override
+	public T save(T model) {
+		return repository.save(model);
 	}
 }

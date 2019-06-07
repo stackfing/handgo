@@ -1,8 +1,9 @@
 package com.stackfing.admin.controller;
 
 import com.stackfing.admin.service.base.BaseService;
+import com.stackfing.admin.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Author: fing
@@ -16,7 +17,22 @@ public abstract class BaseController<T, R> {
 	private BaseService<T, R> baseService;
 
 	@GetMapping("")
-	public Object get() {
-		return baseService.list();
+	public Result get() {
+		return Result.ok(baseService.list());
+	}
+
+	@GetMapping("/{id}")
+	public Result findOneById(R id) {
+		return Result.ok(baseService.findOneById(id));
+	}
+
+	@PostMapping("")
+	public Result post(@RequestBody T model) {
+		return Result.ok(baseService.save(model));
+	}
+
+	@PutMapping("/{id}")
+	public Result put(@RequestBody T model, @PathVariable R id) {
+		return Result.ok(baseService.save(model));
 	}
 }
