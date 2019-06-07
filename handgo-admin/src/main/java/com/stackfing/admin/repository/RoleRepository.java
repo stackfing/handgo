@@ -1,12 +1,12 @@
 package com.stackfing.admin.repository;
 
-import com.stackfing.admin.entity.User;
+import com.stackfing.admin.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * @Author: fing
  * @Description:
- * @Date: 下午6:47 19-3-27
+ * @Date: 下午5:20 19-6-7
  */
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface RoleRepository extends JpaRepository<Role, Integer> {
 }

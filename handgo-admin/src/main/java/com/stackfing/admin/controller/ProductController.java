@@ -7,11 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @Author: fing
  * @Description:
- * @Date: 下午6:45 19-3-27
+ * @Date: 下午4:43 19-6-7
  */
 
 @RestController
 @RequestMapping("product")
 public class ProductController extends BaseController<Product, Long> {
-
 }

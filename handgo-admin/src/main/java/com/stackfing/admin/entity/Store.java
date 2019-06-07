@@ -12,26 +12,21 @@ import java.sql.Timestamp;
 /**
  * @Author: fing
  * @Description:
- * @Date: 下午6:47 19-3-27
+ * @Date: 下午5:14 19-6-7
  */
-
 @Data
-@Entity(name = "tb_user")
-public class User {
+@Entity(name = "tb_store")
+public class Store {
+
 	@Id
 	@GeneratedValue
 	private Long id;
 
-	private String username;
+	private Long sellNumber;
 
-	private String avatar;
-
-	private String sex;
-
-	private String email;
+	private Long totalNumber;
 
 	private Date updateTime;
 
 	private Date createTime;
-
 }

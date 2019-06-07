@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 /**
  * @Author: fing
@@ -23,6 +26,16 @@ public class Product {
 
 	private String name;
 
+	private BigDecimal oldPrice;
+
 	private BigDecimal nowPrice;
+
+	private String avatar;
+
+	private String description;
+
+	private Date updateTime;
+
+	private Date createTime;
 
 }
