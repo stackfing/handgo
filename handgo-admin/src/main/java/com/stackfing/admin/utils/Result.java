@@ -59,4 +59,12 @@ public class Result {
 		return result;
 	}
 
+	public static Result error(String msg, ResultCode resultCode) {
+		Result result = res;
+		result.msg = msg;
+		result.data = null;
+		result.code = resultCode.getCode();
+		return result;
+	}
+
 }
