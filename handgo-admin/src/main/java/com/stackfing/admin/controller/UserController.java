@@ -31,6 +31,10 @@ public class UserController extends BaseController<User, Long> {
 		return Result.error(ResultCode.ID_NOT_EQUALS);
 	}
 
+	/**
+	 * 获得所有管理员列表
+	 * @return
+	 */
 	@GetMapping("selectAllAdmin")
 	public Result selectAllAdmin() {
 
