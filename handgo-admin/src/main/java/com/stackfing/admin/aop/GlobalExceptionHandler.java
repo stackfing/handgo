@@ -18,17 +18,10 @@ public class GlobalExceptionHandler {
 
 	@org.springframework.web.bind.annotation.ExceptionHandler(value = Exception.class)
 	public Result errorHandler(HttpServletRequest request, HttpServletResponse response, Exception e) throws Exception {
-//		e.printStackTrace();
-//		Class<Class>[] excls = {};
-//		List<Class> excludeClass = new ArrayList<>(excls);
-//		for (Class cls : excls) {
-//
-//		}
+
 		Result result = Result.getInstance();
 		result.setCode(ResultCode.SERVER_INTERNAL_ERROR.getCode());
-//		result.setMsg(e.getMessage());
 		result.setData(e.getStackTrace());
-//		result.setCode(500);
 
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("异常类： ").append(e.getClass().getName()).append("; 异常信息： ").append(e.getLocalizedMessage());
