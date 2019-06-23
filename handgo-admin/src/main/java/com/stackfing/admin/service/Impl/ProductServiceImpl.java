@@ -6,9 +6,11 @@ import com.stackfing.admin.repository.UserRepository;
 import com.stackfing.admin.service.ProductService;
 import com.stackfing.admin.service.base.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +21,7 @@ import java.util.Optional;
  */
 @Service
 public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implements ProductService {
+
 
 	/**
 	 * 数组中第一个索引
@@ -37,46 +40,49 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implement
 	 * @return
 	 */
 	@Override
-	public List<Product> selectAllProductByBatchSellerId(Long... ids) {
+	public List<Product> selectAllProductByBatchSellerId(List<Long> ids) {
 
 		List<Product> result = new ArrayList<>();
 
-		if (ids.length == 0) {
+		if (ids.size() == 0) {
 			//没有传 ID 过来
 			return result;
 		}
 
 		//确认商家 ID 是否正确
-		checkUserIsPresent(ids);
+		for (Long id : ids) {
+			checkEntityIsPresent(id);
+			result = productRepository.findBySellerIdIn(ids);
+		}
 
 		return result;
 	}
 
-	/**
-	 * 确认商家 ID 是否已存在数据库
-	 * @param ids
-	 */
-	private void checkUserIsPresent(Long... ids) {
-		for (Long id : ids) {
-			checkUserIsPresent(id);
-		}
-//		for (Long id : ids) {
-//			Optional<User> user = userRepository.findById(id);
-//			//商家存在
-//			if (user.isPresent()) {
-//				//判断是否为商家
-//				continue;
-//			}
-//			throw new UserNotFoundException("商家 ID: " + id + " 找不到");
-//		}
+	@Override
+	public void delete(Long id) {
+		checkEntityIsPresent(id);
 	}
 
-//	@Override
+
+	@Override
+	public void deleteById(Long id) {
+		Product product = productRepository.getOne(id);
+		product.setIsDeleted(false);
+		productRepository.save(product);
+	}
+
+	//	@Override
 	public void deleteById0(Long id) {
 		Optional<Product> byId = productRepository.findById(id);
-		checkUserIsPresent(id);
+		checkEntityIsPresent(id);
 		Product product = productRepository.findById(id).get();
 //		product.setIsDeleted(true);
 		save(product);
 	}
+
+	@Override
+	public List<Product> selectAllByDeleteTag(boolean tag ,int page, int size) {
+		return productRepository.isDeleted(tag, PageRequest.of(page - 1 ,size));
+	}
+
 }

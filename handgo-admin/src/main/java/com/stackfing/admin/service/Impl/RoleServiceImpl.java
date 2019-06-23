@@ -7,6 +7,8 @@ import com.stackfing.admin.service.base.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Author: fing
  * @Description:
@@ -17,4 +19,14 @@ import org.springframework.stereotype.Service;
 public class RoleServiceImpl extends BaseServiceImpl<Role, Integer> implements RoleService {
 	@Autowired
 	private RoleRepository repository;
+
+	@Override
+	public void deleteById(Integer id) {
+
+	}
+
+	@Override
+	public List<Role> selectAllByDeleteTag(boolean tag, int page, int size) {
+		return null;
+	}
 }

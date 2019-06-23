@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface ProductService {
 
-	List<Product> selectAllProductByBatchSellerId(Long... ids);
+	List<Product> selectAllProductByBatchSellerId(List<Long> ids);
 
 }

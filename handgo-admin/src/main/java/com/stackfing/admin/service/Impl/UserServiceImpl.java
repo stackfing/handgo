@@ -7,6 +7,8 @@ import com.stackfing.admin.service.base.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Author: fing
  * @Description:
@@ -18,5 +20,14 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
 	@Autowired
 	private UserRepository repository;
 
+	@Override
+	public void deleteById(Long id) {
+
+	}
+
+	@Override
+	public List<User> selectAllByDeleteTag(boolean tag, int page, int size) {
+		return null;
+	}
 }
 

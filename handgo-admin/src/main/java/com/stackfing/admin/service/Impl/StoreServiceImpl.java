@@ -7,6 +7,8 @@ import com.stackfing.admin.service.base.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Author: fing
  * @Description:
@@ -16,4 +18,14 @@ import org.springframework.stereotype.Service;
 public class StoreServiceImpl extends BaseServiceImpl<Store, Long> implements StoreService {
 	@Autowired
 	private StoreRepository repository;
+
+	@Override
+	public void deleteById(Long id) {
+
+	}
+
+	@Override
+	public List<Store> selectAllByDeleteTag(boolean tag, int page, int size) {
+		return null;
+	}
 }

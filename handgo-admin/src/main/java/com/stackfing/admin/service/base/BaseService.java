@@ -10,7 +10,9 @@ import java.util.Optional;
  */
 public interface BaseService<T, R> {
 
-	void deleteById(R id);
+	void delete(R id);
+
+	abstract void deleteById(R id);
 
 	List<T> list();
 
@@ -21,4 +23,6 @@ public interface BaseService<T, R> {
 	Optional<T> findOneById(R id);
 
 	Boolean checkEntityIsPresent(R id);
+
+	abstract List<T> selectAllByDeleteTag(boolean tag ,int page, int size);
 }

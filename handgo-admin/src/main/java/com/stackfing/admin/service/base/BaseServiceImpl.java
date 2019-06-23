@@ -19,20 +19,17 @@ public abstract class BaseServiceImpl<T, R> implements BaseService<T, R> {
 	private JpaRepository<T, R> repository;
 
 	@Override
-	public void deleteById(R id) {
+	public void delete(R id) {
 		checkEntityIsPresent(id);
-
+		deleteById(id);
 	}
-
-//	public abstract void deleteById0(R id);
 
 	@Override
 	public Boolean checkEntityIsPresent(R id) {
 		Boolean bl = false;
 		Optional<T> entity = repository.findById(id);
 		if (!entity.isPresent()) {
-
-			throw new UserNotFoundException("用户不存在");
+			throw new UserNotFoundException("ID 为：" + id + " 的用户不存在");
 		}
 		bl = true;
 		return bl;
@@ -52,7 +49,7 @@ public abstract class BaseServiceImpl<T, R> implements BaseService<T, R> {
 
 	@Override
 	public List<T> list(int size, int page) {
-		return repository.findAll(PageRequest.of(page, size)).getContent();
+		return repository.findAll(PageRequest.of(page - 1, size)).getContent();
 	}
 
 	@Override
@@ -65,4 +62,6 @@ public abstract class BaseServiceImpl<T, R> implements BaseService<T, R> {
 	public T save(T model) {
 		return repository.save(model);
 	}
+
+
 }
