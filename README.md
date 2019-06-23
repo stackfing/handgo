@@ -6,7 +6,7 @@
 
 ### 【项目施工中...欢迎 star】
 
-#### 后台截图
+#### 后台截图（注意：项目正在重新开发，UI 即将更改。此图为早期版本）
 
 <div style="align: center">
 <img src="./project/admin0.png"/>
