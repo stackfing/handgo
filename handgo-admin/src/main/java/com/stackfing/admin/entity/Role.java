@@ -19,9 +19,10 @@ public class Role {
 	@GeneratedValue
 	private Integer id;
 
-	private Long userId;
-
-	private Long role;
-
-	private String password;
+	//角色名
+	private String name;
+	//角色描述
+	private String description;
+	//状态标志
+	private Boolean isDeleted;
 }

@@ -26,6 +26,8 @@ public class Store {
 
 	private Long totalNumber;
 
+	private Boolean isDeleted;
+
 	private Date updateTime;
 
 	private Date createTime;

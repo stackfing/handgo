@@ -1,5 +1,6 @@
 package com.stackfing.admin.service.base;
 
+import com.stackfing.admin.Exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,8 +20,30 @@ public abstract class BaseServiceImpl<T, R> implements BaseService<T, R> {
 
 	@Override
 	public void deleteById(R id) {
-		repository.deleteById(id);
+		checkEntityIsPresent(id);
+
 	}
+
+//	public abstract void deleteById0(R id);
+
+	@Override
+	public Boolean checkEntityIsPresent(R id) {
+		Boolean bl = false;
+		Optional<T> entity = repository.findById(id);
+		if (!entity.isPresent()) {
+
+			throw new UserNotFoundException("用户不存在");
+		}
+		bl = true;
+		return bl;
+	}
+
+//	private void checkUserIsPresent(R id) {
+//		Optional<T> entity = repository.findById(id);
+//		if (!entity.isPresent()) {
+//			throw new UserNotFoundException("用户不存在");
+//		}
+//	}
 
 	@Override
 	public List<T> list() {
@@ -34,6 +57,7 @@ public abstract class BaseServiceImpl<T, R> implements BaseService<T, R> {
 
 	@Override
 	public Optional<T> findOneById(R id) {
+		checkEntityIsPresent(id);
 		return repository.findById(id);
 	}
 

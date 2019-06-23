@@ -23,7 +23,7 @@ public abstract class BaseController<T, R> {
 	}
 
 	@GetMapping("/{id}")
-	public Result findOneById(R id) {
+	public Result findOneById(@PathVariable(name = "id") R id) {
 		return Result.ok(baseService.findOneById(id));
 	}
 

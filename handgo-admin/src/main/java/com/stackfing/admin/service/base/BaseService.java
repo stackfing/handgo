@@ -19,4 +19,6 @@ public interface BaseService<T, R> {
 	T save(T model);
 
 	Optional<T> findOneById(R id);
+
+	Boolean checkEntityIsPresent(R id);
 }

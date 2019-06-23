@@ -2,9 +2,7 @@ package com.stackfing.admin.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Time;
@@ -33,6 +31,10 @@ public class Product {
 	private String avatar;
 
 	private String description;
+
+	private Long sellerId;
+
+	private Boolean isDeleted = false;
 
 	private Date updateTime;
 
