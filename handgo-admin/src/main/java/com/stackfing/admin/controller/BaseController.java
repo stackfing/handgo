@@ -19,6 +19,7 @@ public abstract class BaseController<T, R> {
 	@GetMapping("")
 	public Result get() {
 		return Result.ok(baseService.list());
+//		throw new RuntimeException("msgssss");
 	}
 
 	@GetMapping("/{id}")
