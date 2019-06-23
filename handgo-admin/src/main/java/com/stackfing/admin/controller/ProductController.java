@@ -1,8 +1,12 @@
 package com.stackfing.admin.controller;
 
 import com.stackfing.admin.entity.Product;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.stackfing.admin.service.ProductService;
+import com.stackfing.admin.utils.Result;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @Author: fing
@@ -13,4 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("product")
 public class ProductController extends BaseController<Product, Long> {
+
+	@Autowired
+	private ProductService productService;
+
+	@PostMapping("selectBatchSellerIdIn")
+	public Result selectBatchSellerIdIn(@RequestBody List<Long> ids) {
+		return Result.ok(productService.selectAllProductByBatchSellerId(ids));
+	}
 }
